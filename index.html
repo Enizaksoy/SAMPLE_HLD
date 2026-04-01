@@ -147,6 +147,37 @@
   .tag-purple { background: #f0e8fd; color: #6c5ce7; }
   .tag-orange { background: #fef5e7; color: #e67e22; }
 
+  /* Draw.io diagram viewer */
+  .diagram-container {
+    margin: 20px 0;
+    border: 1px solid var(--vf-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f9fa;
+  }
+  .diagram-container .diagram-header {
+    background: var(--vf-dark);
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .diagram-container .diagram-header .diagram-badge {
+    background: var(--vf-red);
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .diagram-container iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+  }
+
   /* Footer */
   .footer { text-align: center; padding: 30px; color: #888; font-size: 12px; border-top: 1px solid #eee; margin-top: 60px; }
 
@@ -585,6 +616,14 @@
      TTNET(9121)    VFNET(15924)               ├── Huawei Core
      Facebook CDN(63293)                       └── DMZ FW
   </div>
+
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>L1 - Physical Topology (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=0&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Ftopology.drawio"></iframe>
+  </div>
 </div>
 
 <!-- ═══════════════ CHAPTER 4: Layer 2 Design ═══════════════ -->
@@ -958,6 +997,30 @@ interface BVI500
                               │
                      PE90ORT03 / PE90ORT04
   </div>
+
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>L2VPN - Bridge Domains &amp; Xconnect Overview (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=4&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Ftopology.drawio"></iframe>
+  </div>
+
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>L2VPN - xconnect EoMPLS Topology (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=5&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Ftopology.drawio"></iframe>
+  </div>
+
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>Bridge-Domain + BVI (Local L2 + L3 Gateway) (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=6&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Ftopology.drawio"></iframe>
+  </div>
 </div>
 
 <!-- ═══════════════ CHAPTER 6: IGP Design ═══════════════ -->
@@ -1093,6 +1156,14 @@ interface BVI500
     <li><strong>ASR9K&harr;7609-S</strong> (BE202/Po202): <strong>No BFD</strong></li>
     <li><strong>PEX pair</strong> (BE5043): BFD enabled</li>
   </ul>
+
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>L3 - IGP / MPLS / BGP Topology (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=1&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Ftopology.drawio"></iframe>
+  </div>
 </div>
 
 <!-- ═══════════════ CHAPTER 7: MPLS Design ═══════════════ -->
@@ -1448,6 +1519,22 @@ vrf 4G-S1-CP
   </table>
   <div class="info-box warn">
     Most VRF default routes point to <strong>firewalls</strong>. The firewalls perform security inspection before forwarding to external destinations.
+  </div>
+
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>L3VPN / VRF Service Map (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=2&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Ftopology.drawio"></iframe>
+  </div>
+
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>VRF / Device Mapping (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=3&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Ftopology.drawio"></iframe>
   </div>
 </div>
 
@@ -1899,6 +1986,14 @@ snmp-server user TelatAbi snmp-v3-ro v3 auth sha encrypted ... IPv4 ACL_68</pre>
     <tr><td>Protocols</td><td>OSPF area 0, LDP, iBGP VPNv4 (AS 65000)</td></tr>
   </table>
 
+  <div class="diagram-container">
+    <div class="diagram-header">
+      <span>Juniper MPLS-EVPN Lab Topology (Interactive)</span>
+      <span class="diagram-badge">draw.io</span>
+    </div>
+    <iframe src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&layers=1&page=0&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FEnizaksoy%2FSAMPLE_HLD%2Fmaster%2Fjuniper_lab.drawio"></iframe>
+  </div>
+
   <h4>Lab 2: Orhan Ergun MPLS VPNs Lab</h4>
   <table>
     <tr><th>Parameter</th><th>Value</th></tr>
@@ -1967,7 +2062,7 @@ snmp-server user TelatAbi snmp-v3-ro v3 auth sha encrypted ... IPv4 ACL_68</pre>
 </div><!-- /protected-content -->
 
 <script>
-const HASH = 'ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae';
+const HASH = '617372b4f985351b706b6021fc0fffff6b1d3591bf6cc2a59912a02185720491';
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');

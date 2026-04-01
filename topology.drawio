@@ -1,0 +1,1087 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6" pages="7">
+  <diagram id="L1_Physical" name="L1 - Physical Topology">
+    <mxGraphModel dx="2594" dy="1694" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3300" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title1" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;CPN Network - L1 Physical Topology&lt;/b&gt;&lt;br&gt;AS 62211 (IOS-XR Core) | AS 65500 (KKY 7609-S) | AS 64500 (ORT 7609-S) | AS 43356 (Public)" vertex="1">
+          <mxGeometry height="50" width="630" x="535" y="-120" as="geometry" />
+        </mxCell>
+        <mxCell id="kky_site" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=30;arcSize=5;fontColor=light-dark(#d60000, #ededed);fontSize=14;" value="" vertex="1">
+          <mxGeometry height="1350" width="1150" x="-100" y="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="kky_label" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;KKY Site (Lefkoşa / Kaymaklı)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="400" x="250" y="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="ort_site" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=30;arcSize=5;fontColor=light-dark(#d60000, #ededed);fontSize=14;" value="" vertex="1">
+          <mxGeometry height="1050" width="900" x="1250" y="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="ort_label" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;ORT Site (Ortaköy)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="300" x="1550" y="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="kky01" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90KKY01&lt;/b&gt;&lt;br&gt;Cisco 7609-S&lt;br&gt;IOS 12.2(33)SRE7a&lt;br&gt;Lo0: 192.168.1.3/32&lt;br&gt;AS 65500" vertex="1">
+          <mxGeometry height="100" width="200" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kky02" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90KKY02&lt;/b&gt;&lt;br&gt;Cisco 7609-S&lt;br&gt;IOS 12.2(33)SRE7a&lt;br&gt;Lo0: 192.168.1.4/32&lt;br&gt;AS 65500" vertex="1">
+          <mxGeometry height="100" width="200" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="kky01_kky02_l3" edge="1" parent="1" source="kky01" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#d6b656;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="kky02" value="Po3 (L3)&lt;br&gt;8x1G, IS-IS/LDP&lt;br&gt;192.168.2.1 ↔ .2/30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky01_kky02_l2" edge="1" parent="1" source="kky01" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.25;exitY=1;entryX=0.25;entryY=0;strokeColor=#B85450;strokeWidth=3;dashed=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="kky02" value="Po2 (L2)&lt;br&gt;2x10G Trunk">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="270" />
+              <mxPoint x="50" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kky03" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90KKY03&lt;/b&gt;&lt;br&gt;Cisco ASR9K&lt;br&gt;IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.1/32&lt;br&gt;AS 62211&lt;br&gt;nV-Sat: 7001, 7002" vertex="1">
+          <mxGeometry height="120" width="220" x="370" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kky04" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90KKY04&lt;/b&gt;&lt;br&gt;Cisco ASR9K&lt;br&gt;IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.2/32&lt;br&gt;AS 62211&lt;br&gt;nV-Sat: 7001, 7002" vertex="1">
+          <mxGeometry height="120" width="220" x="370" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_kky04_l3" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.6;exitY=1;entryX=0.6;entryY=0;strokeColor=#9673a6;strokeWidth=3;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="kky04" value="BE5043 (L3)&lt;br&gt;40G, IS-IS/LDP/BFD&lt;br&gt;10.134.34.5 ↔ .6/30&lt;br&gt;MTU 9114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_kky04_l2" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.35;exitY=1;entryX=0.35;entryY=0;strokeColor=#B85450;strokeWidth=3;dashed=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="kky04" value="BE5042 (L2)&lt;br&gt;40G Bridge">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="447" y="270" />
+              <mxPoint x="447" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kky01_kky03_l3" edge="1" parent="1" source="kky01" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.3;entryX=0;entryY=0.3;strokeColor=#9673a6;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="kky03" value="BE202/Po202 (L3)&lt;br&gt;2x10G, IS-IS/LDP&lt;br&gt;10.134.34.9↔.10/30&lt;br&gt;MTU 9100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky01_kky03_l2" edge="1" parent="1" source="kky01" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.7;entryX=0;entryY=0.7;strokeColor=#B85450;strokeWidth=2;dashed=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="kky03" value="BE222/Po222 (L2)&lt;br&gt;2x10G Trunk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky02_kky04_l3" edge="1" parent="1" source="kky02" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#9673a6;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="kky04" value="BE202/Po202 (L3)&lt;br&gt;2x10G, IS-IS/LDP&lt;br&gt;10.134.34.13↔.14/30&lt;br&gt;MTU 9100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pex01" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PEX90KKY01&lt;/b&gt;&lt;br&gt;Cisco ASR9K&lt;br&gt;IOS-XR 5.3.4&lt;br&gt;Lo0: 10.135.19.3/32&lt;br&gt;AS 62211&lt;br&gt;Internet/NAT/Corp" vertex="1">
+          <mxGeometry height="110" width="210" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="pex02" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PEX90KKY02&lt;/b&gt;&lt;br&gt;Cisco ASR9K&lt;br&gt;IOS-XR 5.3.4&lt;br&gt;Lo0: 10.135.19.4/32&lt;br&gt;AS 62211&lt;br&gt;Internet/NAT/Corp" vertex="1">
+          <mxGeometry height="110" width="210" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="pex01_pex02_l3" edge="1" parent="1" source="pex01" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#b85450;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="pex02" value="BE5043 (L3)&lt;br&gt;IS-IS/LDP/BFD&lt;br&gt;10.135.19.45↔.46/30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pex01_pex02_l2" edge="1" parent="1" source="pex01" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.25;exitY=1;entryX=0.25;entryY=0;strokeColor=#B85450;strokeWidth=2;dashed=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="pex02" value="BE5042 (L2)&lt;br&gt;20G Bridge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_pex01" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;rounded=1;exitX=0;exitY=0.8;entryX=1;entryY=0.3;strokeColor=#b85450;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="pex01" value="BE8000&lt;br&gt;INTERNET/NAT VRFs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky04_pex02" edge="1" parent="1" source="kky04" style="endArrow=none;startArrow=none;rounded=1;exitX=0;exitY=0.8;entryX=1;entryY=0.3;strokeColor=#b85450;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="pex02" value="BE8000&lt;br&gt;INTERNET/NAT VRFs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="trd01" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;3RD90KKY01&lt;/b&gt;&lt;br&gt;Cisco ASR1001-X&lt;br&gt;IOS-XE 17.9.8&lt;br&gt;Lo0: 10.135.19.1/32&lt;br&gt;3rd Party/IPsec GW" vertex="1">
+          <mxGeometry height="100" width="220" x="370" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="trd02" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;3RD90KKY02&lt;/b&gt;&lt;br&gt;Cisco ASR1001-X&lt;br&gt;IOS-XE 17.9.8&lt;br&gt;Lo0: 10.135.19.2/32&lt;br&gt;3rd Party/IPsec GW" vertex="1">
+          <mxGeometry height="100" width="220" x="370" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="trd01_trd02_l3a" edge="1" parent="1" source="trd01" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.6;exitY=1;entryX=0.6;entryY=0;strokeColor=#82b366;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="trd02" value="Po11.403 (IS-IS/LDP)&lt;br&gt;10.135.19.17↔.18/30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="trd01_trd02_l3b" edge="1" parent="1" source="trd01" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.35;exitY=1;entryX=0.35;entryY=0;strokeColor=#82b366;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="trd02" value="Po12 (IS-IS/LDP)&lt;br&gt;10.135.19.25↔.26/30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_trd01" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;rounded=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#82b366;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="trd01" value="BE40 (L2transport)&lt;br&gt;10G, MTU 9114">
+          <mxGeometry relative="1" x="0.4" y="230" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="480" y="530" />
+              <mxPoint x="480" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kky04_trd02" edge="1" parent="1" source="kky04" style="endArrow=none;startArrow=none;rounded=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#82b366;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="trd02" value="BE40 (L2transport)&lt;br&gt;10G, MTU 9114">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="480" y="530" />
+              <mxPoint x="480" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dc_kky" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;DC Switches&lt;/b&gt;&lt;br&gt;DC90KKY01/02 (Nexus 9372)&lt;br&gt;DC_SW_01..08&lt;br&gt;(via Po100-108)" vertex="1">
+          <mxGeometry height="80" width="200" x="-80" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="kky01_dc" edge="1" parent="1" source="kky02" style="endArrow=none;startArrow=none;rounded=1;exitX=0.1;exitY=1;entryX=0.5;entryY=0;strokeColor=#d6b656;strokeWidth=1;dashed=1;fontSize=14;fontColor=light-dark(#d60000, #ededed);" target="dc_kky">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ort01" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90ORT01&lt;/b&gt;&lt;br&gt;Cisco 7609-S&lt;br&gt;IOS 12.2(33)SRB4&lt;br&gt;Lo0: 192.168.1.1/32&lt;br&gt;AS 64500" vertex="1">
+          <mxGeometry height="100" width="200" x="2260" y="-180" as="geometry" />
+        </mxCell>
+        <mxCell id="ort02" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90ORT02&lt;/b&gt;&lt;br&gt;Cisco 7609-S&lt;br&gt;IOS 12.2(33)SRB4&lt;br&gt;Lo0: 192.168.1.2/32&lt;br&gt;AS 64500" vertex="1">
+          <mxGeometry height="100" width="200" x="2250" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="ort01_ort02" edge="1" parent="1" source="ort01" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#d6b656;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="ort02" value="Gi2/48 (L3)&lt;br&gt;1G, IS-IS/LDP&lt;br&gt;192.168.2.5↔.6/30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ort03" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90ORT03&lt;/b&gt;&lt;br&gt;Cisco ASR9010&lt;br&gt;IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.128/32&lt;br&gt;AS 62211" vertex="1">
+          <mxGeometry height="120" width="220" x="1620" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ort04" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PE90ORT04&lt;/b&gt;&lt;br&gt;Cisco ASR9010&lt;br&gt;IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.129/32&lt;br&gt;AS 62211" vertex="1">
+          <mxGeometry height="120" width="220" x="1620" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="ort03_ort04_l3" edge="1" parent="1" source="ort03" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.6;exitY=1;entryX=0.6;entryY=0;strokeColor=#9673a6;strokeWidth=3;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="ort04" value="BE5043 (L3)&lt;br&gt;40G, IS-IS/LDP/BFD&lt;br&gt;10.134.34.133↔.134/30&lt;br&gt;MTU 9114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ort03_ort04_l2" edge="1" parent="1" source="ort03" style="endArrow=none;startArrow=none;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0.35;exitY=1;entryX=0.35;entryY=0;strokeColor=#B85450;strokeWidth=3;dashed=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="ort04" value="BE5042 (L2)&lt;br&gt;40G Bridge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ort01_ort03" edge="1" parent="1" source="ort01" style="endArrow=none;startArrow=none;rounded=1;exitX=0;exitY=0.5;strokeColor=#9673a6;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);exitDx=0;exitDy=0;" target="ort03" value="BE202/Po202 (L3)&lt;br&gt;IS-IS/LDP&lt;br&gt;10.134.34.137↔.138/30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ort02_ort04" edge="1" parent="1" source="ort02" style="endArrow=none;startArrow=none;rounded=1;exitX=0;exitY=0.5;entryX=0.955;entryY=1;strokeColor=#9673a6;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;" target="ort04" value="BE202/Po202 (L3)&lt;br&gt;IS-IS/LDP&lt;br&gt;10.134.34.141↔.142/30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_ort03" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.3;entryX=0;entryY=0.3;strokeColor=#FF0000;strokeWidth=4;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="ort03" value="&lt;b&gt;INTER-SITE&lt;/b&gt;&lt;br&gt;BE11013 (L3)&lt;br&gt;20G, IS-IS/LDP/BFD&lt;br&gt;10.134.34.73↔.74/30&lt;br&gt;MTU 9114, ISIS-HELLO Auth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="116" />
+              <mxPoint x="1100" y="116" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kky04_ort04" edge="1" parent="1" source="kky04" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.7;entryX=0;entryY=0.7;strokeColor=#FF0000;strokeWidth=4;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="ort04" value="&lt;b&gt;INTER-SITE&lt;/b&gt;&lt;br&gt;BE21013 (L3)&lt;br&gt;20G, IS-IS/LDP/BFD&lt;br&gt;10.134.34.77↔.78/30&lt;br&gt;MTU 9114, ISIS-HELLO Auth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="424" />
+              <mxPoint x="1100" y="424" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dcgw_kky" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;DCGW01 / DCGW02&lt;/b&gt;&lt;br&gt;Data Center Gateway&lt;br&gt;AS 65403&lt;br&gt;22 VRF sub-ifs each" vertex="1">
+          <mxGeometry height="80" width="200" x="700" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_dcgw" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;rounded=1;exitX=0.8;exitY=0;entryX=0;entryY=0.5;strokeColor=#666666;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="dcgw_kky" value="BE16&lt;br&gt;800G, 22 VRF subs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky04_dcgw" edge="1" parent="1" source="kky04" style="endArrow=none;startArrow=none;rounded=1;exitX=0.8;exitY=0;entryX=0;entryY=1;strokeColor=#666666;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="dcgw_kky" value="BE16&lt;br&gt;800G, 22 VRF subs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secgw_kky" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;Juniper SecGW&lt;/b&gt;&lt;br&gt;SECGW90KKYJ01/02&lt;br&gt;AS 65100&lt;br&gt;4G-IPSEC/S1-CP/S1-UP/OandM" vertex="1">
+          <mxGeometry height="80" width="220" x="700" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_secgw" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.5;entryX=0;entryY=0.3;strokeColor=#666666;strokeWidth=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="secgw_kky" value="BE410">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kky04_secgw" edge="1" parent="1" source="kky04" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.3;entryX=0;entryY=0.7;strokeColor=#666666;strokeWidth=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="secgw_kky" value="BE410">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ptn_kky" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;PTN&lt;/b&gt;&lt;br&gt;Packet Transport Network&lt;br&gt;AS 65000&lt;br&gt;LTE eNodeB Backhaul" vertex="1">
+          <mxGeometry height="80" width="200" x="700" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_ptn" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.7;entryX=0;entryY=0.5;strokeColor=#666666;strokeWidth=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="ptn_kky" value="BE411, 60G">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cgnat_kky" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;NAT90KKY01&lt;/b&gt;&lt;br&gt;CGNAT Appliance&lt;br&gt;AS 65450" vertex="1">
+          <mxGeometry height="70" width="180" x="700" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="kky03_cgnat" edge="1" parent="1" source="kky03" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.9;entryX=0;entryY=0.5;strokeColor=#666666;strokeWidth=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="cgnat_kky" value="BE10015, 60G">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fw_kky" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;Firewalls&lt;/b&gt;&lt;br&gt;GTP FW (BE100/101)&lt;br&gt;User FW (BE102)&lt;br&gt;Fortigate GiFW (BE155)&lt;br&gt;DMZ FW (BE223)" vertex="1">
+          <mxGeometry height="100" width="200" x="700" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="huawei_kky" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;Huawei Core&lt;/b&gt;&lt;br&gt;Interconnect&lt;br&gt;BE20, 20G" vertex="1">
+          <mxGeometry height="60" width="150" x="950" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="dcgw_ort" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;DCGW01 / DCGW02&lt;/b&gt;&lt;br&gt;(ORT) AS 65405&lt;br&gt;20 VRF sub-ifs each" vertex="1">
+          <mxGeometry height="80" width="180" x="1970" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ort03_dcgw" edge="1" parent="1" source="ort03" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.3;entryX=0;entryY=0.5;strokeColor=#666666;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="dcgw_ort" value="BE16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ort04_dcgw" edge="1" parent="1" source="ort04" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.3;entryX=0;entryY=1;strokeColor=#666666;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="dcgw_ort" value="BE16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secgw_ort" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f0f0f0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;Juniper SecGW&lt;/b&gt;&lt;br&gt;SECGW90ORTJ01&lt;br&gt;AS 65100" vertex="1">
+          <mxGeometry height="60" width="180" x="1980" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="ort03_secgw" edge="1" parent="1" source="ort03" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.7;entryX=0;entryY=0.5;strokeColor=#666666;strokeWidth=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="secgw_ort" value="BE410">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="internet" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e6e6e6;strokeColor=#999999;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;INTERNET&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="-50" y="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="ttnet" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e6e6e6;strokeColor=#999999;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;TTNET&lt;/b&gt;&lt;br&gt;AS 9121&lt;br&gt;Primary ISP&lt;br&gt;29Gbps" vertex="1">
+          <mxGeometry height="70" width="160" x="200" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="vfnet" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e6e6e6;strokeColor=#999999;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;VFNET&lt;/b&gt;&lt;br&gt;AS 15924&lt;br&gt;Backup ISP" vertex="1">
+          <mxGeometry height="60" width="160" x="200" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="facebook" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e6e6e6;strokeColor=#999999;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;Facebook CDN&lt;/b&gt;&lt;br&gt;AS 63293&lt;br&gt;Arista SW1/SW2" vertex="1">
+          <mxGeometry height="70" width="160" x="400" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="pex01_ttnet" edge="1" parent="1" source="pex01" style="endArrow=none;startArrow=none;rounded=1;exitX=0.5;exitY=1;entryX=0;entryY=0;strokeColor=#999999;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="ttnet" value="BE9&lt;br&gt;local-as 43356">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pex02_vfnet" edge="1" parent="1" source="pex02" style="endArrow=none;startArrow=none;rounded=1;exitX=0.5;exitY=1;entryX=0;entryY=0;strokeColor=#999999;strokeWidth=2;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="vfnet" value="BE100&lt;br&gt;local-as 43356">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pex01_fb" edge="1" parent="1" source="pex01" style="endArrow=none;startArrow=none;rounded=1;exitX=0.8;exitY=1;entryX=0;entryY=0.5;strokeColor=#999999;strokeWidth=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);" target="facebook" value="BE710">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="trd_ext" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e6e6e6;strokeColor=#999999;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;3rd Party / Roaming&lt;/b&gt;&lt;br&gt;VFTR (Parent Operator)&lt;br&gt;TEB Bank (IPsec)&lt;br&gt;COMFONE/GRX&lt;br&gt;VFNET Voice&lt;br&gt;BTHK, KIBTEK&lt;br&gt;22x VASI inter-VRF pairs" vertex="1">
+          <mxGeometry height="190" width="360" x="880" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="trd01_ext" edge="1" parent="1" source="trd01" style="endArrow=none;startArrow=none;rounded=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;strokeColor=#999999;strokeWidth=1;fontSize=14;html=1;fontColor=light-dark(#d60000, #ededed);exitDx=0;exitDy=0;" target="trd_ext">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="enterprise" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e6e6e6;strokeColor=#999999;align=center;verticalAlign=middle;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;Enterprise Customers&lt;/b&gt;&lt;br&gt;Hotels, Banks, KIBTEK&lt;br&gt;(BE100 sub-ifs on PEX02)&lt;br&gt;10Mb-500Mb Internet" vertex="1">
+          <mxGeometry height="80" width="200" x="650" y="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=light-dark(#d60000, #ededed);fontSize=14;" value="" vertex="1">
+          <mxGeometry height="300" width="320" x="1300" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" parent="1" style="text;html=1;align=center;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;LEGEND&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="100" x="1390" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;span&gt;━━━&lt;/span&gt; 7609-S (IOS Classic) AS 65500/64500" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;span&gt;━━━&lt;/span&gt; ASR9K (IOS-XR) AS 62211" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;span&gt;━━━&lt;/span&gt; ASR1001-X (IOS-XE) 3rd Party GW" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;span&gt;━━━&lt;/span&gt; PEX (Internet/NAT/Corp PE)" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;span&gt;━━━&lt;/span&gt; Inter-site link (KKY ↔ ORT)" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;span&gt;- - -&lt;/span&gt; L2 Trunk / Bridge Domain" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="━━━ L3 (IS-IS / LDP / BGP)" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="leg8" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;IGP:&lt;/b&gt; IS-IS Level-2-only, CORE process" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="leg9" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;MPLS:&lt;/b&gt; LDP (no RSVP-TE)" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="leg10" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;BGP:&lt;/b&gt; iBGP full-mesh (AS62211) + eBGP VPNv4" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="leg11" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;VRFs:&lt;/b&gt; 24 L3VPN (mobile core services)" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="leg12" parent="1" style="text;html=1;align=left;fontSize=14;fontColor=light-dark(#d60000, #ededed);" value="&lt;b&gt;L2VPN:&lt;/b&gt; EOMPLS xconnect + 70+ bridge-domains" vertex="1">
+          <mxGeometry height="20" width="300" x="1310" y="870" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="L3_BGP_MPLS" name="L3 - IGP / MPLS / BGP">
+    <mxGraphModel dx="2301" dy="1521" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3300" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l3_title" parent="1" style="text;html=1;align=center;fontSize=16;" value="&lt;b&gt;L3 Topology: IS-IS CORE + MPLS LDP + BGP AS 62211&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="600" x="500" y="-80" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_core" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;opacity=20;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="500" width="1200" x="200" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_core_label" parent="1" style="text;html=1;align=center;fontSize=12;fontColor=#4a148c;" value="&lt;b&gt;IS-IS Process: CORE | Area 49.0090 | Level-2 Only | AS 62211&lt;/b&gt;&lt;br&gt;MPLS LDP | max-paths 1 | BFD on inter-site" vertex="1">
+          <mxGeometry height="40" width="500" x="450" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky03" parent="1" style="ellipse;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;PE90KKY03&lt;/b&gt;&lt;br&gt;10.134.34.1&lt;br&gt;NET: 49.0090.0101.3403.4001.00" vertex="1">
+          <mxGeometry height="80" width="200" x="250" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky04" parent="1" style="ellipse;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;PE90KKY04&lt;/b&gt;&lt;br&gt;10.134.34.2&lt;br&gt;NET: 49.0090.0101.3403.4002.00" vertex="1">
+          <mxGeometry height="80" width="200" x="250" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort03" parent="1" style="ellipse;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;PE90ORT03&lt;/b&gt;&lt;br&gt;10.134.34.128&lt;br&gt;NET: 49.0090.0101.3403.4128.00" vertex="1">
+          <mxGeometry height="80" width="200" x="900" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort04" parent="1" style="ellipse;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;PE90ORT04&lt;/b&gt;&lt;br&gt;10.134.34.129&lt;br&gt;NET: 49.0090.0101.3403.4129.00" vertex="1">
+          <mxGeometry height="80" width="200" x="900" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky03_kky04" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#9673a6;strokeWidth=3;fontSize=9;html=1;" target="l3_kky04" value="BE5043&lt;br&gt;metric 10, BFD">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort03_ort04" edge="1" parent="1" source="l3_ort03" style="endArrow=none;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#9673a6;strokeWidth=3;fontSize=9;html=1;" target="l3_ort04" value="BE5043&lt;br&gt;metric 10, BFD">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky03_ort03" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#FF0000;strokeWidth=3;fontSize=9;html=1;" target="l3_ort03" value="BE11013, metric 10, BFD 50ms/3x, ISIS-HELLO Auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky04_ort04" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#FF0000;strokeWidth=3;fontSize=9;html=1;" target="l3_ort04" value="BE21013, metric 10, BFD 50ms/3x, ISIS-HELLO Auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_kky_legacy" parent="1" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;opacity=20;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="400" width="300" x="-200" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_kky_legacy_label" parent="1" style="text;html=1;align=center;fontSize=10;fontColor=#7f6000;" value="&lt;b&gt;IS-IS (null) | AS 65500&lt;/b&gt;&lt;br&gt;L2 Only" vertex="1">
+          <mxGeometry height="30" width="240" x="-170" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky01" parent="1" style="ellipse;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;PE90KKY01&lt;/b&gt;&lt;br&gt;192.168.1.3" vertex="1">
+          <mxGeometry height="60" width="160" x="-150" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky02" parent="1" style="ellipse;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;PE90KKY02&lt;/b&gt;&lt;br&gt;192.168.1.4" vertex="1">
+          <mxGeometry height="60" width="160" x="-150" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky01_kky02" edge="1" parent="1" source="l3_kky01" style="endArrow=none;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#d6b656;strokeWidth=2;fontSize=9;html=1;" target="l3_kky02" value="Po3&lt;br&gt;IS-IS/LDP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky01_kky03" edge="1" parent="1" source="l3_kky01" style="endArrow=none;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.3;strokeColor=#d6b656;strokeWidth=2;fontSize=9;html=1;" target="l3_kky03" value="BE202/Po202&lt;br&gt;IS-IS/LDP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_kky02_kky04" edge="1" parent="1" source="l3_kky02" style="endArrow=none;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.7;strokeColor=#d6b656;strokeWidth=2;fontSize=9;html=1;" target="l3_kky04" value="BE202/Po202&lt;br&gt;IS-IS/LDP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_ort_legacy" parent="1" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;opacity=20;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="400" width="300" x="1250" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_ort_legacy_label" parent="1" style="text;html=1;align=center;fontSize=10;fontColor=#7f6000;" value="&lt;b&gt;IS-IS (null) | AS 64500&lt;/b&gt;&lt;br&gt;L2 Only" vertex="1">
+          <mxGeometry height="30" width="240" x="1280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort01" parent="1" style="ellipse;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;PE90ORT01&lt;/b&gt;&lt;br&gt;192.168.1.1" vertex="1">
+          <mxGeometry height="60" width="160" x="1290" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort02" parent="1" style="ellipse;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;PE90ORT02&lt;/b&gt;&lt;br&gt;192.168.1.2" vertex="1">
+          <mxGeometry height="60" width="160" x="1290" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort01_ort02" edge="1" parent="1" source="l3_ort01" style="endArrow=none;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#d6b656;strokeWidth=2;fontSize=9;html=1;" target="l3_ort02" value="Gi2/48&lt;br&gt;IS-IS/LDP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort01_ort03" edge="1" parent="1" source="l3_ort01" style="endArrow=none;startArrow=none;exitX=0;exitY=0.5;entryX=1;entryY=0.3;strokeColor=#d6b656;strokeWidth=2;fontSize=9;html=1;" target="l3_ort03" value="BE202/Po202&lt;br&gt;IS-IS/LDP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ort02_ort04" edge="1" parent="1" source="l3_ort02" style="endArrow=none;startArrow=none;exitX=0;exitY=0.5;entryX=1;entryY=0.7;strokeColor=#d6b656;strokeWidth=2;fontSize=9;html=1;" target="l3_ort04" value="BE202/Po202&lt;br&gt;IS-IS/LDP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_pex" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;opacity=20;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="200" width="300" x="-200" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_pex_label" parent="1" style="text;html=1;align=center;fontSize=10;fontColor=#b85450;" value="&lt;b&gt;IS-IS INT | AS 62211&lt;/b&gt;&lt;br&gt;L2 Only" vertex="1">
+          <mxGeometry height="30" width="240" x="-170" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_pex01" parent="1" style="ellipse;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="&lt;b&gt;PEX90KKY01&lt;/b&gt;&lt;br&gt;10.135.19.3" vertex="1">
+          <mxGeometry height="60" width="160" x="-150" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_pex02" parent="1" style="ellipse;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="&lt;b&gt;PEX90KKY02&lt;/b&gt;&lt;br&gt;10.135.19.4" vertex="1">
+          <mxGeometry height="60" width="160" x="-150" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_pex01_pex02" edge="1" parent="1" source="l3_pex01" style="endArrow=none;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#b85450;strokeWidth=2;fontSize=9;html=1;" target="l3_pex02" value="BE5043&lt;br&gt;IS-IS/LDP/BFD">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_3rd" parent="1" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=20;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="200" width="300" x="200" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="isis_3rd_label" parent="1" style="text;html=1;align=center;fontSize=10;fontColor=#2e7d32;" value="&lt;b&gt;IS-IS (null) | 3RD Party&lt;/b&gt;&lt;br&gt;L2 Only" vertex="1">
+          <mxGeometry height="30" width="240" x="230" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_3rd01" parent="1" style="ellipse;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;3RD90KKY01&lt;/b&gt;&lt;br&gt;10.135.19.1" vertex="1">
+          <mxGeometry height="60" width="160" x="250" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_3rd02" parent="1" style="ellipse;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;3RD90KKY02&lt;/b&gt;&lt;br&gt;10.135.19.2" vertex="1">
+          <mxGeometry height="60" width="160" x="250" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="ibgp_kky03_kky04" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#0066CC;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.3;exitY=1;entryX=0.3;entryY=0;" target="l3_kky04" value="iBGP VPNv4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ibgp_kky03_ort03" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#0066CC;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=1;exitY=0.2;entryX=0;entryY=0.2;" target="l3_ort03" value="iBGP VPNv4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ibgp_kky03_ort04" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#0066CC;strokeWidth=1;fontSize=0;html=1;curved=0;exitX=0.8;exitY=1;entryX=0.2;entryY=0;" target="l3_ort04" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ibgp_kky04_ort03" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#0066CC;strokeWidth=1;fontSize=0;html=1;curved=0;exitX=0.8;exitY=0;entryX=0.2;entryY=1;" target="l3_ort03" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ibgp_kky04_ort04" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#0066CC;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=1;exitY=0.8;entryX=0;entryY=0.8;" target="l3_ort04" value="iBGP VPNv4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ibgp_ort03_ort04" edge="1" parent="1" source="l3_ort03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#0066CC;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.7;exitY=1;entryX=0.7;entryY=0;" target="l3_ort04" value="iBGP VPNv4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ibgp_pex01_pex02" edge="1" parent="1" source="l3_pex01" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#0066CC;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.7;exitY=1;entryX=0.7;entryY=0;" target="l3_pex02" value="iBGP VPNv4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ebgp_kky03_kky01" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#FF6600;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0;exitY=0.5;entryX=1;entryY=0.7;" target="l3_kky01" value="eBGP VPNv4&lt;br&gt;Option B&lt;br&gt;multihop 255">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ebgp_kky04_kky02" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#FF6600;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0;exitY=0.5;entryX=1;entryY=0.3;" target="l3_kky02" value="eBGP VPNv4&lt;br&gt;Option B&lt;br&gt;multihop 255">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ebgp_ort03_ort01" edge="1" parent="1" source="l3_ort03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#FF6600;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=1;exitY=0.5;entryX=0;entryY=0.7;" target="l3_ort01" value="eBGP VPNv4&lt;br&gt;Option B&lt;br&gt;multihop 255">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ebgp_ort04_ort02" edge="1" parent="1" source="l3_ort04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#FF6600;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=1;exitY=0.5;entryX=0;entryY=0.3;" target="l3_ort02" value="eBGP VPNv4&lt;br&gt;Option B&lt;br&gt;multihop 255">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_dcgw_kky" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;DCGW_KKY&lt;/b&gt;&lt;br&gt;AS 65403" vertex="1">
+          <mxGeometry height="50" width="120" x="440" y="-85" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_secgw_kky" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;SECGW_KKY&lt;/b&gt;&lt;br&gt;AS 65100" vertex="1">
+          <mxGeometry height="50" width="120" x="280" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ptn" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;PTN&lt;/b&gt;&lt;br&gt;AS 65000" vertex="1">
+          <mxGeometry height="50" width="100" x="-110" y="-100" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_cgnat" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;CGNAT&lt;/b&gt;&lt;br&gt;AS 65450" vertex="1">
+          <mxGeometry height="50" width="100" x="500" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_huawei" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;HUAWEI&lt;/b&gt;&lt;br&gt;Core" vertex="1">
+          <mxGeometry height="50" width="100" x="690" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_ttnet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="&lt;b&gt;ISP_TTNET&lt;/b&gt;&lt;br&gt;AS 9121" vertex="1">
+          <mxGeometry height="50" width="120" x="-240" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_vfnet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="&lt;b&gt;ISP_VFNET&lt;/b&gt;&lt;br&gt;AS 15924" vertex="1">
+          <mxGeometry height="50" width="120" x="-30" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_dcgw_ort" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;DCGW_ORT&lt;/b&gt;&lt;br&gt;AS 65405" vertex="1">
+          <mxGeometry height="50" width="120" x="900" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_secgw_ort" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;SECGW_ORT&lt;/b&gt;&lt;br&gt;AS 65100" vertex="1">
+          <mxGeometry height="50" width="120" x="1060" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky03_dcgw" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.2;exitY=1;" target="l3_dcgw_kky" value="15 VRFs&lt;br&gt;(Gi0/0/0/5)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky04_dcgw" edge="1" parent="1" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.2;exitY=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="l3_dcgw_kky" value="4 VRFs&lt;br&gt;(Gi0/0/0/4)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="407.55042445725803" y="336.29971702849525" as="sourcePoint" />
+            <mxPoint x="585" y="-123" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vrf_kky03_secgw" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.35;exitY=1;entryX=0.5;entryY=0;" target="l3_secgw_kky" value="4 VRFs&lt;br&gt;IPSEC/S1/OandM&lt;br&gt;(Gi0/0/0/6)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky04_secgw" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0.35;exitY=1;entryX=0.3;entryY=0;" target="l3_secgw_kky" value="1 VRF&lt;br&gt;(Gi0/0/0/5)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky03_ptn" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="l3_ptn" value="2 VRFs&lt;br&gt;IPSEC/OandM&lt;br&gt;(Gi0/0/0/7)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky04_ptn" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0.5;exitY=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="l3_ptn" value="(Gi0/0/0/6)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky03_cgnat" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.65;exitY=1;entryX=0.5;entryY=0;" target="l3_cgnat" value="2 VRFs&lt;br&gt;INTERNET/NAT&lt;br&gt;(Gi0/0/0/8)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky03_huawei" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#999999;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0.8;exitY=1;entryX=0.5;entryY=0;" target="l3_huawei" value="L3&lt;br&gt;(Gi0/0/0/16)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky04_huawei" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#999999;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0.8;exitY=1;entryX=0.3;entryY=0;" target="l3_huawei" value="(Gi0/0/0/14)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky03_pex01" edge="1" parent="1" source="l3_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#0066CC;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0;exitY=1;entryX=1;entryY=0;" target="l3_pex01" value="iBGP-in-VRF&lt;br&gt;INTERNET/NAT&lt;br&gt;(Gi0/0/0/9)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_kky04_pex02" edge="1" parent="1" source="l3_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#0066CC;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0;exitY=1;entryX=1;entryY=0;" target="l3_pex02" value="iBGP-in-VRF&lt;br&gt;INTERNET&lt;br&gt;(Gi0/0/0/7)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_pex01_ttnet" edge="1" parent="1" source="l3_pex01" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.3;exitY=1;entryX=0.5;entryY=0;" target="l3_ttnet" value="INTERNET VRF&lt;br&gt;local-as 43356">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_pex02_ttnet" edge="1" parent="1" source="l3_pex02" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=1;fontSize=0;html=1;curved=0;exitX=0.3;exitY=1;entryX=0.7;entryY=0;" target="l3_ttnet" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_pex01_vfnet" edge="1" parent="1" source="l3_pex01" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.7;exitY=1;entryX=0.3;entryY=0;" target="l3_vfnet" value="INTERNET VRF&lt;br&gt;local-as 43356">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_pex02_vfnet" edge="1" parent="1" source="l3_pex02" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=1;fontSize=0;html=1;curved=0;exitX=0.7;exitY=1;entryX=0.7;entryY=0;" target="l3_vfnet" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_ort03_dcgw" edge="1" parent="1" source="l3_ort03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;curved=0;exitX=0.5;exitY=1;entryX=0.3;entryY=0;" target="l3_dcgw_ort" value="per-VRF&lt;br&gt;(Gi0/0/0/4)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_ort04_dcgw" edge="1" parent="1" source="l3_ort04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0.5;exitY=1;entryX=0.7;entryY=0;" target="l3_dcgw_ort" value="per-VRF&lt;br&gt;(Gi0/0/0/4)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_ort03_secgw" edge="1" parent="1" source="l3_ort03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=4 2;strokeColor=#009900;strokeWidth=1;fontSize=8;html=1;curved=0;exitX=0.7;exitY=1;entryX=0.5;entryY=0;" target="l3_secgw_ort" value="per-VRF&lt;br&gt;(Gi0/0/0/5)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bgp_legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;align=left;verticalAlign=top;fontSize=10;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font color=&quot;#9673a6&quot;&gt;━━━ IS-IS + MPLS LDP (solid purple)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#FF0000&quot;&gt;━━━ IS-IS Inter-site + BFD (solid red)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#d6b656&quot;&gt;━━━ IS-IS + LDP Legacy (solid yellow)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#0066CC&quot;&gt;- - - iBGP VPNv4 Full-Mesh / iBGP-in-VRF (dashed blue)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#FF6600&quot;&gt;- - - eBGP VPNv4 Inter-AS Option B (dashed orange)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#009900&quot;&gt;- - - Per-VRF eBGP to external (dashed green)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#999999&quot;&gt;- - - L3 Interconnect (dashed gray)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="200" width="400" x="700" y="640" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="VRF_Services" name="Services - VRF / L3VPN Map">
+    <mxGraphModel dx="2000" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2800" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vrf_title" value="&lt;b&gt;L3VPN / VRF Service Map - CPN Network&lt;/b&gt;&lt;br&gt;24 VRFs on PE90KKY03/04, 20 VRFs on PE90ORT03/04, 5 VRFs on PEX90KKY01/02" style="text;html=1;align=center;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="200" y="-60" width="800" height="40" as="geometry" />
+        </mxCell>
+        <!-- Mobile Core VRFs -->
+        <mxCell id="mobile_core" value="&lt;b&gt;MOBILE CORE VRFs&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontStyle=1;fontColor=#1565c0;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_sigtran" value="&lt;b&gt;SIGTRAN&lt;/b&gt;&lt;br&gt;RT 62211:1003&lt;br&gt;SS7/SIGTRAN signaling&lt;br&gt;BSC, RNC, MSS, MGW" style="rounded=1;html=1;fillColor=#bbdefb;strokeColor=#1565c0;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="30" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_userplane" value="&lt;b&gt;USERPLANE&lt;/b&gt;&lt;br&gt;RT 62211:1002&lt;br&gt;CS/PS user plane&lt;br&gt;BSC AoIP, VoLTE ASBC" style="rounded=1;html=1;fillColor=#bbdefb;strokeColor=#1565c0;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="30" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_2g3gup" value="&lt;b&gt;2G3GUP&lt;/b&gt;&lt;br&gt;RT 62211:1008&lt;br&gt;2G/3G user plane&lt;br&gt;Gn/Gi interface" style="rounded=1;html=1;fillColor=#bbdefb;strokeColor=#1565c0;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="105" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_3gps" value="&lt;b&gt;3GPS_DATA&lt;/b&gt;&lt;br&gt;RT 62211:1005&lt;br&gt;3G PS data&lt;br&gt;Gb/IuPS" style="rounded=1;html=1;fillColor=#bbdefb;strokeColor=#1565c0;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="105" width="170" height="65" as="geometry" />
+        </mxCell>
+        <!-- 4G/LTE VRFs -->
+        <mxCell id="lte_label" value="&lt;b&gt;4G / LTE VRFs&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontStyle=1;fontColor=#2e7d32;" vertex="1" parent="1">
+          <mxGeometry x="0" y="185" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_4g_s1_cp" value="&lt;b&gt;4G-S1-CP&lt;/b&gt;&lt;br&gt;RT 62211:1007&lt;br&gt;S1-MME Control Plane&lt;br&gt;→ Juniper SecGW + DCGW" style="rounded=1;html=1;fillColor=#c8e6c9;strokeColor=#2e7d32;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="215" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_4g_s1_up" value="&lt;b&gt;4G-S1-UP&lt;/b&gt;&lt;br&gt;RT 62211:1006&lt;br&gt;S1 User Plane&lt;br&gt;→ Juniper SecGW + DCGW" style="rounded=1;html=1;fillColor=#c8e6c9;strokeColor=#2e7d32;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="215" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_4g_ipsec" value="&lt;b&gt;4G-IPSEC&lt;/b&gt;&lt;br&gt;RT 62211:1018&lt;br&gt;IPsec tunnels to SecGW&lt;br&gt;→ PTN + Juniper SecGW" style="rounded=1;html=1;fillColor=#c8e6c9;strokeColor=#2e7d32;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="290" width="170" height="65" as="geometry" />
+        </mxCell>
+        <!-- IMS VRFs -->
+        <mxCell id="ims_label" value="&lt;b&gt;IMS / CORE VRFs&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontStyle=1;fontColor=#6a1b9a;" vertex="1" parent="1">
+          <mxGeometry x="400" y="0" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_cims" value="&lt;b&gt;CIMS&lt;/b&gt;&lt;br&gt;RT 62211:1009&lt;br&gt;IMS Core (SGi)" style="rounded=1;html=1;fillColor=#e1bee7;strokeColor=#6a1b9a;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="30" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_hss" value="&lt;b&gt;HSS&lt;/b&gt;&lt;br&gt;RT 62211:1011&lt;br&gt;Home Subscriber Server" style="rounded=1;html=1;fillColor=#e1bee7;strokeColor=#6a1b9a;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="550" y="30" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_pcrf" value="&lt;b&gt;PCRF&lt;/b&gt;&lt;br&gt;RT 62211:1012&lt;br&gt;Policy Control" style="rounded=1;html=1;fillColor=#e1bee7;strokeColor=#6a1b9a;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="95" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_usc" value="&lt;b&gt;USC&lt;/b&gt;&lt;br&gt;RT 62211:1013&lt;br&gt;User Service Control" style="rounded=1;html=1;fillColor=#e1bee7;strokeColor=#6a1b9a;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="550" y="95" width="140" height="55" as="geometry" />
+        </mxCell>
+        <!-- Charging / Billing -->
+        <mxCell id="billing_label" value="&lt;b&gt;CHARGING / BILLING&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontStyle=1;fontColor=#e65100;" vertex="1" parent="1">
+          <mxGeometry x="400" y="165" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_chu" value="&lt;b&gt;CHU&lt;/b&gt;&lt;br&gt;RT 62211:3001&lt;br&gt;Charging Hub (Gy, Billing, IMS, MSC)" style="rounded=1;html=1;fillColor=#ffe0b2;strokeColor=#e65100;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="195" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_inox" value="&lt;b&gt;INOX&lt;/b&gt;&lt;br&gt;RT 62211:3007&lt;br&gt;IPDR/Syslog/RADIUS" style="rounded=1;html=1;fillColor=#ffe0b2;strokeColor=#e65100;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="580" y="195" width="140" height="65" as="geometry" />
+        </mxCell>
+        <!-- Internet / NAT -->
+        <mxCell id="inet_label" value="&lt;b&gt;INTERNET / NAT / CORPORATE&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontStyle=1;fontColor=#c62828;" vertex="1" parent="1">
+          <mxGeometry x="0" y="370" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_internet" value="&lt;b&gt;INTERNET&lt;/b&gt;&lt;br&gt;RT 62211:1104&lt;br&gt;Subscriber Internet&lt;br&gt;→ PEX → TTNET/VFNET" style="rounded=1;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="400" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_nat" value="&lt;b&gt;NAT&lt;/b&gt;&lt;br&gt;RT 62211:2532&lt;br&gt;CGNAT pools&lt;br&gt;→ NAT90KKY01 (AS 65450)" style="rounded=1;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="180" y="400" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_disnat" value="&lt;b&gt;DISNAT_KKY&lt;/b&gt;&lt;br&gt;RT 62211:2533&lt;br&gt;Distributed NAT" style="rounded=1;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="475" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_corpint" value="&lt;b&gt;CORPINT&lt;/b&gt;&lt;br&gt;RT 62211:3005&lt;br&gt;Corporate Internet&lt;br&gt;(PEX only)" style="rounded=1;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="150" y="475" width="140" height="55" as="geometry" />
+        </mxCell>
+        <!-- Management / O&M -->
+        <mxCell id="mgmt_label" value="&lt;b&gt;MANAGEMENT / O&amp;M&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_oandm" value="&lt;b&gt;OandM&lt;/b&gt;&lt;br&gt;RT 62211:2001&lt;br&gt;Network O&amp;M&lt;br&gt;→ PTN + SecGW + DCGW" style="rounded=1;html=1;fillColor=#cfd8dc;strokeColor=#37474f;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="310" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_cpnmgmt" value="&lt;b&gt;CPNMGMT&lt;/b&gt;&lt;br&gt;RT 62211:1031&lt;br&gt;CPN Management" style="rounded=1;html=1;fillColor=#cfd8dc;strokeColor=#37474f;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="580" y="310" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_syslog" value="&lt;b&gt;SYSLOG&lt;/b&gt;&lt;br&gt;RT 62211:1101&lt;br&gt;Central Syslog" style="rounded=1;html=1;fillColor=#cfd8dc;strokeColor=#37474f;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="385" width="140" height="55" as="geometry" />
+        </mxCell>
+        <!-- Enterprise / Other -->
+        <mxCell id="ent_label" value="&lt;b&gt;ENTERPRISE / DATA&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontStyle=1;fontColor=#4e342e;" vertex="1" parent="1">
+          <mxGeometry x="400" y="450" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_vf" value="&lt;b&gt;VF&lt;/b&gt;&lt;br&gt;RT 62211:4001&lt;br&gt;Operator Internal/Enterprise" style="rounded=1;html=1;fillColor=#d7ccc8;strokeColor=#4e342e;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="480" width="170" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_csdb_ens" value="&lt;b&gt;CSDB_ENS&lt;/b&gt;&lt;br&gt;RT 62211:1014" style="rounded=1;html=1;fillColor=#d7ccc8;strokeColor=#4e342e;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="580" y="480" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_csdb_aaa" value="&lt;b&gt;CSDB_AAA&lt;/b&gt;&lt;br&gt;RT 62211:1015" style="rounded=1;html=1;fillColor=#d7ccc8;strokeColor=#4e342e;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="710" y="480" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_csdb_apbsf" value="&lt;b&gt;CSDB_APBSF&lt;/b&gt;&lt;br&gt;RT 62211:1016" style="rounded=1;html=1;fillColor=#d7ccc8;strokeColor=#4e342e;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="535" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_intermedia" value="&lt;b&gt;INTERMEDIA&lt;/b&gt;&lt;br&gt;RT 62211:1017" style="rounded=1;html=1;fillColor=#d7ccc8;strokeColor=#4e342e;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="530" y="535" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="vrf_bthk" value="&lt;b&gt;BTHK_ED&lt;/b&gt;&lt;br&gt;RT 62211:3012&lt;br&gt;(PEX only)" style="rounded=1;html=1;fillColor=#d7ccc8;strokeColor=#4e342e;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="660" y="535" width="120" height="45" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="VRF_Device_Map" name="VRF / Device Mapping">
+    <mxGraphModel dx="1371" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3300" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vdm_title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;" value="&lt;b&gt;VRF / Device Mapping - CPN Network&lt;/b&gt;&lt;br&gt;Which VRFs are defined on which PE devices (L3 VPN + L2 Bridge Domains)" vertex="1">
+          <mxGeometry height="50" width="700" x="300" y="-80" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_kky_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=20;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="1580" width="620" x="-10" y="-20" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_kky_label" parent="1" style="text;html=1;align=center;fontSize=13;" value="&lt;b&gt;KKY Site (Lefkoşa)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="200" x="200" y="-15" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_ort_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=20;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="1530" width="420" x="680" y="-20" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_ort_label" parent="1" style="text;html=1;align=center;fontSize=13;" value="&lt;b&gt;ORT Site (Ortaköy)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="200" x="800" y="-15" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_kky03" parent="1" style="rounded=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;verticalAlign=middle;" value="&lt;b&gt;PE90KKY03&lt;/b&gt;&lt;br&gt;ASR9K (XRv9000)&lt;br&gt;Lo0: 10.134.34.1&lt;br&gt;AS 62211&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;24 L3 VRFs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;73 Bridge Domains&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;44 BVI Interfaces&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="160" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_kky04" parent="1" style="rounded=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;verticalAlign=middle;" value="&lt;b&gt;PE90KKY04&lt;/b&gt;&lt;br&gt;ASR9K (XRv9000)&lt;br&gt;Lo0: 10.134.34.2&lt;br&gt;AS 62211&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;24 L3 VRFs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;~55 Bridge Domains&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;HSRP Standby&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="160" x="220" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_kky01" parent="1" style="rounded=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=center;" value="&lt;b&gt;PE90KKY01&lt;/b&gt;&lt;br&gt;7609-S (IOSv)&lt;br&gt;Lo0: 192.168.1.3&lt;br&gt;AS 65500&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;1 VRF (CPNMGMT)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;~40 VLAN SVIs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="420" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_kky02" parent="1" style="rounded=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=center;" value="&lt;b&gt;PE90KKY02&lt;/b&gt;&lt;br&gt;7609-S (IOSv)&lt;br&gt;Lo0: 192.168.1.4&lt;br&gt;AS 65500&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;1 VRF (CPNMGMT)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;~40 VLAN SVIs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="420" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_ort03" parent="1" style="rounded=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;" value="&lt;b&gt;PE90ORT03&lt;/b&gt;&lt;br&gt;ASR9K (XRv9000)&lt;br&gt;Lo0: 10.134.34.128&lt;br&gt;AS 62211&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;23 L3 VRFs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;1 Bridge Domain&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="710" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_ort04" parent="1" style="rounded=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;" value="&lt;b&gt;PE90ORT04&lt;/b&gt;&lt;br&gt;ASR9K (XRv9000)&lt;br&gt;Lo0: 10.134.34.129&lt;br&gt;AS 62211&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;22 L3 VRFs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;Bridge Domains (pair)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="910" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_ort01" parent="1" style="rounded=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=center;" value="&lt;b&gt;PE90ORT01&lt;/b&gt;&lt;br&gt;7609-S (IOSv)&lt;br&gt;AS 64500&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;VLAN SVIs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="710" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_ort02" parent="1" style="rounded=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=center;" value="&lt;b&gt;PE90ORT02&lt;/b&gt;&lt;br&gt;7609-S (IOSv)&lt;br&gt;AS 64500&lt;br&gt;&lt;font color=&quot;#CC0000&quot;&gt;VLAN SVIs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="910" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_pex01" parent="1" style="rounded=1;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=center;" value="&lt;b&gt;PEX90KKY01&lt;/b&gt;&lt;br&gt;ASR9K (XRv9000)&lt;br&gt;AS 62211&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;5 VRFs&lt;/font&gt;&lt;br&gt;NAT, INTERNET, CORPINT&lt;br&gt;CPNMGMT, BTHK_ED" vertex="1">
+          <mxGeometry height="80" width="160" x="20" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_pex02" parent="1" style="rounded=1;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=center;" value="&lt;b&gt;PEX90KKY02&lt;/b&gt;&lt;br&gt;ASR9K (XRv9000)&lt;br&gt;AS 62211&lt;br&gt;&lt;font color=&quot;#0000CC&quot;&gt;4 VRFs&lt;/font&gt;&lt;br&gt;NAT, INTERNET, CORPINT&lt;br&gt;CPNMGMT" vertex="1">
+          <mxGeometry height="80" width="160" x="220" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_sec_header" parent="1" style="text;html=1;align=center;fontSize=12;fontStyle=1;" value="&lt;b&gt;L3 VRF Distribution Across Devices&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="300" x="300" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_legend" parent="1" style="text;html=1;align=center;fontSize=9;" value="&lt;table style=&quot;font-size:9px;border-collapse:collapse;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background:#e1d5e7;padding:3px;border:1px solid #9673a6;&quot;&gt; &lt;/td&gt;&lt;td&gt; ASR9K (IOS-XR, AS 62211)&lt;/td&gt;&lt;td style=&quot;background:#fff2cc;padding:3px;border:1px solid #d6b656;&quot;&gt; &lt;/td&gt;&lt;td&gt; 7609-S (IOS, legacy AS)&lt;/td&gt;&lt;td style=&quot;background:#f8cecc;padding:3px;border:1px solid #b85450;&quot;&gt; &lt;/td&gt;&lt;td&gt; Internet PE&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="30" width="500" x="230" y="1570" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_tbl" parent="1" style="text;html=1;align=left;verticalAlign=top;overflow=auto;fontSize=9;" value="&lt;table style=&quot;font-size:9px;border-collapse:collapse;width:100%;&quot;&gt;&lt;tr style=&quot;background:#4a6fa5;color:white;&quot;&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;VRF&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;RT&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Category&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;KKY03&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;KKY04&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;ORT03&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;ORT04&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;PEX01&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;PEX02&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;KKY01&lt;/th&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;SIGTRAN&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1003&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Mobile Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;USERPLANE&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1002&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Mobile Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;2G3GUP&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1008&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Mobile Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;3GPS_DATA&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1005&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Mobile Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#fff3e0;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;4G-S1-CP&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1007&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;4G/LTE&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;4G-S1-UP&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1006&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;4G/LTE&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#fff3e0;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;4G-IPSEC&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1018&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;4G/LTE&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8eaf6;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;CIMS&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1009&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;IMS Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;HSS&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1011&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;IMS Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8eaf6;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PCRF&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1012&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;IMS Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;USC&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1013&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;IMS Core&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#fce4ec;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;CHU&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:3001&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Charging&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;INOX&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:3007&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Charging&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e0f2f1;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;OandM&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:2001&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Mgmt/O&amp;M&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;CPNMGMT&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1031&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Mgmt/O&amp;M&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e0f2f1;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;SYSLOG&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1101&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Mgmt/O&amp;M&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#fff8e1;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;INTERNET&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1104&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Internet/NAT&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;NAT&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:2532&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Internet/NAT&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#fff8e1;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;DISNAT_KKY&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:2533&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Internet/NAT&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#ede7f6;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;VF&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:4001&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Enterprise&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;CSDB_ENS&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1014&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Enterprise&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#ede7f6;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;CSDB_AAA&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1015&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Enterprise&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;CSDB_APBSF&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1016&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Enterprise&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#ede7f6;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;INTERMEDIA&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:1017&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Enterprise&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#fce4ec;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;CORPINT&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:3005&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PEX only&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;BTHK_ED&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;62211:3012&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PEX only&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;background:#c6efce;text-align:center;&quot;&gt;✓&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;text-align:center;&quot;&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="620" width="1080" x="10" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_l2_header" parent="1" style="text;html=1;align=center;fontSize=12;fontStyle=1;" value="&lt;b&gt;L2 Bridge Domain Distribution&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="300" x="300" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_l2_tbl" parent="1" style="text;html=1;align=left;verticalAlign=top;overflow=auto;fontSize=9;" value="&lt;table style=&quot;font-size:9px;border-collapse:collapse;width:100%;&quot;&gt;&lt;tr style=&quot;background:#4a6fa5;color:white;&quot;&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Device&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Bridge Domains&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;BVI (IRB)&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;L2 Trunk To&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Notes&lt;/th&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PE90KKY03&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;73 BDs (91-3002)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;44 BVI interfaces&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BE5042→KKY04, BE222→KKY01&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;HSRP Active, MST priority 16384&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PE90KKY04&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;~55 BDs&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BVIs with HSRP standby&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BE5042→KKY03, BE5042→KKY02&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;HSRP Standby, pair with KKY03&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PE90ORT03&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;1 BD (566)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BVI566 (OandM)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BE5042→ORT04&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Minimal L2, mostly L3 VPN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PE90ORT04&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BDs (pair)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BVIs&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BE5042→ORT03&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;HSRP pair with ORT03&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#fff8e1;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PE90KKY01/02&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;~40 VLAN SVIs&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;VLAN interfaces&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Po2 (trunk), Po222→KKY03&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Legacy 7609-S, IOS L2 switching&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PE90ORT01/02&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;VLAN SVIs&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;VLAN interfaces&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Po100/200→DC&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Legacy 7609-S, ORT site&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;font-weight:bold;&quot;&gt;PEX90KKY01/02&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;~10 BDs (CPN+EXT)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BVI1200 (WAF)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BE5042 (inter-PEX)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Internet PE, FW BDs&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="230" width="1080" x="10" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_xconn_header" parent="1" style="text;html=1;align=center;fontSize=12;fontStyle=1;" value="&lt;b&gt;L2VPN Xconnect (EOMPLS)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="300" x="300" y="1185" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_xconn_tbl" parent="1" style="text;html=1;align=left;verticalAlign=top;overflow=auto;fontSize=9;" value="&lt;table style=&quot;font-size:9px;border-collapse:collapse;width:100%;&quot;&gt;&lt;tr style=&quot;background:#4a6fa5;color:white;&quot;&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Xconnect Group&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Source&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Destination&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;PW-ID&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;PW-Class&lt;/th&gt;&lt;th style=&quot;padding:4px;border:1px solid #333;&quot;&gt;Service&lt;/th&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PTN&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90KKY03 Te0/1/0/2&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90ORT03 (10.134.34.128)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;35713006&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;EOMPLS-ETH&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PTN inter-site&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;3RD90KKY01&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90KKY03 BE16.2185&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;BE40.2185 (local)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;-&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Local xconn&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Corporate IPsec&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;EOMPLS_xconnect&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90KKY03 Gi7001/0/0/1&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90ORT01 (192.168.1.1)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;35713001&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;EOMPLS-ETH&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Inter-AS L2 to ORT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;EOMPLS_xconnect&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90KKY03 BE40.2187&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90ORT03 (10.134.34.128)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;35713004&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;EOMPLS-VLAN&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Corporate KKY→ORT&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#e8f0fe;&quot;&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;EOMPLS_xconnect&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90KKY03 BE40.2906&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;PE90ORT03 (10.134.34.128)&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;35713002&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;EOMPLS-VLAN&lt;/td&gt;&lt;td style=&quot;padding:3px;border:1px solid #ccc;&quot;&gt;Intermedia KKY→ORT&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="180" width="1080" x="10" y="1215" as="geometry" />
+        </mxCell>
+        <mxCell id="vdm_note" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=10;fillColor=#ffffcc;strokeColor=#d6b656;rounded=1;" value="&lt;b&gt;Key Observations:&lt;/b&gt;&lt;br&gt;• PE90KKY03/04 carry ALL 24 VRFs + 73 bridge domains (heaviest devices)&lt;br&gt;• PE90ORT03/04 carry 22-23 VRFs but minimal L2 (mostly L3 VPN)&lt;br&gt;• 4G-IPSEC missing on ORT04 (only KKY03, KKY04, ORT03)&lt;br&gt;• DISNAT_KKY only on KKY03/04 (KKY-specific distributed NAT)&lt;br&gt;• PEX01/02 handle Internet/NAT/Corporate — separate from mobile core VRFs&lt;br&gt;• PE90KKY01/02 (legacy 7609-S) only have CPNMGMT VRF in IOS config, rest via eBGP VPNv4 Option B from KKY03/04&lt;br&gt;• CPNMGMT is the only VRF spanning ALL 7 PE devices" vertex="1">
+          <mxGeometry height="120" width="700" y="1410" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="L2VPN_Map" name="L2VPN - Bridge Domains &amp; Xconnect">
+    <mxGraphModel dx="3673" dy="1734" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3300" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l2_title" parent="1" style="text;html=1;align=center;fontSize=16;" value="&lt;b&gt;L2VPN End-to-End: Bridge Domains, L2 Trunks &amp;amp; EOMPLS Xconnect&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="700" x="350" y="-60" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky_box" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=15;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="750" width="700" x="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky_label" parent="1" style="text;html=1;align=center;fontSize=13;fontColor=#1a5276;" value="&lt;b&gt;KKY Site&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="200" x="200" y="5" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_ort_box" parent="1" style="rounded=1;fillColor=#fce4d6;strokeColor=#e97132;opacity=15;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="550" width="550" x="850" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_ort_label" parent="1" style="text;html=1;align=center;fontSize=13;fontColor=#c0392b;" value="&lt;b&gt;ORT Site&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="200" x="1020" y="5" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky03" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;PE90KKY03&lt;/b&gt;&lt;br&gt;ASR9K | IOS-XR&lt;br&gt;&lt;font color=blue&gt;73 Bridge Domains&lt;/font&gt;&lt;br&gt;bridge-group CPN&lt;br&gt;HSRP Primary" vertex="1">
+          <mxGeometry height="90" width="180" x="60" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky04" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;PE90KKY04&lt;/b&gt;&lt;br&gt;ASR9K | IOS-XR&lt;br&gt;&lt;font color=blue&gt;~55 Bridge Domains&lt;/font&gt;&lt;br&gt;bridge-group CPN&lt;br&gt;HSRP Secondary" vertex="1">
+          <mxGeometry height="90" width="180" x="370" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_ort03" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#e97132;fontSize=10;" value="&lt;b&gt;PE90ORT03&lt;/b&gt;&lt;br&gt;ASR9010 | IOS-XR&lt;br&gt;&lt;font color=blue&gt;1 Bridge Domain&lt;/font&gt;&lt;br&gt;BD 566 (SecGW OandM)" vertex="1">
+          <mxGeometry height="90" width="180" x="910" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_ort04" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#e97132;fontSize=10;" value="&lt;b&gt;PE90ORT04&lt;/b&gt;&lt;br&gt;ASR9010 | IOS-XR&lt;br&gt;No Bridge Domains" vertex="1">
+          <mxGeometry height="90" width="180" x="1150" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_be5042_kky" edge="1" parent="1" source="l2_kky03" style="endArrow=none;startArrow=none;strokeColor=#0000FF;strokeWidth=4;fontSize=9;html=1;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="l2_kky04" value="BE5042 (4x10G=40G)&lt;br&gt;73 Bridge Domains, MTU 1600">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_be5042_ort" edge="1" parent="1" source="l2_ort03" style="endArrow=none;startArrow=none;strokeColor=#0000FF;strokeWidth=4;fontSize=9;html=1;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="l2_ort04" value="BE5042 (4x10G)&lt;br&gt;Bridge Domains">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_xc_kky03_ort03_ptn" edge="1" parent="1" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#FF0000;strokeWidth=2;fontSize=8;html=1;entryX=0;entryY=0.4;" target="l2_ort03" value="EOMPLS PTN (Te0/1/0/2)&lt;br&gt;PW-ID 35713006">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="103" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2_xc_kky03_ort03_corp" edge="1" parent="1" source="l2_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;exitX=1;exitY=0.8;entryX=0;entryY=0.6;" target="l2_ort03" value="EOMPLS CORPORATE&lt;br&gt;BE40.2187, PW-ID 35713004">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2_xc_kky03_ort03_inter" edge="1" parent="1" source="l2_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#FF6600;strokeWidth=2;fontSize=8;html=1;exitX=1;exitY=1;entryX=0;entryY=0.8;" target="l2_ort03" value="EOMPLS INTERMEDIA&lt;br&gt;BE40.2906, PW-ID 35713005">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2_xc_kky04_ort04_ptn" edge="1" parent="1" source="l2_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#FF0000;strokeWidth=2;fontSize=8;html=1;exitX=1;exitY=0.6;entryX=0;entryY=0.4;" target="l2_ort04" value="EOMPLS PTN (Te0/1/0/2)&lt;br&gt;PW-ID 35713007">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_xc_kky04_ort04_corp" edge="1" parent="1" source="l2_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#009900;strokeWidth=2;fontSize=8;html=1;exitX=1;exitY=0.8;entryX=0;entryY=0.6;" target="l2_ort04" value="EOMPLS CORPORATE&lt;br&gt;BE40.2188, PW-ID 35713005">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2_xc_kky04_ort04_inter" edge="1" parent="1" source="l2_kky04" style="endArrow=none;startArrow=none;dashed=1;dashPattern=5 3;strokeColor=#FF6600;strokeWidth=2;fontSize=8;html=1;exitX=1;exitY=0.9;entryX=0;entryY=0.8;" target="l2_ort04" value="EOMPLS INTERMEDIA&lt;br&gt;BE40.2907, PW-ID 35713003">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2_xc_kky03_ort01" edge="1" parent="1" source="l2_kky03" style="endArrow=none;startArrow=none;dashed=1;dashPattern=8 4;strokeColor=#CC0066;strokeWidth=2;fontSize=8;html=1;exitX=0.3;exitY=1;entryX=0;entryY=0.5;" target="l2_ort01" value="EOMPLS Legacy&lt;br&gt;Gi7001, PW-ID 35713001">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="115" y="480" />
+              <mxPoint x="850" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2_3rd01" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="&lt;b&gt;3RD90KKY01&lt;/b&gt;&lt;br&gt;IPsec GW (ASR1001-X)" vertex="1">
+          <mxGeometry height="50" width="150" x="-180" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_3rd02" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="&lt;b&gt;3RD90KKY02&lt;/b&gt;&lt;br&gt;IPsec GW (ASR1001-X)" vertex="1">
+          <mxGeometry height="50" width="150" x="490" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_dcgw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" value="&lt;b&gt;DCGW_KKY&lt;/b&gt;&lt;br&gt;AS 65403" vertex="1">
+          <mxGeometry height="50" width="120" x="220" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky03_3rd01" edge="1" parent="1" source="l2_kky03" style="endArrow=none;startArrow=none;strokeColor=#82b366;strokeWidth=2;fontSize=8;html=1;exitX=0.011;exitY=0.4;entryX=0.5;entryY=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="l2_3rd01" value="BE40&lt;br&gt;L2 xconnect">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky04_3rd02" edge="1" parent="1" source="l2_kky04" style="endArrow=none;startArrow=none;strokeColor=#82b366;strokeWidth=2;fontSize=8;html=1;exitX=1;exitY=1;entryX=0.5;entryY=0;" target="l2_3rd02" value="BE40&lt;br&gt;L2 xconnect">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky03_dcgw" edge="1" parent="1" source="l2_kky03" style="endArrow=none;startArrow=none;strokeColor=#666666;strokeWidth=2;fontSize=8;html=1;exitX=0.5;exitY=1;entryX=0.3;entryY=0;" target="l2_dcgw" value="BE16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky04_dcgw" edge="1" parent="1" source="l2_kky04" style="endArrow=none;startArrow=none;strokeColor=#666666;strokeWidth=2;fontSize=8;html=1;exitX=0.5;exitY=1;entryX=0.7;entryY=0;" target="l2_dcgw" value="BE16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_3rd01_xc" parent="1" style="text;html=1;align=left;fontSize=8;fontColor=#2e7d32;" value="Local xconnect via KKY03:&lt;br&gt;BE16.2185 ↔ BE40.2185 (CORPORATE)&lt;br&gt;BE16.2946 ↔ BE40.2946 (INTERMEDIA)" vertex="1">
+          <mxGeometry height="45" width="250" x="-180" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_3rd02_xc" parent="1" style="text;html=1;align=left;fontSize=8;fontColor=#2e7d32;" value="Local xconnect via KKY04:&lt;br&gt;BE16.2186 ↔ BE40.2186 (CORPORATE)&lt;br&gt;BE16.2947 ↔ BE40.2947 (INTERMEDIA)" vertex="1">
+          <mxGeometry height="45" width="250" x="490" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky01" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" value="&lt;b&gt;PE90KKY01&lt;/b&gt;&lt;br&gt;7609-S | ~60 VLAN SVIs&lt;br&gt;HSRP Active" vertex="1">
+          <mxGeometry height="60" width="150" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky02" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" value="&lt;b&gt;PE90KKY02&lt;/b&gt;&lt;br&gt;7609-S | ~60 VLAN SVIs&lt;br&gt;HSRP Standby" vertex="1">
+          <mxGeometry height="60" width="150" x="240" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky01_kky02" edge="1" parent="1" source="l2_kky01" style="endArrow=none;startArrow=none;strokeColor=#d6b656;strokeWidth=3;fontSize=8;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="l2_kky02" value="Po2 (L2 Trunk)&lt;br&gt;VLANs 62-3200+">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky01_kky03" edge="1" parent="1" source="l2_kky01" style="endArrow=none;startArrow=none;strokeColor=#9673a6;strokeWidth=2;fontSize=8;html=1;exitX=0.3;exitY=0;entryX=0;entryY=0.7;" target="l2_kky03" value="BE222/Po222&lt;br&gt;L2 BDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_ort01" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" value="&lt;b&gt;PE90ORT01&lt;/b&gt;&lt;br&gt;7609-S | ~15 VLAN SVIs" vertex="1">
+          <mxGeometry height="60" width="150" x="910" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_ort02" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" value="&lt;b&gt;PE90ORT02&lt;/b&gt;&lt;br&gt;7609-S | ~15 VLAN SVIs" vertex="1">
+          <mxGeometry height="60" width="150" x="1150" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_pex01" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" value="&lt;b&gt;PEX90KKY01&lt;/b&gt;&lt;br&gt;ASR9K | FW BDs&lt;br&gt;CPN + EXT groups" vertex="1">
+          <mxGeometry height="60" width="140" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_pex02" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" value="&lt;b&gt;PEX90KKY02&lt;/b&gt;&lt;br&gt;ASR9K | FW BDs&lt;br&gt;CPN + EXT groups" vertex="1">
+          <mxGeometry height="60" width="140" x="240" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_pex01_pex02" edge="1" parent="1" source="l2_pex01" style="endArrow=none;startArrow=none;strokeColor=#0000FF;strokeWidth=3;fontSize=8;html=1;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="l2_pex02" value="BE5042 (2x10G)&lt;br&gt;FW Bridge Domains">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_dc_kky" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=9;" value="&lt;b&gt;DC90KKY&lt;/b&gt;&lt;br&gt;Nexus 9372&lt;br&gt;Server VLANs" vertex="1">
+          <mxGeometry height="50" width="130" x="460" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_dc_ort" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=9;" value="&lt;b&gt;DC90ORT&lt;/b&gt;&lt;br&gt;DC Switches" vertex="1">
+          <mxGeometry height="50" width="130" x="1070" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_kky_dc" edge="1" parent="1" source="l2_kky02" style="endArrow=none;startArrow=none;strokeColor=#999999;strokeWidth=2;fontSize=8;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="l2_dc_kky" value="Po100&lt;br&gt;DC trunk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_ort_dc" edge="1" parent="1" source="l2_ort01" style="endArrow=none;startArrow=none;strokeColor=#999999;strokeWidth=2;fontSize=8;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="l2_dc_ort" value="Po100&lt;br&gt;DC trunk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_pex_info" parent="1" style="text;html=1;align=left;fontSize=8;fontColor=#b85450;" value="PEX BDs: V1200_WAF, BD251 (GIFW),&lt;br&gt;BD300-303 (Corp NAT FW), BD370 (Speedtest),&lt;br&gt;BD500/501/507/511 (Corp), BD1506, BD2101" vertex="1">
+          <mxGeometry height="45" width="280" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_bd_table" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;align=left;verticalAlign=top;fontSize=9;spacingLeft=8;spacingTop=5;" value="&lt;b&gt;Bridge Domain Summary by VRF (KKY03)&lt;/b&gt;&lt;br&gt;&lt;br&gt;VF (General): 8 BDs (110,130,135,136,137,270,272,850,851,999)&lt;br&gt;SIGTRAN: 7 BDs (200,304,402,404,407,432,603,1600,1601,1608,1609)&lt;br&gt;USERPLANE: 9 BDs (300,305,306,408,433,1300,1603-1606,1611)&lt;br&gt;4G-S1-UP: 2 BDs (310,311)&lt;br&gt;4G-S1-CP: 3 BDs (99,410,411)&lt;br&gt;4G-IPSEC: 5 BDs (352,353,802,1802,2211)&lt;br&gt;3GPS_DATA: 5 BDs (307,308,409,420,1400,2000)&lt;br&gt;OandM: 4 BDs (160,566,1607,1610)&lt;br&gt;2G3GUP: 2 BDs (431,3002)&lt;br&gt;CIMS: 1 BD (434)&lt;br&gt;No VRF: ~5 BDs (91,92,101,140,250)&lt;br&gt;&lt;br&gt;&lt;b&gt;Total: 73 BDs on KKY03, ~55 on KKY04&lt;/b&gt;&lt;br&gt;All BDs have: storm-control 1000pps, MAC aging 1800s, BVI (IRB), MST CPN" vertex="1">
+          <mxGeometry height="280" width="380" x="700" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_xc_table" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;align=left;verticalAlign=top;fontSize=9;spacingLeft=8;spacingTop=5;" value="&lt;b&gt;EOMPLS Xconnect Circuits (P2P Pseudowires)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font color=red&gt;PTN Transport:&lt;/font&gt;&lt;br&gt;  KKY03 Te0/1/0/2 ↔ ORT03 Te0/1/1/2 (PW 35713006)&lt;br&gt;  KKY04 Te0/1/0/2 ↔ ORT04 Te0/1/1/2 (PW 35713007)&lt;br&gt;&lt;br&gt;&lt;font color=green&gt;CORPORATE:&lt;/font&gt;&lt;br&gt;  KKY03 BE40.2187 ↔ ORT03 BE16.2187 (PW 35713004)&lt;br&gt;  KKY04 BE40.2188 ↔ ORT04 BE16.2188 (PW 35713005)&lt;br&gt;&lt;br&gt;&lt;font color=orange&gt;INTERMEDIA:&lt;/font&gt;&lt;br&gt;  KKY03 BE40.2906 ↔ ORT03 BE16.2906 (PW 35713005)&lt;br&gt;  KKY04 BE40.2907 ↔ ORT04 BE16.2907 (PW 35713003)&lt;br&gt;&lt;br&gt;&lt;font color=#CC0066&gt;Legacy:&lt;/font&gt;&lt;br&gt;  KKY03 Gi7001/0/0/1 ↔ ORT01 (PW 35713001)&lt;br&gt;&lt;br&gt;&lt;b&gt;Local Xconnects (3RD IPsec GW):&lt;/b&gt;&lt;br&gt;  3RD01: BE16.2185↔BE40.2185, BE16.2946↔BE40.2946&lt;br&gt;  3RD02: BE16.2186↔BE40.2186, BE16.2947↔BE40.2947" vertex="1">
+          <mxGeometry height="320" width="380" x="700" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;align=left;verticalAlign=top;fontSize=9;spacingLeft=8;spacingTop=5;" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font color=blue&gt;━━━ L2 Trunk / BE5042 (Bridge Domains)&lt;/font&gt;&lt;br&gt;&lt;font color=#d6b656&gt;━━━ Legacy L2 Trunk (VLAN)&lt;/font&gt;&lt;br&gt;&lt;font color=#9673a6&gt;━━━ BE222 L2 BD uplink&lt;/font&gt;&lt;br&gt;&lt;font color=#FF0000&gt;- - - EOMPLS PTN Pseudowire (inter-site)&lt;/font&gt;&lt;br&gt;&lt;font color=#009900&gt;- - - EOMPLS CORPORATE Pseudowire&lt;/font&gt;&lt;br&gt;&lt;font color=#FF6600&gt;- - - EOMPLS INTERMEDIA Pseudowire&lt;/font&gt;&lt;br&gt;&lt;font color=#CC0066&gt;- - - EOMPLS Legacy Pseudowire&lt;/font&gt;&lt;br&gt;&lt;font color=#82b366&gt;━━━ 3RD GW Local Xconnect (BE40)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="200" width="300" x="-50" y="690" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="L2VPN_XCONNECT" name="L2VPN - xconnect (EoMPLS)">
+    <mxGraphModel dx="2432" dy="1228" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3300" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="xc_title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;" value="&lt;b&gt;CPN Network - L2VPN xconnect (EoMPLS) Topology&lt;/b&gt;&lt;br&gt;Point-to-Point Pseudowire Services over MPLS Core" vertex="1">
+          <mxGeometry height="50" width="700" x="350" y="-80" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_kky_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=25;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="850" width="600" x="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_kky_lbl" parent="1" style="text;html=1;align=center;fontSize=14;fontStyle=1;" value="KKY Site (Lefkoşa)" vertex="1">
+          <mxGeometry height="30" width="200" x="150" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ort_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=25;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="850" width="600" x="800" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ort_lbl" parent="1" style="text;html=1;align=center;fontSize=14;fontStyle=1;" value="ORT Site (Ortaköy)" vertex="1">
+          <mxGeometry height="30" width="200" x="1000" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_mpls" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;fontStyle=1;" value="MPLS Core&lt;br&gt;LDP + RSVP" vertex="1">
+          <mxGeometry height="150" width="290" x="530" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_kky03" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;PE90KKY03&lt;/b&gt;&lt;br&gt;ASR 9006 | IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.1" vertex="1">
+          <mxGeometry height="70" width="200" x="50" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_kky04" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;PE90KKY04&lt;/b&gt;&lt;br&gt;ASR 9006 | IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.2" vertex="1">
+          <mxGeometry height="70" width="200" x="50" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_3rd01" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;3RD90KKY01&lt;/b&gt;&lt;br&gt;3rd Party GW" vertex="1">
+          <mxGeometry height="50" width="150" x="70" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_3rd02" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;3RD90KKY02&lt;/b&gt;&lt;br&gt;3rd Party GW" vertex="1">
+          <mxGeometry height="50" width="150" x="75" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ort03" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;PE90ORT03&lt;/b&gt;&lt;br&gt;ASR 9006 | IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.128" vertex="1">
+          <mxGeometry height="70" width="200" x="900" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ort04" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;PE90ORT04&lt;/b&gt;&lt;br&gt;ASR 9006 | IOS-XR 5.3.4&lt;br&gt;Lo0: 10.134.34.129" vertex="1">
+          <mxGeometry height="70" width="200" x="900" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ort01" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;PE90ORT01&lt;/b&gt;&lt;br&gt;7609-S&lt;br&gt;Lo0: 192.168.1.1" vertex="1">
+          <mxGeometry height="60" width="150" x="1160" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ptn1" edge="1" parent="1" source="xc_kky03" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#CC0000;strokeWidth=3;dashed=0;endArrow=none;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="xc_ort03" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ptn1_lbl" parent="1" style="text;html=1;align=center;fontSize=9;fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;" value="&lt;b&gt;PTN xconnect&lt;/b&gt;&lt;br&gt;pw-id: 35713006&lt;br&gt;Te0/1/0/2 ↔ Te0/1/1/2&lt;br&gt;EoMPLS-ETH" vertex="1">
+          <mxGeometry height="55" width="170" x="510" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ptn2" edge="1" parent="1" source="xc_kky04" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#CC0000;strokeWidth=3;dashed=0;endArrow=none;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="xc_ort04" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_ptn2_lbl" parent="1" style="text;html=1;align=center;fontSize=9;fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;" value="&lt;b&gt;PTN xconnect&lt;/b&gt;&lt;br&gt;pw-id: 35713007&lt;br&gt;Te0/1/0/2 ↔ Te0/1/1/2&lt;br&gt;EoMPLS-ETH" vertex="1">
+          <mxGeometry height="55" width="170" x="540" y="495" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_eo1" edge="1" parent="1" source="xc_kky03" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#0066CC;strokeWidth=2;dashed=1;endArrow=none;" target="xc_ort01" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_eo1_lbl" parent="1" style="text;html=1;align=center;fontSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" value="&lt;b&gt;EoMPLS&lt;/b&gt; pw:35713001&lt;br&gt;Gi7001/0/0/1 → 192.168.1.1&lt;br&gt;EoMPLS-ETH" vertex="1">
+          <mxGeometry height="45" width="170" x="700" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_corp1" edge="1" parent="1" source="xc_kky03" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#009900;strokeWidth=2;dashed=0;endArrow=none;exitX=1;exitY=0.7;entryX=0;entryY=0.7;" target="xc_ort03" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_corp1_lbl" parent="1" style="text;html=1;align=center;fontSize=8;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" value="&lt;b&gt;CORPORATE&lt;/b&gt; pw:35713004&lt;br&gt;BE40.2187 ↔ BE16.2187&lt;br&gt;EoMPLS-VLAN" vertex="1">
+          <mxGeometry height="45" width="170" x="480" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_int1" edge="1" parent="1" source="xc_kky03" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#FF6600;strokeWidth=2;dashed=0;endArrow=none;exitX=0.75;exitY=1;entryX=0.25;entryY=1;curved=1;" target="xc_ort03" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_int1_lbl" parent="1" style="text;html=1;align=center;fontSize=8;fillColor=#fef3cd;strokeColor=#d6b656;rounded=1;" value="&lt;b&gt;INTERMEDIA&lt;/b&gt; pw:35713002&lt;br&gt;BE40.2906 ↔ BE16.2906&lt;br&gt;EoMPLS-VLAN" vertex="1">
+          <mxGeometry height="45" width="170" x="480" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_corp2" edge="1" parent="1" source="xc_kky04" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#009900;strokeWidth=2;dashed=0;endArrow=none;exitX=1;exitY=0.7;entryX=0;entryY=0.7;" target="xc_ort04" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_corp2_lbl" parent="1" style="text;html=1;align=center;fontSize=8;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" value="&lt;b&gt;CORPORATE&lt;/b&gt; pw:35713005&lt;br&gt;BE40.2188 ↔ BE16.2188&lt;br&gt;EoMPLS-VLAN" vertex="1">
+          <mxGeometry height="45" width="170" x="540" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_int2" edge="1" parent="1" source="xc_kky04" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#FF6600;strokeWidth=2;dashed=0;endArrow=none;exitX=0.75;exitY=1;entryX=0.25;entryY=1;curved=1;" target="xc_ort04" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xc_int2_lbl" parent="1" style="text;html=1;align=center;fontSize=8;fillColor=#fef3cd;strokeColor=#d6b656;rounded=1;" value="&lt;b&gt;INTERMEDIA&lt;/b&gt; pw:35713003&lt;br&gt;BE40.2907 ↔ BE16.2907&lt;br&gt;EoMPLS-VLAN" vertex="1">
+          <mxGeometry height="45" width="170" x="540" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_3rd1_corp" edge="1" parent="1" source="xc_kky03" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#999999;strokeWidth=2;dashed=1;endArrow=none;" target="xc_3rd01" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_3rd1_lbl" parent="1" style="text;html=1;align=center;fontSize=8;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;" value="&lt;b&gt;Local xconnect&lt;/b&gt;&lt;br&gt;CORPORATE: BE16.2185 ↔ BE40.2185&lt;br&gt;INTERMEDIA: BE16.2946 ↔ BE40.2946" vertex="1">
+          <mxGeometry height="45" width="220" x="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_3rd2_corp" edge="1" parent="1" source="xc_kky04" style="rounded=1;orthogonalLoop=1;html=1;strokeColor=#999999;strokeWidth=2;dashed=1;endArrow=none;" target="xc_3rd02" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_3rd2_lbl" parent="1" style="text;html=1;align=center;fontSize=8;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;" value="&lt;b&gt;Local xconnect&lt;/b&gt;&lt;br&gt;CORPORATE: BE16.2186 ↔ BE40.2186&lt;br&gt;INTERMEDIA: BE16.2947 ↔ BE40.2947" vertex="1">
+          <mxGeometry height="45" width="220" x="280" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_legend" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#333333;fontSize=9;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;Legend:&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#CC0000&#39;&gt;━━━&lt;/font&gt; PTN xconnect (EoMPLS-ETH, dedicated 10G port)&lt;br&gt;&lt;font color=&#39;#0066CC&#39;&gt;- - -&lt;/font&gt; EoMPLS xconnect (ETH, via GigE)&lt;br&gt;&lt;font color=&#39;#009900&#39;&gt;━━━&lt;/font&gt; CORPORATE xconnect (EoMPLS-VLAN, Option-B)&lt;br&gt;&lt;font color=&#39;#FF6600&#39;&gt;━━━&lt;/font&gt; INTERMEDIA xconnect (EoMPLS-VLAN, interworking)&lt;br&gt;&lt;font color=&#39;#999999&#39;&gt;- - -&lt;/font&gt; Local xconnect (same site, no pseudowire)" vertex="1">
+          <mxGeometry height="110" width="400" x="-50" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="xc_summary" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#333333;fontSize=9;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;xconnect Summary:&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Remote Pseudowires (KKY ↔ ORT over MPLS):&lt;/b&gt;&lt;br&gt;• PTN: KKY03↔ORT03 (pw:35713006) + KKY04↔ORT04 (pw:35713007)&lt;br&gt;• CORPORATE: KKY03↔ORT03 (pw:35713004) + KKY04↔ORT04 (pw:35713005)&lt;br&gt;• INTERMEDIA: KKY03↔ORT03 (pw:35713002) + KKY04↔ORT04 (pw:35713003)&lt;br&gt;• EoMPLS: KKY03→ORT01 (pw:35713001)&lt;br&gt;&lt;br&gt;&lt;b&gt;Local xconnects (same site, no PW):&lt;/b&gt;&lt;br&gt;• KKY03↔3RD90KKY01: CORPORATE (v2185) + INTERMEDIA (v2946)&lt;br&gt;• KKY04↔3RD90KKY02: CORPORATE (v2186) + INTERMEDIA (v2947)&lt;br&gt;&lt;br&gt;&lt;b&gt;PW Classes:&lt;/b&gt; EOMPLS-ETH (transport-mode ethernet) | EOMPLS-VLAN (transport-mode vlan) | EOMPLS-ETH-CW (control-word)" vertex="1">
+          <mxGeometry height="220" width="500" x="500" y="870" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="L2VPN_BRIDGE" name="L2VPN - Bridge-Domain + BVI">
+    <mxGraphModel dx="2432" dy="1228" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3300" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bd_title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;" value="&lt;b&gt;CPN Network - Bridge-Domain + BVI (Local L2 Switching + L3 Gateway)&lt;/b&gt;&lt;br&gt;No xconnect - Local bridging only, L3 via VRF → MPLS L3VPN" vertex="1">
+          <mxGeometry height="50" width="800" x="200" y="-80" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_kky03_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;opacity=20;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="880" width="620" x="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_kky03_hdr" parent="1" style="text;html=1;align=center;fontSize=14;fontStyle=1;" value="PE90KKY03 (Lo0: 10.134.34.1)" vertex="1">
+          <mxGeometry height="30" width="300" x="100" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_99" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 99 → BVI99&lt;/b&gt; | VRF: 4G-S1-CP | 192.168.246.2/29&lt;br&gt;├ TenGigE0/2/0/3&lt;br&gt;└ BE5042.99 → PE90KKY04&lt;br&gt;&lt;i&gt;USN (4G Core)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="280" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_110" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 110 → BVI110&lt;/b&gt; | VRF: VF | 192.168.48.2/24&lt;br&gt;└ BE222.110 → PE90KKY01&lt;br&gt;&lt;i&gt;VMOL:KLIMA (shutdown)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="280" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_130" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 130 → BVI130&lt;/b&gt; | VRF: VF | 192.168.69.211/24&lt;br&gt;├ BE222.130 → PE90KKY01&lt;br&gt;├ BE5042.130 → PE90KKY04&lt;br&gt;└ Gi7002/0/0/20 (direct)&lt;br&gt;&lt;i&gt;Sigos segment (shutdown)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="280" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_135" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 135 → BVI135&lt;/b&gt; | VRF: VF | 172.27.16.114/29&lt;br&gt;├ BE5042.135 → PE90KKY04&lt;br&gt;└ Gi0/5/0/34 (direct)&lt;br&gt;&lt;i&gt;SSL VPN MGMT&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="280" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_136" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 136 → BVI136&lt;/b&gt; | VRF: VF | 172.27.16.122/29&lt;br&gt;├ BE5042.136 → PE90KKY04&lt;br&gt;└ Gi0/5/0/35.136 (direct)&lt;br&gt;&lt;i&gt;SSL VPN MGMT&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="280" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_137" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 137 → BVI137&lt;/b&gt; | VRF: VF | 192.168.161.2/24&lt;br&gt;├ TenGigE0/1/0/11 (Fortinet FW)&lt;br&gt;├ BE222.137 → PE90KKY01&lt;br&gt;└ BE5042.137 → PE90KKY04&lt;br&gt;&lt;i&gt;Fortinet VDOM Merkez FW&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="280" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_160" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 160 → BVI160&lt;/b&gt; | VRF: OandM | 10.135.31.242/28&lt;br&gt;&lt;i&gt;Fortinet OAM&lt;/i&gt;" vertex="1">
+          <mxGeometry height="50" width="280" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_200" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 200 → BVI200&lt;/b&gt; | VRF: SIGTRAN | 10.151.0.9/29&lt;br&gt;&lt;i&gt;BSC LEF SIG RED&lt;/i&gt;" vertex="1">
+          <mxGeometry height="50" width="280" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k3_nobvi" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD without BVI (pure L2):&lt;/b&gt;&lt;br&gt;• BD 91: BE102.91, BE5042.91, Gi7001/0/0/3.91, Gi7001/0/0/4.91&lt;br&gt;• BD 92: BE102.92, BE5042.92, Gi7001/0/0/3.92, Gi7001/0/0/4.92&lt;br&gt;• BD 101: BE5042, BE222.101, BE5042.101, Gi0/5/0/25.101" vertex="1">
+          <mxGeometry height="75" width="350" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_kky04_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;opacity=20;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="580" width="550" x="650" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_kky04_hdr" parent="1" style="text;html=1;align=center;fontSize=14;fontStyle=1;" value="PE90KKY04 (Lo0: 10.134.34.2)" vertex="1">
+          <mxGeometry height="30" width="300" x="780" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k4_99" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 99 → BVI99&lt;/b&gt; | VRF: 4G-S1-CP | 192.168.246.3/29&lt;br&gt;├ TenGigE0/2/0/3&lt;br&gt;└ BE5042.99 → PE90KKY03" vertex="1">
+          <mxGeometry height="60" width="280" x="680" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k4_110" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 110 → BVI110&lt;/b&gt; | VRF: VF | 192.168.48.3/24&lt;br&gt;├ BE5042.110 → PE90KKY03&lt;br&gt;├ Gi7001/0/0/28 (direct)&lt;br&gt;└ Gi7001/0/0/32 (direct)" vertex="1">
+          <mxGeometry height="70" width="280" x="680" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k4_130" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 130 → BVI130&lt;/b&gt; | VRF: VF | 192.168.69.212/24&lt;br&gt;└ BE5042.130 → PE90KKY03" vertex="1">
+          <mxGeometry height="50" width="280" x="680" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k4_135" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 135 → BVI135&lt;/b&gt; | VRF: VF | 172.27.16.115/29&lt;br&gt;├ BE5042.135 → PE90KKY03&lt;br&gt;└ Gi0/5/0/36 (direct)" vertex="1">
+          <mxGeometry height="60" width="280" x="680" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_k4_nobvi" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD without BVI (pure L2):&lt;/b&gt;&lt;br&gt;• BD 91: BE102.91, BE5042.91, Gi7001/0/0/3.91, Gi7001/0/0/4.91&lt;br&gt;• BD 92: BE102.92, BE5042.92, Gi7001/0/0/3.92, Gi7001/0/0/4.92&lt;br&gt;• BD 101: BE5042.101, Gi0/5/0/25.101" vertex="1">
+          <mxGeometry height="75" width="350" x="680" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_pex_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=20;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="480" width="550" x="650" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_pex_hdr" parent="1" style="text;html=1;align=center;fontSize=14;fontStyle=1;" value="PEX90KKY01 / PEX90KKY02 (Internet/Corp Edge)" vertex="1">
+          <mxGeometry height="30" width="400" x="720" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_pex_251" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 251 → BVI251&lt;/b&gt; | VRF: INTERNET | PEX01: 10.135.18.181/29 | PEX02: .182&lt;br&gt;├ BE15.251 + BE5042.251" vertex="1">
+          <mxGeometry height="45" width="400" x="680" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_pex_300" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 300-303 → BVI300-303&lt;/b&gt; | VRF: INTERNET&lt;br&gt;172.27.16.x/29, 172.27.17.x/29, 172.27.111.x/29&lt;br&gt;├ BE20.xxx + BE5042.xxx" vertex="1">
+          <mxGeometry height="55" width="400" x="680" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_pex_370" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 370 → BVI370&lt;/b&gt; | VRF: INTERNET | PEX01: 149.140.252.250/29&lt;br&gt;├ BE370 + BE5042.370" vertex="1">
+          <mxGeometry height="45" width="400" x="680" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_pex_500" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;BD 500 → BVI500&lt;/b&gt; | VRF: CORPINT | 77.92.16.241/28&lt;br&gt;├ Te0/2/0/1 + BE5042.500 + Gi0/0/0/20 + Gi0/0/0/25.500" vertex="1">
+          <mxGeometry height="45" width="400" x="680" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_pex_more" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;Also:&lt;/b&gt; BD 501 (BVI501), BD 507/508 (BVI507/508), BD 511 (BVI511),&lt;br&gt;BD 1200 (BVI1200 WAF), BD 1506 (BVI1506), BD 2101 (BVI2101)" vertex="1">
+          <mxGeometry height="45" width="400" x="680" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_ort03" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=8;spacingTop=3;" value="&lt;b&gt;PE90ORT03&lt;/b&gt;&lt;br&gt;BD 566 → BVI566 (minimal, Gi0/5/0/0 only)" vertex="1">
+          <mxGeometry height="45" width="280" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_be5042" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;fontStyle=1;align=center;" value="BE5042 (40G L2 trunk)&lt;br&gt;KKY03 ↔ KKY04&lt;br&gt;&lt;font style=&#39;font-size:8px;font-weight:normal&#39;&gt;Carries .91 .92 .99 .101 .130 .135 .136 .137 etc.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="320" x="350" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_be222" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;fontStyle=1;align=center;" value="BE222 (20G L2 trunk)&lt;br&gt;KKY03 ↔ KKY01 (gecici)&lt;br&gt;&lt;font style=&#39;font-size:8px;font-weight:normal&#39;&gt;Carries .101 .110 .130 .137 .140 etc.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="330" x="350" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="bd_legend" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#333333;fontSize=9;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;Legend:&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#82b366&#39;&gt;██&lt;/font&gt; Bridge-Domain with BVI (L2 switch + L3 gateway → VRF → MPLS L3VPN)&lt;br&gt;&lt;font color=&#39;#d6b656&#39;&gt;██&lt;/font&gt; Bridge-Domain without BVI (pure L2 switching, no L3)&lt;br&gt;&lt;font color=&#39;#b85450&#39;&gt;██&lt;/font&gt; L2 trunk between local PE routers (same site)&lt;br&gt;&lt;br&gt;&lt;b&gt;Key:&lt;/b&gt; All bridge-domains are LOCAL to the site.&lt;br&gt;No L2 traffic crosses MPLS core. Only L3 (VRF/L3VPN) exits via BVI." vertex="1">
+          <mxGeometry height="130" width="450" x="-50" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="2YhEZUKWI0J3xYkAcsJK-1" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#ff0000, #ededed);labelBackgroundColor=default;" value="&lt;p style=&quot;white-space-collapse: preserve; margin-top: 0px; margin-bottom: 0.2em; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px;&quot;&gt;BD 99 + BVI99 için tüm config parçaları:&lt;/p&gt;&lt;p style=&quot;white-space-collapse: preserve; margin-top: 0.1em; margin-bottom: 0.2em; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px;&quot;&gt;&lt;strong&gt;1. BVI Interface (L3 Gateway):&lt;/strong&gt;&lt;/p&gt;&lt;div class=&quot;codeBlockWrapper_-a7MRw&quot; style=&quot;position: relative; margin: 8px 0px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px;&quot;&gt;&lt;button class=&quot;copyButton_CEmTFw copyButton_-a7MRw&quot; title=&quot;Copy code&quot; aria-label=&quot;Copy code to clipboard&quot; style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px; background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; border-color: rgb(42, 43, 44); border-image: none 100% / 1 / 0 stretch; cursor: pointer; opacity: 0; display: flex; justify-content: center; align-items: center; padding: 4px; transition: opacity 0.15s, background 0.15s; position: absolute; top: 4px; right: 4px;&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 20 20&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot; data-slot=&quot;icon&quot; class=&quot;copyIcon_CEmTFw&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M15.988 3.012A2.25 2.25 0 0 1 18 5.25v6.5A2.25 2.25 0 0 1 15.75 14H13.5v-3.379a3 3 0 0 0-.879-2.121l-3.12-3.121a3 3 0 0 0-1.402-.791 2.252 2.252 0 0 1 1.913-1.576A2.25 2.25 0 0 1 12.25 1h1.5a2.25 2.25 0 0 1 2.238 2.012ZM11.5 3.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v.25h-3v-.25Z&quot; clip-rule=&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;path d=&quot;M3.5 6A1.5 1.5 0 0 0 2 7.5v9A1.5 1.5 0 0 0 3.5 18h7a1.5 1.5 0 0 0 1.5-1.5v-5.879a1.5 1.5 0 0 0-.44-1.06L8.44 6.439A1.5 1.5 0 0 0 7.378 6H3.5Z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;&lt;pre style=&quot;overflow-x: auto; box-sizing: border-box; border-radius: 4px; max-width: 100%; margin: 0px; padding: 8px;&quot;&gt;&lt;code style=&quot;padding: 0px; border-radius: 3px; word-break: break-word; font-size: 0.9em;&quot;&gt;interface BVI99&lt;br&gt; description USN&lt;br&gt; vrf 4G-S1-CP&lt;br&gt; ipv4 address 192.168.246.2 255.255.255.248&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p style=&quot;white-space-collapse: preserve; margin-top: 0.1em; margin-bottom: 0.2em; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px;&quot;&gt;&lt;strong&gt;2. Bridge-Domain (L2 Switching):&lt;/strong&gt;&lt;/p&gt;&lt;div class=&quot;codeBlockWrapper_-a7MRw&quot; style=&quot;position: relative; margin: 8px 0px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px;&quot;&gt;&lt;button class=&quot;copyButton_CEmTFw copyButton_-a7MRw&quot; title=&quot;Copy code&quot; aria-label=&quot;Copy code to clipboard&quot; style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px; background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; border-color: rgb(42, 43, 44); border-image: none 100% / 1 / 0 stretch; cursor: pointer; opacity: 0; display: flex; justify-content: center; align-items: center; padding: 4px; transition: opacity 0.15s, background 0.15s; position: absolute; top: 4px; right: 4px;&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 20 20&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot; data-slot=&quot;icon&quot; class=&quot;copyIcon_CEmTFw&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M15.988 3.012A2.25 2.25 0 0 1 18 5.25v6.5A2.25 2.25 0 0 1 15.75 14H13.5v-3.379a3 3 0 0 0-.879-2.121l-3.12-3.121a3 3 0 0 0-1.402-.791 2.252 2.252 0 0 1 1.913-1.576A2.25 2.25 0 0 1 12.25 1h1.5a2.25 2.25 0 0 1 2.238 2.012ZM11.5 3.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v.25h-3v-.25Z&quot; clip-rule=&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;path d=&quot;M3.5 6A1.5 1.5 0 0 0 2 7.5v9A1.5 1.5 0 0 0 3.5 18h7a1.5 1.5 0 0 0 1.5-1.5v-5.879a1.5 1.5 0 0 0-.44-1.06L8.44 6.439A1.5 1.5 0 0 0 7.378 6H3.5Z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;&lt;pre style=&quot;overflow-x: auto; box-sizing: border-box; border-radius: 4px; max-width: 100%; margin: 0px; padding: 8px;&quot;&gt;&lt;code style=&quot;padding: 0px; border-radius: 3px; word-break: break-word; font-size: 0.9em;&quot;&gt;l2vpn bridge group CPN bridge-domain 99&lt;br&gt; interface TenGigE0/2/0/3                          ← fiziksel port (cihaza gelen kablo)&lt;br&gt;  storm-control multicast pps 1000&lt;br&gt;  storm-control broadcast pps 1000&lt;br&gt; interface Bundle-Ether5042.99                      ← KKY04&#39;e L2 trunk (40G)&lt;br&gt;  storm-control multicast pps 1000&lt;br&gt;  storm-control broadcast pps 1000&lt;br&gt; routed interface BVI99                             ← L3 gateway bağlantısı&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p style=&quot;white-space-collapse: preserve; margin-top: 0.1em; margin-bottom: 0.2em; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px;&quot;&gt;&lt;strong&gt;3. HSRP (Gateway Redundancy - KKY03 ↔ KKY04):&lt;/strong&gt;&lt;/p&gt;&lt;div class=&quot;codeBlockWrapper_-a7MRw&quot; style=&quot;position: relative; margin: 8px 0px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px;&quot;&gt;&lt;button class=&quot;copyButton_CEmTFw copyButton_-a7MRw&quot; title=&quot;Copy code&quot; aria-label=&quot;Copy code to clipboard&quot; style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; font-size: 13px; background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; border-color: rgb(42, 43, 44); border-image: none 100% / 1 / 0 stretch; cursor: pointer; opacity: 0; display: flex; justify-content: center; align-items: center; padding: 4px; transition: opacity 0.15s, background 0.15s; position: absolute; top: 4px; right: 4px;&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 20 20&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot; data-slot=&quot;icon&quot; class=&quot;copyIcon_CEmTFw&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M15.988 3.012A2.25 2.25 0 0 1 18 5.25v6.5A2.25 2.25 0 0 1 15.75 14H13.5v-3.379a3 3 0 0 0-.879-2.121l-3.12-3.121a3 3 0 0 0-1.402-.791 2.252 2.252 0 0 1 1.913-1.576A2.25 2.25 0 0 1 12.25 1h1.5a2.25 2.25 0 0 1 2.238 2.012ZM11.5 3.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v.25h-3v-.25Z&quot; clip-rule=&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;path d=&quot;M3.5 6A1.5 1.5 0 0 0 2 7.5v9A1.5 1.5 0 0 0 3.5 18h7a1.5 1.5 0 0 0 1.5-1.5v-5.879a1.5 1.5 0 0 0-.44-1.06L8.44 6.439A1.5 1.5 0 0 0 7.378 6H3.5Z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;&lt;pre style=&quot;overflow-x: auto; box-sizing: border-box; border-radius: 4px; max-width: 100%; margin: 0px; padding: 8px;&quot;&gt;&lt;code style=&quot;padding: 0px; border-radius: 3px; word-break: break-word; font-size: 0.9em;&quot;&gt;router hsrp interface BVI99&lt;br&gt; hsrp delay minimum 180 reload 360&lt;br&gt; address-family ipv4 hsrp 99&lt;br&gt;  timers msec 1000 msec 3000&lt;br&gt;  preempt delay 180&lt;br&gt;  priority 120                                      ← KKY03 primary (120 &amp;gt; default 100)&lt;br&gt;  address 192.168.246.1                             ← virtual IP (cihazlar bunu GW olarak kullanır)&lt;br&gt;  track object HSRP-CORE-TRACK 100&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="1050" x="1240" y="230" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
