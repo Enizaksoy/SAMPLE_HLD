@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vodafone KKTC - CPN Network High Level Design</title>
+<style>
+  :root {
+    --vf-red: #e60000;
+    --vf-dark: #1a1a2e;
+    --vf-blue: #0066cc;
+    --vf-grey: #f4f5f7;
+    --vf-border: #dee2e6;
+    --vf-text: #2c3e50;
+    --vf-green: #00a86b;
+    --vf-orange: #e67e22;
+    --vf-purple: #6c5ce7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--vf-text);
+    background: #fff;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* Cover Page */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--vf-dark) 0%, #16213e 50%, var(--vf-red) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+    page-break-after: always;
+  }
+  .cover .logo { font-size: 16px; letter-spacing: 8px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 40px; }
+  .cover h1 { font-size: 42px; font-weight: 300; margin-bottom: 10px; }
+  .cover h1 strong { font-weight: 700; color: var(--vf-red); }
+  .cover h2 { font-size: 22px; font-weight: 300; color: rgba(255,255,255,0.85); margin-bottom: 30px; }
+  .cover .subtitle { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 60px; }
+  .cover .meta-table { margin-top: 40px; }
+  .cover .meta-table table { border-collapse: collapse; margin: 0 auto; }
+  .cover .meta-table td { padding: 8px 20px; text-align: left; font-size: 13px; color: rgba(255,255,255,0.7); }
+  .cover .meta-table td:first-child { font-weight: 600; color: rgba(255,255,255,0.9); }
+  .cover .badge { display: inline-block; padding: 6px 24px; border: 2px solid var(--vf-red); border-radius: 20px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; }
+
+  /* Navigation / TOC */
+  .toc-page { padding: 40px 40px 40px 40px; max-width: 100%; page-break-after: always; }
+  .toc-page h2 { font-size: 28px; color: var(--vf-dark); margin-bottom: 30px; border-bottom: 3px solid var(--vf-red); padding-bottom: 10px; }
+  .toc ol { list-style: none; counter-reset: toc; }
+  .toc > ol > li { counter-increment: toc; margin-bottom: 6px; }
+  .toc > ol > li > a { text-decoration: none; color: var(--vf-text); font-size: 15px; display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dotted #ccc; }
+  .toc > ol > li > a:hover { color: var(--vf-red); }
+  .toc > ol > li > a::before { content: counter(toc) ". "; font-weight: 700; color: var(--vf-red); min-width: 30px; }
+  .toc ol ol { margin-left: 30px; counter-reset: subtoc; }
+  .toc ol ol li { counter-increment: subtoc; }
+  .toc ol ol li a { text-decoration: none; color: #555; font-size: 13px; display: block; padding: 3px 0; }
+  .toc ol ol li a:hover { color: var(--vf-red); }
+
+  /* Main Content */
+  .content { max-width: 100%; margin: 0; padding: 0 40px; }
+  .section { page-break-before: always; padding-top: 40px; margin-bottom: 60px; }
+  .section:first-child { page-break-before: avoid; }
+
+  h2.section-title {
+    font-size: 26px;
+    color: var(--vf-dark);
+    border-left: 5px solid var(--vf-red);
+    padding-left: 15px;
+    margin-bottom: 25px;
+  }
+  h3 { font-size: 18px; color: var(--vf-blue); margin: 25px 0 12px 0; }
+  h4 { font-size: 15px; color: var(--vf-dark); margin: 18px 0 8px 0; }
+  h5 { font-size: 13px; color: var(--vf-purple); margin: 12px 0 6px 0; text-transform: uppercase; letter-spacing: 1px; }
+  p { margin-bottom: 10px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px 0; font-size: 12.5px; }
+  th { background: var(--vf-dark); color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 6px 10px; border-bottom: 1px solid var(--vf-border); }
+  tr:nth-child(even) { background: var(--vf-grey); }
+  tr:hover { background: #e8f4fd; }
+  table.compact td, table.compact th { padding: 4px 8px; font-size: 11.5px; }
+
+  /* Special table variants */
+  table.vrf-table th { background: var(--vf-purple); }
+  table.link-table th { background: #2d6a4f; }
+  table.device-table th { background: var(--vf-red); }
+  table.qos-table th { background: #e67e22; color: #fff; }
+  table.security-table th { background: #c0392b; }
+
+  /* Code blocks */
+  .code-block {
+    background: #1e1e2e;
+    color: #a6e3a1;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    overflow-x: auto;
+    margin: 12px 0 18px 0;
+    white-space: pre;
+    line-height: 1.5;
+  }
+
+  /* Info boxes */
+  .info-box {
+    padding: 12px 18px;
+    border-left: 4px solid var(--vf-blue);
+    background: #e8f4fd;
+    margin: 12px 0 18px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+  }
+  .info-box.warn { border-left-color: var(--vf-orange); background: #fef5e7; }
+  .info-box.danger { border-left-color: #c0392b; background: #fde8e8; }
+  .info-box.ok { border-left-color: var(--vf-green); background: #e8faf0; }
+
+  /* Topology diagrams (ASCII) */
+  .topology {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    border-radius: 6px;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    white-space: pre;
+    overflow-x: auto;
+    margin: 12px 0 18px 0;
+    line-height: 1.4;
+  }
+
+  /* Lists */
+  ul, ol { margin: 8px 0 12px 25px; }
+  li { margin-bottom: 4px; }
+
+  /* Tags / Badges */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; margin: 0 2px; }
+  .tag-red { background: #fde8e8; color: #c0392b; }
+  .tag-blue { background: #e8f4fd; color: var(--vf-blue); }
+  .tag-green { background: #e8faf0; color: #00a86b; }
+  .tag-purple { background: #f0e8fd; color: #6c5ce7; }
+  .tag-orange { background: #fef5e7; color: #e67e22; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 30px; color: #888; font-size: 12px; border-top: 1px solid #eee; margin-top: 60px; }
+
+  /* Figure captions */
+  .figure { text-align: center; margin: 20px 0; }
+  .figure .caption { font-size: 12px; color: #888; font-style: italic; margin-top: 8px; }
+
+  /* Two-column layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 12px 0; }
+  .two-col > div { background: var(--vf-grey); padding: 15px; border-radius: 6px; }
+
+  /* Summary cards */
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0 25px 0; }
+  .summary-card {
+    background: var(--vf-grey);
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid var(--vf-blue);
+    text-align: center;
+  }
+  .summary-card .value { font-size: 28px; font-weight: 700; color: var(--vf-dark); }
+  .summary-card .label { font-size: 12px; color: #888; margin-top: 4px; }
+  .summary-card.red { border-left-color: var(--vf-red); }
+  .summary-card.green { border-left-color: var(--vf-green); }
+  .summary-card.purple { border-left-color: var(--vf-purple); }
+  .summary-card.orange { border-left-color: var(--vf-orange); }
+
+  @media print {
+    .cover { min-height: auto; padding: 80px 40px; }
+    .section { page-break-before: always; }
+    body { font-size: 11px; }
+    #login-overlay { display: none !important; }
+    #protected-content { display: block !important; }
+  }
+
+  /* Login overlay */
+  #login-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #e60000 100%);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+  }
+  #login-box {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 50px 40px;
+    text-align: center;
+    max-width: 420px; width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  #login-box .lock-icon { font-size: 48px; margin-bottom: 20px; }
+  #login-box h2 { color: #fff; font-size: 22px; font-weight: 300; margin-bottom: 6px; }
+  #login-box h2 strong { font-weight: 700; color: #e60000; }
+  #login-box p { color: rgba(255,255,255,0.5); font-size: 13px; margin-bottom: 30px; }
+  #login-box input[type="password"] {
+    width: 100%; padding: 14px 18px; border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px; background: rgba(255,255,255,0.08); color: #fff;
+    font-size: 15px; outline: none; margin-bottom: 16px;
+    transition: border-color 0.3s;
+  }
+  #login-box input[type="password"]:focus { border-color: #e60000; }
+  #login-box input[type="password"]::placeholder { color: rgba(255,255,255,0.3); }
+  #login-box button {
+    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    background: #e60000; color: #fff; font-size: 15px; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.5px; transition: background 0.3s;
+  }
+  #login-box button:hover { background: #cc0000; }
+  #login-box .error { color: #ff6b6b; font-size: 13px; margin-top: 12px; display: none; }
+  #protected-content { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ==================== LOGIN OVERLAY ==================== -->
+<div id="login-overlay">
+  <div id="login-box">
+    <div class="lock-icon">&#128274;</div>
+    <h2><strong>Vodafone</strong> KKTC</h2>
+    <p>CPN Network High Level Design &mdash; Protected Document</p>
+    <input type="password" id="pwd-input" placeholder="Enter password..." autofocus onkeydown="if(event.key==='Enter')checkAuth()">
+    <button onclick="checkAuth()">Unlock Document</button>
+    <div class="error" id="error-msg">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<div id="protected-content">
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="cover">
+  <div class="logo">Vodafone KKTC</div>
+  <h1>CPN Network<br><strong>High Level Design</strong></h1>
+  <h2>Core Packet Network - Kuzey Kibris</h2>
+  <div class="subtitle">Cisco IOS-XR / IOS-XE / IOS Infrastructure &mdash; Current State Analysis &amp; Juniper Migration Reference</div>
+  <div class="badge">Confidential &mdash; Internal Use Only</div>
+  <div class="meta-table">
+    <table>
+      <tr><td>Document</td><td>VF-KKTC-CPN-HLD v1.0</td></tr>
+      <tr><td>Operator</td><td>Vodafone KKTC (eski Telsim)</td></tr>
+      <tr><td>Public AS</td><td>43356</td></tr>
+      <tr><td>Core AS</td><td>62211</td></tr>
+      <tr><td>Sites</td><td>KKY (Lefkosa/Kaymakli) + ORT (Ortakoy)</td></tr>
+      <tr><td>Date</td><td>2026-03-31</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="toc-page">
+  <h2>Table of Contents</h2>
+  <div class="toc">
+    <ol>
+      <li><a href="#ch1">Introduction &amp; Network Overview</a>
+        <ol>
+          <li><a href="#ch1-1">Purpose and Scope</a></li>
+          <li><a href="#ch1-2">AS Number Architecture</a></li>
+          <li><a href="#ch1-3">Network Summary</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch2">Device Inventory</a>
+        <ol>
+          <li><a href="#ch2-1">KKY Site (Lefkosa) - 8 Devices</a></li>
+          <li><a href="#ch2-2">ORT Site (Ortakoy) - 4 Devices</a></li>
+          <li><a href="#ch2-3">External / Peer Devices</a></li>
+          <li><a href="#ch2-4">nV Satellite Shelves</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch3">Physical Topology (Layer 1)</a>
+        <ol>
+          <li><a href="#ch3-1">KKY Site Internal Links</a></li>
+          <li><a href="#ch3-2">ORT Site Internal Links</a></li>
+          <li><a href="#ch3-3">Inter-Site Links (KKY &harr; ORT)</a></li>
+          <li><a href="#ch3-4">External Physical Connections</a></li>
+          <li><a href="#ch3-5">High-Level Topology Diagram</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch4">Layer 2 Design</a>
+        <ol>
+          <li><a href="#ch4-1">L2 Trunk Links</a></li>
+          <li><a href="#ch4-2">Bridge Domains (ASR9K)</a></li>
+          <li><a href="#ch4-3">VLAN SVIs (7609-S)</a></li>
+          <li><a href="#ch4-4">Spanning Tree (MST)</a></li>
+          <li><a href="#ch4-5">HSRP / Gateway Redundancy</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch5">L2VPN Services</a>
+        <ol>
+          <li><a href="#ch5-1">Pseudowire Classes</a></li>
+          <li><a href="#ch5-2">EoMPLS Xconnect (Inter-Site)</a></li>
+          <li><a href="#ch5-3">Local Bridge / Local Switching</a></li>
+          <li><a href="#ch5-4">Fortigate GiFW L2 Transport</a></li>
+          <li><a href="#ch5-5">Bridge-Domain + BVI Architecture</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch6">IGP Design (IS-IS)</a>
+        <ol>
+          <li><a href="#ch6-1">IS-IS Domains</a></li>
+          <li><a href="#ch6-2">IS-IS CORE Parameters</a></li>
+          <li><a href="#ch6-3">IS-IS Interface Details</a></li>
+          <li><a href="#ch6-4">BFD Configuration</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch7">MPLS Design</a>
+        <ol>
+          <li><a href="#ch7-1">LDP Configuration</a></li>
+          <li><a href="#ch7-2">LDP Adjacencies</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch8">BGP Design</a>
+        <ol>
+          <li><a href="#ch8-1">iBGP Full-Mesh (AS 62211)</a></li>
+          <li><a href="#ch8-2">eBGP VPNv4 Inter-AS Option B</a></li>
+          <li><a href="#ch8-3">Per-VRF eBGP Peerings (DCGW, SecGW, PTN, NAT)</a></li>
+          <li><a href="#ch8-4">Internet Upstream (PEX)</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch9">VRF Design</a>
+        <ol>
+          <li><a href="#ch9-1">Core PE VRFs (24 VRF)</a></li>
+          <li><a href="#ch9-2">PEX VRFs (5 VRF)</a></li>
+          <li><a href="#ch9-3">Inter-VRF Route Leaking</a></li>
+          <li><a href="#ch9-4">Key Static Routes</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch10">Quality of Service</a>
+        <ol>
+          <li><a href="#ch10-1">Traffic Classification</a></li>
+          <li><a href="#ch10-2">Core QoS Policies</a></li>
+          <li><a href="#ch10-3">Access / Satellite QoS</a></li>
+          <li><a href="#ch10-4">Enterprise Internet QoS (PEX)</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch11">Security &amp; Management</a>
+        <ol>
+          <li><a href="#ch11-1">AAA / TACACS+</a></li>
+          <li><a href="#ch11-2">Access Control Lists</a></li>
+          <li><a href="#ch11-3">NTP / Logging / SNMP</a></li>
+          <li><a href="#ch11-4">Firewall Architecture</a></li>
+          <li><a href="#ch11-5">Route Filtering (Prefix-Sets &amp; Route-Policies)</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch12">Internet Access Architecture</a>
+        <ol>
+          <li><a href="#ch12-1">Traffic Flow</a></li>
+          <li><a href="#ch12-2">Public IP Blocks</a></li>
+          <li><a href="#ch12-3">DNS Protection</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch13">3rd Party &amp; Roaming Architecture</a>
+        <ol>
+          <li><a href="#ch13-1">3RD90KKY01/02 Role</a></li>
+          <li><a href="#ch13-2">VASI Inter-VRF Routing</a></li>
+          <li><a href="#ch13-3">IPsec Tunnels</a></li>
+          <li><a href="#ch13-4">3rd Party Connections</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch14">Juniper Migration Plan</a>
+        <ol>
+          <li><a href="#ch14-1">Migration Decisions</a></li>
+          <li><a href="#ch14-2">CML Lab Status</a></li>
+          <li><a href="#ch14-3">Pending Work Items</a></li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- ==================== CONTENT ==================== -->
+<div class="content">
+
+<!-- ═══════════════ CHAPTER 1: Introduction ═══════════════ -->
+<div class="section" id="ch1">
+  <h2 class="section-title">1. Introduction &amp; Network Overview</h2>
+
+  <h3 id="ch1-1">1.1 Purpose and Scope</h3>
+  <p>This document provides a comprehensive High Level Design (HLD) of the Vodafone KKTC (North Cyprus) Core Packet Network (CPN). It covers the current-state architecture based on analysis of all 12 production router configurations across two sites, and serves as the reference baseline for the planned Cisco &rarr; Juniper MX migration.</p>
+  <p>The network provides mobile core connectivity (2G/3G/4G), enterprise services, internet access, roaming, and signaling transport for the KKTC mobile operator.</p>
+
+  <h3 id="ch1-2">1.2 AS Number Architecture</h3>
+  <table>
+    <tr><th>AS Number</th><th>Owner</th><th>Devices</th><th>Type</th></tr>
+    <tr><td><strong>62211</strong></td><td>Vodafone KKTC (Core)</td><td>PE90KKY03/04, PE90ORT03/04, PEX90KKY01/02</td><td>Private</td></tr>
+    <tr><td><strong>43356</strong></td><td>Vodafone KKTC (Public)</td><td>PEX (local-as for upstream)</td><td>Public</td></tr>
+    <tr><td>65500</td><td>KKY Legacy</td><td>PE90KKY01/02</td><td>Private</td></tr>
+    <tr><td>64500</td><td>ORT Legacy</td><td>PE90ORT01/02</td><td>Private</td></tr>
+    <tr><td>65403</td><td>DCGW KKY</td><td>CORE_AF10_DCGW01/02</td><td>Private</td></tr>
+    <tr><td>65405</td><td>DCGW ORT</td><td>DCGW01/02 ORT</td><td>Private</td></tr>
+    <tr><td>65100</td><td>Juniper SecGW</td><td>SECGW90KKYJ01/02, SECGW90ORTJ01</td><td>Private</td></tr>
+    <tr><td>65000</td><td>PTN</td><td>PTN M14</td><td>Private</td></tr>
+    <tr><td>65450</td><td>CGNAT</td><td>NAT90KKY01, DISNAT90KKY01</td><td>Private</td></tr>
+    <tr><td>9121</td><td>TTNET</td><td>Primary ISP Upstream</td><td>Public</td></tr>
+    <tr><td>15924</td><td>VFNET</td><td>Backup ISP Upstream</td><td>Public</td></tr>
+    <tr><td>63293</td><td>Facebook CDN</td><td>Caching servers</td><td>Public</td></tr>
+  </table>
+
+  <h3 id="ch1-3">1.3 Network Summary</h3>
+  <div class="summary-cards">
+    <div class="summary-card red"><div class="value">12</div><div class="label">Managed Routers</div></div>
+    <div class="summary-card"><div class="value">2</div><div class="label">Sites (KKY + ORT)</div></div>
+    <div class="summary-card green"><div class="value">24</div><div class="label">VRFs (Core PE)</div></div>
+    <div class="summary-card purple"><div class="value">73</div><div class="label">Bridge Domains (KKY03)</div></div>
+    <div class="summary-card orange"><div class="value">4</div><div class="label">IS-IS Domains</div></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Key Design Characteristics:</strong>
+    <ul>
+      <li>MPLS transport: <strong>LDP only</strong> (no RSVP-TE, no Segment Routing)</li>
+      <li>IS-IS Level-2 only, 4 separate domains</li>
+      <li>iBGP full-mesh (no Route Reflectors) within AS 62211</li>
+      <li>eBGP VPNv4 Inter-AS Option B between Core (62211) and Legacy (65500/64500)</li>
+      <li>ECMP: <strong>Disabled</strong> (maximum-paths 1)</li>
+      <li>Inter-site: 2x 20Gbps bundles (BE11013/BE21013) with BFD + IS-IS hello auth</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════ CHAPTER 2: Device Inventory ═══════════════ -->
+<div class="section" id="ch2">
+  <h2 class="section-title">2. Device Inventory</h2>
+
+  <h3 id="ch2-1">2.1 KKY Site (Lefkosa / Kaymakli) &mdash; 8 Devices</h3>
+  <table class="device-table">
+    <tr><th>#</th><th>Hostname</th><th>Platform</th><th>Software</th><th>Loopback0</th><th>AS</th><th>Role</th></tr>
+    <tr><td>1</td><td><strong>PE90KKY01</strong></td><td>Cisco 7609-S</td><td>IOS 12.2(33)SRE7a</td><td>192.168.1.3/32</td><td>65500</td><td>Legacy PE / L2 Aggregation</td></tr>
+    <tr><td>2</td><td><strong>PE90KKY02</strong></td><td>Cisco 7609-S</td><td>IOS 12.2(33)SRE7a</td><td>192.168.1.4/32</td><td>65500</td><td>Legacy PE / L2 Aggregation</td></tr>
+    <tr><td>3</td><td><strong>PE90KKY03</strong></td><td>Cisco ASR 9006</td><td>IOS-XR 5.3.4</td><td>10.134.34.1/32</td><td>62211</td><td>Core MPLS PE (Primary)</td></tr>
+    <tr><td>4</td><td><strong>PE90KKY04</strong></td><td>Cisco ASR 9006</td><td>IOS-XR 5.3.4</td><td>10.134.34.2/32</td><td>62211</td><td>Core MPLS PE (Secondary)</td></tr>
+    <tr><td>5</td><td><strong>PEX90KKY01</strong></td><td>Cisco ASR 9006</td><td>IOS-XR 5.3.4</td><td>10.135.19.3/32</td><td>62211</td><td>Internet / NAT / Corp PE</td></tr>
+    <tr><td>6</td><td><strong>PEX90KKY02</strong></td><td>Cisco ASR 9006</td><td>IOS-XR 5.3.4</td><td>10.135.19.4/32</td><td>62211</td><td>Internet / NAT / Corp PE</td></tr>
+    <tr><td>7</td><td><strong>3RD90KKY01</strong></td><td>Cisco ASR 1001-X</td><td>IOS-XE 17.9.8</td><td>10.135.19.1/32</td><td>&mdash;</td><td>3rd Party / IPsec GW</td></tr>
+    <tr><td>8</td><td><strong>3RD90KKY02</strong></td><td>Cisco ASR 1001-X</td><td>IOS-XE 17.9.8</td><td>10.135.19.2/32</td><td>&mdash;</td><td>3rd Party / IPsec GW</td></tr>
+  </table>
+
+  <h3 id="ch2-2">2.2 ORT Site (Ortakoy) &mdash; 4 Devices</h3>
+  <table class="device-table">
+    <tr><th>#</th><th>Hostname</th><th>Platform</th><th>Software</th><th>Loopback0</th><th>AS</th><th>Role</th></tr>
+    <tr><td>9</td><td><strong>PE90ORT01</strong></td><td>Cisco 7609-S</td><td>IOS 12.2(33)SRB4</td><td>192.168.1.1/32</td><td>64500</td><td>Legacy PE / L2 Aggregation</td></tr>
+    <tr><td>10</td><td><strong>PE90ORT02</strong></td><td>Cisco 7609-S</td><td>IOS 12.2(33)SRB4</td><td>192.168.1.2/32</td><td>64500</td><td>Legacy PE / L2 Aggregation</td></tr>
+    <tr><td>11</td><td><strong>PE90ORT03</strong></td><td>Cisco ASR 9010</td><td>IOS-XR 5.3.4</td><td>10.134.34.128/32</td><td>62211</td><td>Core MPLS PE (Primary)</td></tr>
+    <tr><td>12</td><td><strong>PE90ORT04</strong></td><td>Cisco ASR 9010</td><td>IOS-XR 5.3.4</td><td>10.134.34.129/32</td><td>62211</td><td>Core MPLS PE (Secondary)</td></tr>
+  </table>
+
+  <h3 id="ch2-3">2.3 External / Peer Devices (Detected from Peering Config)</h3>
+  <table>
+    <tr><th>Device</th><th>AS</th><th>Connection</th><th>Description</th></tr>
+    <tr><td>CORE_AF10_DCGW01 (KKY)</td><td>65403</td><td>PE90KKY03 BE16</td><td>Data Center Gateway KKY</td></tr>
+    <tr><td>CORE_AF10_DCGW02 (KKY)</td><td>65403</td><td>PE90KKY04 BE16</td><td>Data Center Gateway KKY</td></tr>
+    <tr><td>DCGW01 (ORT)</td><td>65405</td><td>PE90ORT03 BE16</td><td>Data Center Gateway ORT</td></tr>
+    <tr><td>DCGW02 (ORT)</td><td>65405</td><td>PE90ORT04 BE16</td><td>Data Center Gateway ORT</td></tr>
+    <tr><td>SECGW90KKYJ01</td><td>65100</td><td>PE90KKY03 BE410</td><td>Juniper Security GW (LTE)</td></tr>
+    <tr><td>SECGW90KKYJ02</td><td>65100</td><td>PE90KKY04 BE410</td><td>Juniper Security GW (LTE)</td></tr>
+    <tr><td>SECGW90ORTJ01</td><td>65100</td><td>PE90ORT03 BE410</td><td>Juniper Security GW (ORT)</td></tr>
+    <tr><td>PTN M14</td><td>65000</td><td>PE90KKY03/04 BE411</td><td>Packet Transport Network (eNodeB)</td></tr>
+    <tr><td>NAT90KKY01</td><td>65450</td><td>PE90KKY03 BE10015</td><td>CGNAT Appliance</td></tr>
+    <tr><td>Huawei Core</td><td>&mdash;</td><td>PE90KKY03/04 BE20</td><td>Huawei Core Interconnect</td></tr>
+    <tr><td>GTP FW (Master/Slave)</td><td>&mdash;</td><td>PE90KKY03/04 BE100/101</td><td>GTP Firewall</td></tr>
+    <tr><td>User FW</td><td>&mdash;</td><td>PE90KKY03/04 BE102</td><td>User Plane Firewall</td></tr>
+    <tr><td>Fortigate GiFW</td><td>&mdash;</td><td>PE90KKY03/04 BE155</td><td>Gi Interface Firewall</td></tr>
+    <tr><td>DMZ FW</td><td>&mdash;</td><td>PE90KKY03/04 BE223</td><td>DMZ Firewall</td></tr>
+  </table>
+
+  <h3 id="ch2-4">2.4 nV Satellite Shelves (PE90KKY03/04)</h3>
+  <table>
+    <tr><th>PE</th><th>Satellite ID</th><th>Platform</th><th>IP</th><th>Fabric Bundle</th></tr>
+    <tr><td>PE90KKY03</td><td>7001</td><td>ASR9000v2</td><td>192.168.117.1</td><td>BE7001</td></tr>
+    <tr><td>PE90KKY03</td><td>7002</td><td>ASR9000v2</td><td>192.168.117.2</td><td>BE7002</td></tr>
+    <tr><td>PE90KKY04</td><td>7001</td><td>ASR9000v2</td><td>192.168.117.1</td><td>BE7001</td></tr>
+    <tr><td>PE90KKY04</td><td>7002</td><td>ASR9000v2</td><td>192.168.117.2</td><td>BE7002</td></tr>
+  </table>
+  <p>Satellite ports (Gi7001/x, Gi7002/x) carry BSC, RNC, MSS, MGW, NodeB O&amp;M connections.</p>
+</div>
+
+<!-- ═══════════════ CHAPTER 3: Physical Topology ═══════════════ -->
+<div class="section" id="ch3">
+  <h2 class="section-title">3. Physical Topology (Layer 1)</h2>
+
+  <h3 id="ch3-1">3.1 KKY Site Internal Links</h3>
+
+  <h4>PE90KKY01 &harr; PE90KKY02 (Legacy PE Pair)</h4>
+  <table class="link-table">
+    <tr><th>Link</th><th>Type</th><th>BW</th><th>Members</th><th>IP Addressing</th><th>MTU</th><th>Protocol</th></tr>
+    <tr><td>Po3</td><td>L3</td><td>8x1G (8 Gbps)</td><td>Gi2/25,26,27,48 Gi3/25,32,47,48</td><td>192.168.2.1/30 &harr; .2</td><td>1520</td><td>IS-IS + LDP</td></tr>
+    <tr><td>Po2</td><td>L2 Trunk</td><td>2x10G (20 Gbps)</td><td>Te6/8, Te8/8</td><td>&mdash;</td><td>1500</td><td>VLAN Trunk</td></tr>
+  </table>
+
+  <h4>PE90KKY01 &harr; PE90KKY03</h4>
+  <table class="link-table">
+    <tr><th>Link</th><th>Type</th><th>BW</th><th>IP Addressing</th><th>MTU</th><th>Protocol</th></tr>
+    <tr><td>Po202 / BE202</td><td>L3</td><td>2x10G (20 Gbps)</td><td>10.134.34.10/30 &harr; 10.134.34.9/30</td><td>9100</td><td>IS-IS + LDP</td></tr>
+    <tr><td>Po222 / BE222</td><td>L2 Trunk</td><td>2x10G (20 Gbps)</td><td>&mdash;</td><td>9114</td><td>Bridge Domains</td></tr>
+  </table>
+
+  <h4>PE90KKY02 &harr; PE90KKY04</h4>
+  <table class="link-table">
+    <tr><th>Link</th><th>Type</th><th>BW</th><th>IP Addressing</th><th>MTU</th><th>Protocol</th></tr>
+    <tr><td>Po202 / BE202</td><td>L3</td><td>2x10G (20 Gbps)</td><td>10.134.34.14/30 &harr; 10.134.34.13/30</td><td>9100</td><td>IS-IS + LDP</td></tr>
+  </table>
+
+  <h4>PE90KKY03 &harr; PE90KKY04 (Core ASR9K Pair)</h4>
+  <table class="link-table">
+    <tr><th>Link</th><th>Type</th><th>BW</th><th>IP Addressing</th><th>MTU</th><th>Protocol</th></tr>
+    <tr><td><strong>BE5043</strong></td><td>L3</td><td>4x10G (40 Gbps)</td><td>10.134.34.5/30 &harr; .6</td><td>9114</td><td>IS-IS + LDP + BFD</td></tr>
+    <tr><td><strong>BE5042</strong></td><td>L2</td><td>4x10G (40 Gbps)</td><td>&mdash;</td><td>1600</td><td>Bridge Domains (73 BD)</td></tr>
+  </table>
+
+  <h4>PE &harr; 3RD Party / PEX Links</h4>
+  <table class="link-table">
+    <tr><th>Source</th><th>Destination</th><th>Link</th><th>Type</th><th>Protocol</th></tr>
+    <tr><td>PE90KKY03</td><td>3RD90KKY01</td><td>BE40</td><td>L2 transport (sub-ifs: .2185, .2187, .2946)</td><td>xconnect</td></tr>
+    <tr><td>PE90KKY04</td><td>3RD90KKY02</td><td>BE40</td><td>L2 transport (sub-ifs: .2186, .2947, .2188)</td><td>xconnect</td></tr>
+    <tr><td>PE90KKY03</td><td>PEX90KKY01</td><td>BE8000</td><td>L3 sub-ifs (.3000 INTERNET, .3500 NAT)</td><td>eBGP per-VRF</td></tr>
+    <tr><td>PE90KKY04</td><td>PEX90KKY02</td><td>BE8000</td><td>L3 sub-ifs (.3000 INTERNET, .3500 NAT)</td><td>eBGP per-VRF</td></tr>
+    <tr><td>PEX90KKY01</td><td>PEX90KKY02</td><td>BE5043 / BE5042</td><td>L3 (IS-IS INT) + L2 (BD)</td><td>IS-IS + LDP + BFD</td></tr>
+    <tr><td>3RD90KKY01</td><td>3RD90KKY02</td><td>Po11.403 + Po12</td><td>L3</td><td>IS-IS + LDP</td></tr>
+  </table>
+
+  <h3 id="ch3-2">3.2 ORT Site Internal Links</h3>
+  <table class="link-table">
+    <tr><th>Source</th><th>Destination</th><th>Link</th><th>BW</th><th>IP Addressing</th><th>Protocol</th></tr>
+    <tr><td>PE90ORT01</td><td>PE90ORT02</td><td>Gi2/48</td><td>1G</td><td>192.168.2.5/30 &harr; .6</td><td>IS-IS + LDP</td></tr>
+    <tr><td>PE90ORT01</td><td>PE90ORT03</td><td>Po202/BE202</td><td>4x1G</td><td>10.134.34.138/30 &harr; .137</td><td>IS-IS + LDP</td></tr>
+    <tr><td>PE90ORT02</td><td>PE90ORT04</td><td>Po202/BE202</td><td>4x1G</td><td>10.134.34.142/30 &harr; .141</td><td>IS-IS + LDP</td></tr>
+    <tr><td>PE90ORT03</td><td>PE90ORT04</td><td>BE5043</td><td>4x10G (40G)</td><td>10.134.34.133/30 &harr; .134</td><td>IS-IS + LDP + BFD</td></tr>
+    <tr><td>PE90ORT03</td><td>PE90ORT04</td><td>BE5042</td><td>4x10G (40G)</td><td>&mdash;</td><td>Bridge Domains</td></tr>
+  </table>
+
+  <h3 id="ch3-3">3.3 Inter-Site Links (KKY &harr; ORT)</h3>
+  <table class="link-table">
+    <tr><th>Source</th><th>Destination</th><th>Link</th><th>BW</th><th>IP Addressing</th><th>MTU</th><th>Protection</th></tr>
+    <tr><td><strong>PE90KKY03</strong></td><td><strong>PE90ORT03</strong></td><td>BE11013</td><td>2x10G (20 Gbps)</td><td>10.134.34.74/30 &harr; .73</td><td>9114</td><td>BFD 50ms/3x + IS-IS Hello Auth</td></tr>
+    <tr><td><strong>PE90KKY04</strong></td><td><strong>PE90ORT04</strong></td><td>BE21013</td><td>2x10G (20 Gbps)</td><td>10.134.34.78/30 &harr; .77</td><td>9114</td><td>BFD 50ms/3x + IS-IS Hello Auth</td></tr>
+  </table>
+  <div class="info-box warn">
+    <strong>Note:</strong> Inter-site links are the only links with IS-IS hello authentication. BFD is at 50ms interval with 3x multiplier (150ms detection).
+  </div>
+
+  <h3 id="ch3-4">3.4 External Physical Connections (KKY)</h3>
+  <table>
+    <tr><th>PE</th><th>Destination</th><th>Link</th><th>BW</th><th>Description</th></tr>
+    <tr><td>KKY03/04</td><td>DCGW01/02 (AS 65403)</td><td>BE16</td><td>&mdash;</td><td>22 VRF sub-interfaces, /30 per-VRF</td></tr>
+    <tr><td>KKY03/04</td><td>SECGW (AS 65100)</td><td>BE410</td><td>&mdash;</td><td>4 sub-ifs: 4G-IPSEC, S1-CP, S1-UP, OandM</td></tr>
+    <tr><td>KKY03/04</td><td>PTN M14 (AS 65000)</td><td>BE411</td><td>60G</td><td>LTE eNodeB backhaul, MTU 1628</td></tr>
+    <tr><td>KKY03</td><td>NAT90KKY01 (AS 65450)</td><td>BE10015</td><td>60G</td><td>CGNAT Appliance</td></tr>
+    <tr><td>KKY03/04</td><td>GTP FW Master</td><td>BE100</td><td>10G</td><td>GTP Firewall, MTU 9216</td></tr>
+    <tr><td>KKY03/04</td><td>GTP FW Slave</td><td>BE101</td><td>10G</td><td>GTP Firewall (redundant), MTU 9216</td></tr>
+    <tr><td>KKY03/04</td><td>User FW</td><td>BE102</td><td>10G</td><td>User Plane Firewall, MTU 9216</td></tr>
+    <tr><td>KKY03/04</td><td>Fortigate GiFW</td><td>BE155</td><td>10G</td><td>Gi Interface Firewall, MTU 9216</td></tr>
+    <tr><td>KKY03/04</td><td>DMZ FW</td><td>BE223</td><td>&mdash;</td><td>DMZ Firewall, MTU 9000</td></tr>
+    <tr><td>KKY03/04</td><td>Huawei Core</td><td>BE20</td><td>20G</td><td>VRF OandM (.410/.411 sub-ifs)</td></tr>
+    <tr><td>KKY03/04</td><td>DC90KKY (Nexus 9372)</td><td>BE17</td><td>2x10G</td><td>7 sub-ifs (INOX/SYSLOG/OandM)</td></tr>
+  </table>
+
+  <h3 id="ch3-5">3.5 High-Level Topology Diagram</h3>
+  <div class="topology">
+                            INTER-SITE (20G x2, BFD, ISIS Auth)
+                     KKY &lt;───────────────────────────────────&gt; ORT
+
+   KKY Site (Lefkosa):                               ORT Site (Ortakoy):
+   ┌────────────────────────────────────┐    ┌───────────────────────────────┐
+   │  PE90KKY01 &lt;─Po3─&gt; PE90KKY02     │    │ PE90ORT01 &lt;─Gi2/48─&gt; PE90ORT02│
+   │  (7609-S)  &lt;─Po2─&gt; (7609-S)      │    │ (7609-S)              (7609-S)│
+   │     │ BE202            │ BE202     │    │    │ Po202          │ Po202   │
+   │  PE90KKY03 &lt;─BE5043─&gt; PE90KKY04  │    │ PE90ORT03 &lt;─BE5043─&gt; PE90ORT04│
+   │  (ASR9006) &lt;─BE5042─&gt; (ASR9006)  │    │ (ASR9010) &lt;─BE5042─&gt; (ASR9010)│
+   │     │ BE40              │ BE40     │    └───────────────────────────────┘
+   │  3RD90KKY01&lt;─Po11─&gt; 3RD90KKY02   │
+   │  (ASR1001X)&lt;─Po12─&gt; (ASR1001X)   │     External Peers:
+   │     │ BE8000            │ BE8000   │     ├── DCGW (AS 65403/65405)
+   │  PEX90KKY01&lt;─BE5043─&gt;PEX90KKY02  │     ├── Juniper SecGW (AS 65100)
+   │  (ASR9006) &lt;─BE5042─&gt;(ASR9006)   │     ├── PTN M14 (AS 65000)
+   └────────────────────────────────────┘     ├── CGNAT (AS 65450)
+        │              │                       ├── GTP/User/GiFW Firewalls
+     TTNET(9121)    VFNET(15924)               ├── Huawei Core
+     Facebook CDN(63293)                       └── DMZ FW
+  </div>
+</div>
+
+<!-- ═══════════════ CHAPTER 4: Layer 2 Design ═══════════════ -->
+<div class="section" id="ch4">
+  <h2 class="section-title">4. Layer 2 Design</h2>
+
+  <h3 id="ch4-1">4.1 L2 Trunk Links</h3>
+  <h4>KKY Site</h4>
+  <table>
+    <tr><th>Source</th><th>Destination</th><th>Link</th><th>BW</th><th>Carried VLANs/BDs</th></tr>
+    <tr><td>PE90KKY01</td><td>PE90KKY02</td><td>Po2</td><td>2x10G</td><td>All VLANs (62-3200+ range)</td></tr>
+    <tr><td>PE90KKY01</td><td>PE90KKY03</td><td>BE222/Po222</td><td>2x10G</td><td>Bridge domains (L2 uplink)</td></tr>
+    <tr><td>PE90KKY03</td><td>PE90KKY04</td><td><strong>BE5042</strong></td><td>4x10G (40G)</td><td><strong>73 bridge-domains</strong> (MTU 1600)</td></tr>
+    <tr><td>PEX90KKY01</td><td>PEX90KKY02</td><td>BE5042</td><td>2x10G (20G)</td><td>FW bridge-domains</td></tr>
+  </table>
+
+  <h4>ORT Site</h4>
+  <table>
+    <tr><th>Source</th><th>Destination</th><th>Link</th><th>BW</th><th>Carried</th></tr>
+    <tr><td>PE90ORT03</td><td>PE90ORT04</td><td>BE5042</td><td>4x10G (40G)</td><td>Bridge domains</td></tr>
+    <tr><td>PE90ORT01/02</td><td>DC90ORT01/02</td><td>Po100/200</td><td>6G</td><td>DC VLAN trunk</td></tr>
+  </table>
+
+  <h3 id="ch4-2">4.2 Bridge Domains (ASR9K)</h3>
+  <p>Bridge domains are managed under <code>bridge group "CPN"</code> on all ASR9K devices. Each BD has:</p>
+  <ul>
+    <li>Storm control: multicast + broadcast 1000 pps</li>
+    <li>MAC aging: 1800 seconds</li>
+    <li>Routed interface: BVI (IRB)</li>
+    <li>MST instance "CPN", priority 16384</li>
+  </ul>
+
+  <h4>PE90KKY03: 73 Bridge Domains (Primary Selection)</h4>
+  <table class="compact">
+    <tr><th>BD</th><th>BVI</th><th>VRF</th><th>IP Address</th><th>Service Description</th></tr>
+    <tr><td>99</td><td>BVI99</td><td>4G-S1-CP</td><td>192.168.246.2/29</td><td>&mdash;</td></tr>
+    <tr><td>110</td><td>BVI110</td><td>VF</td><td>192.168.48.2/24</td><td>Management / General</td></tr>
+    <tr><td>130</td><td>BVI130</td><td>VF</td><td>192.168.69.211/24</td><td>&mdash;</td></tr>
+    <tr><td>135</td><td>BVI135</td><td>VF</td><td>172.27.16.114/29</td><td>&mdash;</td></tr>
+    <tr><td>136</td><td>BVI136</td><td>VF</td><td>172.27.16.122/29</td><td>&mdash;</td></tr>
+    <tr><td>137</td><td>BVI137</td><td>VF</td><td>192.168.161.2/24</td><td>SSL VPN</td></tr>
+    <tr><td>160</td><td>BVI160</td><td>OandM</td><td>10.135.31.242/28</td><td>FW Management</td></tr>
+    <tr><td>200</td><td>BVI200</td><td>SIGTRAN</td><td>10.151.0.9/29</td><td>BSC SIG Red</td></tr>
+    <tr><td>270</td><td>BVI270</td><td>VF</td><td>192.168.28.2/27</td><td>RAN Wireless Taishan</td></tr>
+    <tr><td>272</td><td>BVI272</td><td>VF</td><td>192.168.29.2/28</td><td>RAN NCE Taishan</td></tr>
+    <tr><td>300</td><td>BVI300</td><td>USERPLANE</td><td>10.151.2.10/29</td><td>BSC AoIP Primary</td></tr>
+    <tr><td>304</td><td>BVI304</td><td>SIGTRAN</td><td>10.151.0.33/29</td><td>BSC BLEFH02 SIG</td></tr>
+    <tr><td>305</td><td>BVI305</td><td>USERPLANE</td><td>10.151.2.34/29</td><td>BSC AoIP Primary User</td></tr>
+    <tr><td>306</td><td>BVI306</td><td>USERPLANE</td><td>10.151.2.162/29</td><td>BSC AoIP Secondary User</td></tr>
+    <tr><td>307</td><td>BVI307</td><td>3GPS_DATA</td><td>10.151.4.66/28</td><td>BSC GBIP</td></tr>
+    <tr><td>308</td><td>BVI308</td><td>3GPS_DATA</td><td>10.151.3.66/28</td><td>BSC O&amp;M</td></tr>
+    <tr><td>310</td><td>BVI310</td><td>4G-S1-UP</td><td>10.151.7.18/28</td><td>LTE S1 User Plane</td></tr>
+    <tr><td>311</td><td>BVI311</td><td>4G-S1-UP</td><td>10.151.7.66/28</td><td>LTE S1 User Plane</td></tr>
+    <tr><td>352</td><td>BVI352</td><td>4G-IPSEC</td><td>10.151.32.10/29</td><td>MSS O&amp;M</td></tr>
+    <tr><td>353</td><td>BVI353</td><td>4G-IPSEC</td><td>10.151.32.34/29</td><td>MGW O&amp;M</td></tr>
+    <tr><td>402</td><td>BVI402</td><td>SIGTRAN</td><td>10.151.16.2/29</td><td>RNC IUPS User</td></tr>
+    <tr><td>410</td><td>BVI410</td><td>4G-S1-CP</td><td>10.151.7.82/28</td><td>LTE S1 Control</td></tr>
+    <tr><td>411</td><td>BVI411</td><td>4G-S1-CP</td><td>10.151.7.98/28</td><td>LTE S1 Control</td></tr>
+    <tr><td>431</td><td>BVI431</td><td>2G3GUP</td><td>10.135.19.98/29</td><td>&mdash;</td></tr>
+    <tr><td>432</td><td>BVI432</td><td>SIGTRAN</td><td>10.135.19.106/29</td><td>&mdash;</td></tr>
+    <tr><td>434</td><td>BVI434</td><td>CIMS</td><td>10.135.19.2/29</td><td>IMS</td></tr>
+    <tr><td>566</td><td>BVI566</td><td>OandM</td><td>10.135.91.250/29</td><td>SecGW O&amp;M</td></tr>
+    <tr><td>802</td><td>BVI802</td><td>4G-IPSEC</td><td>10.151.32.130/29</td><td>MGW USERPLANE Red</td></tr>
+    <tr><td>850</td><td>BVI850</td><td>VF</td><td>172.27.16.130/28</td><td>&mdash;</td></tr>
+    <tr><td>999</td><td>BVI999</td><td>VF</td><td>172.27.6.170/29</td><td>&mdash;</td></tr>
+    <tr><td>1300</td><td>BVI1300</td><td>USERPLANE</td><td>10.151.2.138/29</td><td>BSC AoIP Secondary</td></tr>
+    <tr><td>1600</td><td>BVI1600</td><td>SIGTRAN</td><td>10.151.11.9/29</td><td>RNC RLEFH02</td></tr>
+    <tr><td>1607</td><td>BVI1607</td><td>OandM</td><td>192.168.217.2/29</td><td>RNC O&amp;M</td></tr>
+    <tr><td>1802</td><td>BVI1802</td><td>4G-IPSEC</td><td>10.151.32.138/29</td><td>MGW USERPLANE Blue</td></tr>
+    <tr><td>2211</td><td>BVI2211</td><td>4G-IPSEC</td><td>10.151.32.2/29</td><td>MSS Billing</td></tr>
+    <tr><td>3002</td><td>BVI3002</td><td>2G3GUP</td><td>10.133.0.2/29</td><td>&mdash;</td></tr>
+  </table>
+
+  <h5>PE90KKY03 &mdash; Example Bridge-Domain + BVI + HSRP Config (BD 99)</h5>
+  <div class="code-block">!! Bridge-Domain (L2 switching)
+l2vpn bridge group CPN
+ bridge-domain 99
+  interface TenGigE0/2/0/3                          !! fiziksel port (USN cihazi)
+   storm-control multicast pps 1000
+   storm-control broadcast pps 1000
+  interface Bundle-Ether5042.99                      !! L2 trunk → KKY04
+   storm-control multicast pps 1000
+   storm-control broadcast pps 1000
+  routed interface BVI99                             !! L3 gateway
+!
+!! BVI Interface (L3 gateway, VRF'e atanir)
+interface BVI99
+ description USN
+ vrf 4G-S1-CP
+ ipv4 address 192.168.246.2 255.255.255.248
+!
+!! HSRP (KKY03 = Active, KKY04 = Standby)
+router hsrp
+ interface BVI99
+  hsrp delay minimum 180 reload 360
+  address-family ipv4
+   hsrp 99
+    timers msec 1000 msec 3000
+    preempt delay 180
+    priority 120                                     !! KKY03 primary
+    address 192.168.246.1                            !! Virtual IP (cihazlarin GW'i)
+    track object HSRP-CORE-TRACK 100</div>
+
+  <h4>PE90KKY04: 71 Bridge Domains</h4>
+  <p>Same bridge group "CPN", HSRP pair with KKY03. KKY04 is HSRP <strong>standby</strong> (default priority 100).</p>
+  <table class="compact">
+    <tr><th>BD</th><th>BVI</th><th>VRF</th><th>IP Address (KKY04)</th><th>Description</th></tr>
+    <tr><td>99</td><td>BVI99</td><td>4G-S1-CP</td><td>192.168.246.3/29</td><td>USN</td></tr>
+    <tr><td>300</td><td>BVI300</td><td>USERPLANE</td><td>10.151.2.11/29</td><td>BSC AoIP Primary</td></tr>
+    <tr><td>310</td><td>BVI310</td><td>OandM</td><td>10.151.7.19/28</td><td>BSC SAU</td></tr>
+    <tr><td>352</td><td>BVI352</td><td>4G-IPSEC</td><td>(same BD, HSRP standby)</td><td>MSS O&amp;M</td></tr>
+    <tr><td>566</td><td>BVI566</td><td>OandM</td><td>(same BD)</td><td>SecGW O&amp;M</td></tr>
+    <tr><td>999</td><td>BVI999</td><td>VF</td><td>(same BD)</td><td>User FW Master</td></tr>
+    <tr><td>2000</td><td>BVI2000</td><td>OandM</td><td>10.151.3.19/28</td><td>BSC Primary O&amp;M</td></tr>
+    <tr><td colspan="5"><em>... 71 bridge-domains total (91,92,99,101,110,130,135,136,137,140,160,250,270,272,300,305-311,352,353,402,404,407-411,420,431-434,503,566,603,701-702,750-753,802,850,851,995,999,1200,1207,1300,1304,1400,1600-1611,1711-1713,1802,2000,2211,3002)</em></td></tr>
+  </table>
+
+  <h5>PE90KKY04 &mdash; Example Config (BVI300 + HSRP)</h5>
+  <div class="code-block">interface BVI300
+ description RAN:BSC:KKY:BLEFH01:USRs:AoIP:PR:P1:
+ vrf USERPLANE
+ ipv4 address 10.151.2.11 255.255.255.248
+!
+router hsrp
+ interface BVI300
+  hsrp delay minimum 180 reload 360
+  address-family ipv4
+   hsrp 300
+    timers msec 300 msec 950
+    preempt
+    address 10.151.2.9                               !! Virtual IP</div>
+
+  <h4>PE90ORT03: 1 Bridge Domain (Minimal)</h4>
+  <table>
+    <tr><th>BD</th><th>BVI</th><th>VRF</th><th>IP Address</th><th>Description</th></tr>
+    <tr><td>566</td><td>BVI566</td><td>OandM</td><td>10.135.18.17/29</td><td>SecGW O&amp;M</td></tr>
+  </table>
+
+  <h5>PE90ORT03 &mdash; Config</h5>
+  <div class="code-block">l2vpn bridge group CPN
+ bridge-domain 566
+  interface GigabitEthernet0/5/0/0
+   storm-control multicast pps 1000
+   storm-control broadcast pps 1000
+  routed interface BVI566
+!
+interface BVI566
+ description NSU:SECGW:ORT:SECGW90ORTJ01:O&amp;M:P2:
+ vrf OandM
+ ipv4 address 10.135.18.17 255.255.255.248</div>
+
+  <h4>PEX90KKY01/02: Bridge Domains (CPN + EXT Groups)</h4>
+  <table class="compact">
+    <tr><th>Bridge Group</th><th>BD</th><th>BVI</th><th>VRF</th><th>IP Address</th><th>Description</th></tr>
+    <tr><td>CPN</td><td>V1200_WAF</td><td>BVI1200</td><td>CORPINT</td><td>172.27.16.146/28</td><td>WAF Data</td></tr>
+    <tr><td>EXT</td><td>251</td><td>BVI251</td><td>INTERNET</td><td>10.135.18.181/29</td><td>Fortinet GIFW Outside</td></tr>
+    <tr><td>EXT</td><td>300</td><td>BVI300</td><td>INTERNET</td><td>172.27.16.2/29</td><td>Kurumsal NAT FW Master</td></tr>
+    <tr><td>EXT</td><td>301</td><td>BVI301</td><td>INTERNET</td><td>172.27.17.2/29</td><td>Kurumsal NAT FW Master</td></tr>
+    <tr><td>EXT</td><td>302</td><td>BVI302</td><td>INTERNET</td><td>172.27.111.10/29</td><td>CloudPBX APN</td></tr>
+    <tr><td>EXT</td><td>303</td><td>BVI303</td><td>INTERNET</td><td>172.27.111.18/29</td><td>IsBank Kurumsal NAT</td></tr>
+    <tr><td>EXT</td><td>370</td><td>BVI370</td><td>INTERNET</td><td>149.140.252.250/29</td><td>Speedtest</td></tr>
+    <tr><td>EXT</td><td>500</td><td>BVI500</td><td>CORPINT</td><td>77.92.16.241/28 + 185.43.228.210/28</td><td>Fortinet Outside</td></tr>
+    <tr><td>EXT</td><td>501</td><td>BVI501</td><td>CORPINT</td><td>185.43.228.34/29</td><td>ASA SSL VPN</td></tr>
+    <tr><td>EXT</td><td>507</td><td>BVI507</td><td>CORPINT</td><td>185.43.228.17/29</td><td>External DNS01</td></tr>
+    <tr><td>EXT</td><td>511</td><td>BVI511</td><td>CORPINT</td><td>185.43.228.162/27</td><td>WAF</td></tr>
+    <tr><td>EXT</td><td>1506</td><td>BVI1506</td><td>INTERNET</td><td>10.135.19.36/29</td><td>Spotron FW</td></tr>
+    <tr><td>EXT</td><td>2101</td><td>BVI2101</td><td>NAT</td><td>10.135.19.74/29</td><td>GGSN Legacy Gi</td></tr>
+  </table>
+
+  <h5>PEX90KKY01 &mdash; Example Config (BD 500 + BVI500)</h5>
+  <div class="code-block">l2vpn bridge group EXT
+ bridge-domain 500
+  mac aging time 1800
+  interface TenGigE0/2/0/1
+   storm-control multicast pps 1000
+   storm-control broadcast pps 1000
+  interface Bundle-Ether5042.500
+   storm-control multicast pps 1000
+   storm-control broadcast pps 1000
+  interface GigabitEthernet0/0/0/20
+   storm-control multicast pps 1000
+   storm-control broadcast pps 1000
+  interface GigabitEthernet0/0/0/25.500
+   storm-control multicast pps 1000
+   storm-control broadcast pps 1000
+  routed interface BVI500
+!
+interface BVI500
+ description SEC:KKY:FORTINET_OUTSIDE_INTERFACES:LL3:P1:
+ vrf CORPINT
+ ipv4 address 77.92.16.241 255.255.255.240
+ ipv4 address 185.43.228.210 255.255.255.240 secondary
+ ipv4 unreachables disable</div>
+
+  <h3 id="ch4-3">4.3 VLAN SVIs (7609-S Devices)</h3>
+  <p>PE90KKY01/02 and PE90ORT01/02 use traditional VLAN SVIs with redundant IPs across the pair.</p>
+
+  <h4>KKY Legacy - Functional VLAN Groups</h4>
+  <table class="compact">
+    <tr><th>Category</th><th>VLANs</th><th>Description</th></tr>
+    <tr><td>Management</td><td>110, 161, 888, 806</td><td>General Mgmt, CPN Mgmt, Camera</td></tr>
+    <tr><td>Security / FW</td><td>100, 430, 1100, 1101, 1305</td><td>Fortinet VDOM, User Plane FW</td></tr>
+    <tr><td>PS Core (GGSN/SGSN/HSS)</td><td>350, 351, 354, 400, 401, 2100, 2110, 2202, 2204, 2210, 2212, 2215</td><td>GGSN O&amp;M, SGSN IU-C, HSS, Billing</td></tr>
+    <tr><td>CS Core (MSS/MGW/VMS)</td><td>800, 801, 206, 207, 208</td><td>MGW User/Sig, VMS SIGTRAN/UP</td></tr>
+    <tr><td>RAN (BSC/RNC)</td><td>200-209, 300-308, 400-420, 1300-1403, 1600-1611, 2000-2003</td><td>Mostly admin-down (legacy 2G/3G)</td></tr>
+    <tr><td>IT/VAS</td><td>204/1204, 205/1205, 209/1209, 516/517</td><td>VAS SIGTRAN, Virtualization</td></tr>
+    <tr><td>MNP / Roaming</td><td>900-908</td><td>Huawei MNP, Comfone (public IPs!)</td></tr>
+  </table>
+
+  <h3 id="ch4-4">4.4 Spanning Tree (MST)</h3>
+  <ul>
+    <li><strong>MST Instance:</strong> "CPN"</li>
+    <li><strong>Priority:</strong> 16384</li>
+    <li><strong>Root guard:</strong> on BE20 (Huawei Core)</li>
+    <li><strong>BPDU guard + Portfast:</strong> on all satellite ports (Gi7001/x, Gi7002/x)</li>
+    <li><strong>Storm control:</strong> All bridge-domains: multicast + broadcast 1000 pps</li>
+  </ul>
+
+  <h3 id="ch4-5">4.5 HSRP / Gateway Redundancy</h3>
+  <table>
+    <tr><th>Pair</th><th>Interface Type</th><th>HSRP Timers</th><th>Primary</th></tr>
+    <tr><td>PE90KKY03 &harr; PE90KKY04</td><td>73 BVI interfaces</td><td>1s/3s or 300ms/950ms</td><td>KKY03 (higher priority)</td></tr>
+    <tr><td>PE90KKY01 &harr; PE90KKY02</td><td>VLAN SVIs</td><td>Standard</td><td>Varies</td></tr>
+    <tr><td>PEX90KKY01 &harr; PEX90KKY02</td><td>BVI interfaces</td><td>Standard</td><td>PEX01 (priority 120/250)</td></tr>
+    <tr><td>PE90ORT01 &harr; PE90ORT02</td><td>VLAN SVIs</td><td>Standard</td><td>Varies</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════ CHAPTER 5: L2VPN Services ═══════════════ -->
+<div class="section" id="ch5">
+  <h2 class="section-title">5. L2VPN Services</h2>
+
+  <h3 id="ch5-1">5.1 Pseudowire Classes</h3>
+  <table>
+    <tr><th>Class Name</th><th>Encapsulation</th><th>Transport</th><th>Control Word</th></tr>
+    <tr><td>EOMPLS-ETH</td><td>MPLS</td><td>Ethernet</td><td>No</td></tr>
+    <tr><td>EOMPLS-VLAN</td><td>MPLS</td><td>VLAN</td><td>No</td></tr>
+    <tr><td>EOMPLS-ETH-CW</td><td>MPLS</td><td>Ethernet</td><td>Yes</td></tr>
+  </table>
+
+  <h4>PE90KKY03 &mdash; Pseudowire Class Config</h4>
+  <div class="code-block"><pre>l2vpn
+ pw-class EOMPLS-ETH
+  encapsulation mpls
+   transport-mode ethernet
+  !
+ !
+ pw-class EOMPLS-VLAN
+  encapsulation mpls
+   transport-mode vlan
+  !
+ !
+ pw-class EOMPLS-ETH-CW
+  encapsulation mpls
+   control-word
+   transport-mode ethernet
+  !
+ !</pre></div>
+
+  <h3 id="ch5-2">5.2 EoMPLS Xconnect (Inter-Site Pseudowires)</h3>
+  <p>Point-to-point MPLS pseudowires transport L2 frames between KKY and ORT sites over the MPLS backbone.</p>
+
+  <h4>PTN Xconnect (Dedicated TenGigE)</h4>
+  <table>
+    <tr><th>Source</th><th>Destination</th><th>Local Interface</th><th>PW-ID</th><th>PW Class</th></tr>
+    <tr><td>PE90KKY03</td><td>PE90ORT03 (10.134.34.128)</td><td>Te0/1/0/2</td><td>35713006</td><td>EOMPLS-ETH</td></tr>
+    <tr><td>PE90KKY04</td><td>PE90ORT04 (10.134.34.129)</td><td>Te0/1/0/2</td><td>35713007</td><td>EOMPLS-ETH</td></tr>
+  </table>
+
+  <h4>Corporate &amp; Intermedia Xconnect (VLAN-based, via 3RD/DCGW)</h4>
+  <table class="compact">
+    <tr><th>Service</th><th>Source PE</th><th>Local AC</th><th>Remote Peer</th><th>PW-ID</th><th>PW Class</th></tr>
+    <tr><td>Corporate ORT</td><td>PE90KKY03</td><td>BE40.2187</td><td>10.134.34.128 (ORT03)</td><td>35713004</td><td>EOMPLS-VLAN</td></tr>
+    <tr><td>Intermedia ORT</td><td>PE90KKY03</td><td>BE40.2906</td><td>10.134.34.128 (ORT03)</td><td>35713005</td><td>EOMPLS-VLAN</td></tr>
+    <tr><td>Corporate ORT</td><td>PE90KKY04</td><td>BE40.2188</td><td>10.134.34.129 (ORT04)</td><td>35713005</td><td>EOMPLS-VLAN</td></tr>
+    <tr><td>Intermedia ORT</td><td>PE90KKY04</td><td>BE40.2907</td><td>10.134.34.129 (ORT04)</td><td>35713003</td><td>EOMPLS-VLAN</td></tr>
+    <tr><td>EoMPLS ORT01</td><td>PE90KKY03</td><td>Gi7001/0/0/1</td><td>192.168.1.1 (ORT01)</td><td>35713001</td><td>EOMPLS-ETH</td></tr>
+  </table>
+
+  <h4>PE90KKY03 &mdash; PTN Xconnect Config (Inter-Site, Dedicated TenGigE)</h4>
+  <div class="code-block"><pre>l2vpn
+ xconnect group PTN
+  p2p PE90KKY03_PE90ORT03_35713006
+   interface TenGigE0/1/0/2
+   neighbor ipv4 10.134.34.128 pw-id 35713006
+    pw-class EOMPLS-ETH
+   !
+  !
+ !</pre></div>
+
+  <h4>PE90KKY03 &mdash; Corporate/Intermedia EoMPLS Xconnect Config</h4>
+  <div class="code-block"><pre>l2vpn
+ xconnect group EOMPLS_xconnect
+  p2p CORPORATE_PE90ORT03_2187
+   interface Bundle-Ether40.2187
+   neighbor ipv4 10.134.34.128 pw-id 35713004
+    pw-class EOMPLS-VLAN
+   !
+  !
+  p2p INTERMEDIA_PE90ORT03_2906
+   interface Bundle-Ether40.2906
+   neighbor ipv4 10.134.34.128 pw-id 35713005
+    pw-class EOMPLS-VLAN
+   !
+  !
+ !</pre></div>
+
+  <h3 id="ch5-3">5.3 Local Bridge / Local Switching</h3>
+  <p>Some xconnect entries are <strong>not</strong> MPLS pseudowires &mdash; they are <strong>local L2 bridges</strong> (AC-to-AC) connecting two ports on the same PE. No MPLS label, no remote peer.</p>
+  <table>
+    <tr><th>PE</th><th>Service</th><th>AC Side A (DCGW)</th><th>AC Side B (3RD)</th><th>Type</th></tr>
+    <tr><td>PE90KKY03</td><td>Corporate KKY</td><td>BE16.2185</td><td>BE40.2185</td><td><span class="tag tag-green">Local Bridge</span></td></tr>
+    <tr><td>PE90KKY03</td><td>Intermedia KKY</td><td>BE16.2946</td><td>BE40.2946</td><td><span class="tag tag-green">Local Bridge</span></td></tr>
+    <tr><td>PE90KKY04</td><td>Corporate KKY</td><td>BE16.2186</td><td>BE40.2186</td><td><span class="tag tag-green">Local Bridge</span></td></tr>
+    <tr><td>PE90KKY04</td><td>Intermedia KKY</td><td>BE16.2947</td><td>BE40.2947</td><td><span class="tag tag-green">Local Bridge</span></td></tr>
+  </table>
+  <div class="info-box">
+    PE acts as a <strong>patch panel</strong> &mdash; it does NOT do any L3 processing on this traffic. DCGW and 3RD devices communicate directly at L2 through the PE.
+  </div>
+
+  <h4>PE90KKY03 &mdash; Local Bridge Config (3RD90KKY01)</h4>
+  <div class="code-block"><pre>l2vpn
+ xconnect group 3RD90KKY01
+  p2p CORPORATE_PE90KKY03_3RD90KKY01_2185
+   interface Bundle-Ether16.2185       ! DCGW side
+   interface Bundle-Ether40.2185       ! 3RD gateway side
+  !
+  p2p INTERMEDIA_PE90KKY03_3RD90KKY01_2946
+   interface Bundle-Ether16.2946       ! DCGW side
+   interface Bundle-Ether40.2946       ! 3RD gateway side
+  !
+ !
+!
+! Note: Two AC interfaces, NO neighbor/pw-id = local switching (not MPLS)</pre></div>
+
+  <h3 id="ch5-4">5.4 Fortigate GiFW L2 Transport</h3>
+  <div class="info-box warn">
+    <strong>Bundle-Ether155.3002 l2transport</strong> (description: <code>SEC:FORTIGATE_GIFW:MASTER:</code>)<br>
+    This sub-interface on PE90KKY03 BE155 carries L2 transport traffic to the Fortigate GiFW Master firewall. It is configured as <code>l2transport</code> meaning the PE does not perform L3 routing on VLAN 3002 &mdash; frames are transported transparently to the firewall. PE90KKY04 has the equivalent for the Slave unit.
+  </div>
+
+  <h3 id="ch5-5">5.5 Bridge-Domain + BVI Architecture</h3>
+  <p>The BVI (Bridge-Group Virtual Interface) provides the L3 gateway for each bridge domain. The architecture is:</p>
+  <ol>
+    <li>Physical/satellite ports connect to a <strong>bridge-domain</strong> (Layer 2 switching)</li>
+    <li>The bridge-domain has a <strong>BVI interface</strong> (IRB) providing the L3 gateway IP</li>
+    <li>The BVI is placed in a <strong>VRF</strong> (e.g., SIGTRAN, USERPLANE, 4G-S1-CP)</li>
+    <li>The VRF redistributes into <strong>MPLS L3VPN</strong> (BGP VPNv4) for inter-site reachability</li>
+    <li>Between PE90KKY03 and PE90KKY04, bridge-domains are extended over <strong>BE5042</strong> (40G L2 trunk)</li>
+    <li><strong>HSRP</strong> runs on all BVI pairs for gateway redundancy</li>
+  </ol>
+
+  <div class="topology">
+   RAN/BSC/RNC Equipment
+        │
+   Satellite Port (Gi7001/x)        Satellite Port (Gi7001/x)
+        │                                    │
+   ┌────┴─────────── PE90KKY03 ──────────────┴─────────── PE90KKY04 ────┐
+   │          Bridge-Domain 200                Bridge-Domain 200         │
+   │            │         │          BE5042      │         │             │
+   │         BVI200    Ports ◄───── (L2 Trunk) ─────►  BVI200   Ports   │
+   │     192.168.246.2/29              40G          192.168.246.3/29     │
+   │     HSRP Active                                HSRP Standby        │
+   │         │                                          │               │
+   │     VRF SIGTRAN                              VRF SIGTRAN           │
+   │         │                                          │               │
+   │     iBGP VPNv4 ◄──────────────────────────────► iBGP VPNv4        │
+   └────────────────────────────────────────────────────────────────────┘
+                              │
+                        MPLS Backbone
+                              │
+                     PE90ORT03 / PE90ORT04
+  </div>
+</div>
+
+<!-- ═══════════════ CHAPTER 6: IGP Design ═══════════════ -->
+<div class="section" id="ch6">
+  <h2 class="section-title">6. IGP Design (IS-IS)</h2>
+
+  <h3 id="ch6-1">6.1 IS-IS Domains</h3>
+  <p>The network has <strong>4 separate IS-IS domains</strong>, all Level-2 only:</p>
+  <table>
+    <tr><th>#</th><th>Process Name</th><th>Area</th><th>Devices</th><th>AS</th><th>Description</th></tr>
+    <tr><td>1</td><td><strong>CORE</strong></td><td>49.0090</td><td>PE90KKY03/04, PE90ORT03/04</td><td>62211</td><td>Main MPLS backbone</td></tr>
+    <tr><td>2</td><td>null (KKY)</td><td>&mdash;</td><td>PE90KKY01/02 + KKY03/04 (BE202)</td><td>65500</td><td>KKY Legacy domain</td></tr>
+    <tr><td>3</td><td>null (ORT)</td><td>&mdash;</td><td>PE90ORT01/02 + ORT03/04 (BE202)</td><td>64500</td><td>ORT Legacy domain</td></tr>
+    <tr><td>4</td><td><strong>INT</strong></td><td>49.0090</td><td>PEX90KKY01/02</td><td>62211</td><td>Internet/PEX domain</td></tr>
+  </table>
+
+  <div class="info-box warn">
+    IS-IS domains are <strong>isolated</strong>. The only inter-domain reachability is via eBGP VPNv4 (Inter-AS Option B) between Core and Legacy domains.
+  </div>
+
+  <h3 id="ch6-2">6.2 IS-IS CORE Parameters</h3>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>IS Type</td><td>Level-2 only</td></tr>
+    <tr><td>Area</td><td>49.0090</td></tr>
+    <tr><td>SPF Timers</td><td>max 1000ms, initial 100ms, secondary 100ms</td></tr>
+    <tr><td>LSP Refresh</td><td>65000</td></tr>
+    <tr><td>Max LSP Lifetime</td><td>65535</td></tr>
+    <tr><td>Maximum-paths</td><td><strong>1 (NO ECMP)</strong></td></tr>
+    <tr><td>iSPF</td><td>Enabled (Level-2)</td></tr>
+    <tr><td>NSF</td><td>Cisco</td></tr>
+    <tr><td>Overload on Startup</td><td>360 seconds</td></tr>
+  </table>
+
+  <h5>PE90KKY03 &mdash; IS-IS CORE Config</h5>
+  <div class="code-block">router isis CORE
+ set-overload-bit on-startup 360
+ is-type level-2-only
+ net 49.0090.0101.3403.4001.00
+ nsf cisco
+ log adjacency changes
+ lsp-gen-interval maximum-wait 1000 initial-wait 100 secondary-wait 100
+ lsp-refresh-interval 65000
+ max-lsp-lifetime 65535
+ address-family ipv4 unicast
+  ispf level 2
+  spf-interval maximum-wait 1000 initial-wait 100 secondary-wait 100
+  maximum-paths 1
+ !
+ interface Bundle-Ether202
+  circuit-type level-2-only
+  point-to-point
+  hello-padding disable
+  lsp fast-flood threshold 15
+  address-family ipv4 unicast
+   metric 10 level 2
+   mpls ldp sync level 2
+ !
+ interface Bundle-Ether5043
+  circuit-type level-2-only
+  bfd minimum-interval 50
+  bfd multiplier 3
+  bfd fast-detect ipv4
+  point-to-point
+  hello-padding disable
+  address-family ipv4 unicast
+   metric 10 level 2
+   mpls ldp sync level 2
+ !
+ interface Bundle-Ether11013
+  circuit-type level-2-only
+  bfd minimum-interval 50
+  bfd multiplier 3
+  bfd fast-detect ipv4
+  point-to-point
+  hello-padding disable
+  hello-password keychain ISIS-HELLO          !! inter-site auth
+  address-family ipv4 unicast
+   metric 10 level 2
+   mpls ldp sync level 2
+ !
+ interface Loopback0
+  passive
+  address-family ipv4 unicast</div>
+
+  <h5>PE90KKY04 &mdash; IS-IS CORE Config</h5>
+  <div class="code-block">router isis CORE
+ net 49.0090.0101.3403.4002.00
+ !! Same structure as KKY03, interfaces:
+ !! BE202 (→KKY02), BE5043 (→KKY03), BE21013 (→ORT04, hello-password keychain ISIS-HELLO)</div>
+
+  <h5>PE90ORT03 &mdash; IS-IS CORE Config</h5>
+  <div class="code-block">router isis CORE
+ net 49.0090.0101.3403.4128.00
+ !! Same structure, interfaces:
+ !! BE202 (→ORT01), BE5043 (→ORT04), BE11013 (→KKY03, hello-password keychain ISIS-HELLO)</div>
+
+  <h5>PE90ORT04 &mdash; IS-IS CORE Config</h5>
+  <div class="code-block">router isis CORE
+ net 49.0090.0101.3403.4129.00
+ !! Same structure, interfaces:
+ !! BE202 (→ORT02), BE5043 (→ORT03), BE21013 (→KKY04, hello-password keychain ISIS-HELLO)</div>
+
+  <h4>NET Addresses</h4>
+  <table>
+    <tr><th>Device</th><th>NET</th><th>Loopback0</th></tr>
+    <tr><td>PE90KKY03</td><td>49.0090.0101.3403.4001.00</td><td>10.134.34.1</td></tr>
+    <tr><td>PE90KKY04</td><td>49.0090.0101.3403.4002.00</td><td>10.134.34.2</td></tr>
+    <tr><td>PE90ORT03</td><td>49.0090.0101.3403.4128.00</td><td>10.134.34.128</td></tr>
+    <tr><td>PE90ORT04</td><td>49.0090.0101.3403.4129.00</td><td>10.134.34.129</td></tr>
+  </table>
+
+  <h3 id="ch6-3">6.3 IS-IS Interface Details</h3>
+  <table class="compact">
+    <tr><th>Device</th><th>Interface</th><th>Peer</th><th>Metric</th><th>BFD</th><th>LDP Sync</th><th>Auth</th></tr>
+    <tr><td>KKY03</td><td>BE202</td><td>KKY01</td><td>10</td><td>No</td><td>L2, delay 5s</td><td>No</td></tr>
+    <tr><td>KKY03</td><td>BE5043</td><td>KKY04</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td>No</td></tr>
+    <tr><td>KKY03</td><td>BE11013</td><td>ORT03</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td><span class="tag tag-red">IS-IS Hello Keychain</span></td></tr>
+    <tr><td>KKY04</td><td>BE202</td><td>KKY02</td><td>10</td><td>No</td><td>L2, delay 5s</td><td>No</td></tr>
+    <tr><td>KKY04</td><td>BE5043</td><td>KKY03</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td>No</td></tr>
+    <tr><td>KKY04</td><td>BE21013</td><td>ORT04</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td><span class="tag tag-red">IS-IS Hello Keychain</span></td></tr>
+    <tr><td>ORT03</td><td>BE202</td><td>ORT01</td><td>10</td><td>No</td><td>L2, delay 5s</td><td>No</td></tr>
+    <tr><td>ORT03</td><td>BE5043</td><td>ORT04</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td>No</td></tr>
+    <tr><td>ORT03</td><td>BE11013</td><td>KKY03</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td><span class="tag tag-red">IS-IS Hello Keychain</span></td></tr>
+    <tr><td>ORT04</td><td>BE5043</td><td>ORT03</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td>No</td></tr>
+    <tr><td>ORT04</td><td>BE21013</td><td>KKY04</td><td>10</td><td>50ms/3x</td><td>L2, delay 5s</td><td><span class="tag tag-red">IS-IS Hello Keychain</span></td></tr>
+  </table>
+
+  <h3 id="ch6-4">6.4 BFD Summary</h3>
+  <ul>
+    <li><strong>Inter-site links</strong> (BE11013/BE21013): BFD enabled, 50ms/3x</li>
+    <li><strong>Intra-site ASR9K&harr;ASR9K</strong> (BE5043): BFD enabled, 50ms/3x</li>
+    <li><strong>ASR9K&harr;7609-S</strong> (BE202/Po202): <strong>No BFD</strong></li>
+    <li><strong>PEX pair</strong> (BE5043): BFD enabled</li>
+  </ul>
+</div>
+
+<!-- ═══════════════ CHAPTER 7: MPLS Design ═══════════════ -->
+<div class="section" id="ch7">
+  <h2 class="section-title">7. MPLS Design</h2>
+
+  <h3 id="ch7-1">7.1 LDP Configuration</h3>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>Protocol</td><td><strong>LDP only</strong> (NO RSVP-TE, NO SR-MPLS)</td></tr>
+    <tr><td>NSR</td><td>Enabled</td></tr>
+    <tr><td>Graceful Restart</td><td>Enabled</td></tr>
+    <tr><td>Session Protection</td><td>Enabled</td></tr>
+    <tr><td>IGP Sync</td><td>Delay on-session-up 5 seconds</td></tr>
+    <tr><td>IP TTL Propagate</td><td>Disabled (forwarded)</td></tr>
+  </table>
+
+  <h5>PE90KKY03 &mdash; MPLS LDP Config</h5>
+  <div class="code-block">mpls ldp
+ log neighbor
+ log graceful-restart
+ nsr
+ graceful-restart
+ igp sync delay on-session-up 5
+ router-id 10.134.34.1
+ neighbor 10.134.34.2:0 password encrypted 03237D5E001902      !! KKY04
+ neighbor 10.134.34.128:0 password encrypted 03237D5E001902    !! ORT03
+ session protection
+ interface Bundle-Ether202
+ interface Bundle-Ether5043
+ interface Bundle-Ether11013</div>
+
+  <h5>PE90ORT03 &mdash; MPLS LDP Config</h5>
+  <div class="code-block">mpls ldp
+ log neighbor
+ log nsr
+ log graceful-restart
+ igp sync delay on-session-up 5
+ router-id 10.134.34.128
+ neighbor 10.134.34.1:0 password encrypted 03237D5E001902      !! KKY03
+ neighbor 10.134.34.129:0 password encrypted 15352D59023C08    !! ORT04
+ session protection
+ interface Bundle-Ether202
+ interface Bundle-Ether5043
+ interface Bundle-Ether11013</div>
+
+  <h3 id="ch7-2">7.2 LDP Adjacencies</h3>
+  <div class="topology">
+    PE90KKY01 ─── LDP ──── PE90KKY02    (via Po3)
+        │                      │
+       LDP                    LDP
+        │                      │
+    PE90KKY03 ─── LDP ──── PE90KKY04    (via BE5043)
+        │                      │
+       LDP (password)         LDP (password)
+        │                      │
+    PE90ORT03 ─── LDP ──── PE90ORT04    (via BE5043)
+        │                      │
+       LDP                    LDP
+        │                      │
+    PE90ORT01 ─── LDP ──── PE90ORT02    (via Gi2/48)
+
+    PEX90KKY01 ── LDP ──── PEX90KKY02  (via BE5043)
+    3RD90KKY01 ── LDP ──── 3RD90KKY02  (via Po11/Po12)
+  </div>
+  <div class="info-box">
+    LDP sessions between ASR9K devices (Core) use <strong>password authentication</strong>. Sessions to legacy 7609-S devices do not.
+  </div>
+</div>
+
+<!-- ═══════════════ CHAPTER 8: BGP Design ═══════════════ -->
+<div class="section" id="ch8">
+  <h2 class="section-title">8. BGP Design</h2>
+
+  <h4>Core BGP Parameters</h4>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>AS Number</td><td>62211</td></tr>
+    <tr><td>Router-ID</td><td>Loopback0</td></tr>
+    <tr><td>NSR</td><td>Enabled</td></tr>
+    <tr><td>Graceful Restart</td><td>Enabled</td></tr>
+    <tr><td>Timers</td><td>10s keepalive / 30s holdtime</td></tr>
+    <tr><td>BestPath</td><td>MED missing-as-worst</td></tr>
+    <tr><td>Address-Families</td><td>IPv4 Unicast, VPNv4 Unicast</td></tr>
+    <tr><td>VPNv4</td><td>advertise best-external</td></tr>
+  </table>
+
+  <h3 id="ch8-1">8.1 iBGP Full-Mesh (AS 62211)</h3>
+  <div class="info-box warn">
+    <strong>No Route Reflectors</strong> &mdash; all 4 core PEs maintain full-mesh iBGP VPNv4 peerings.
+  </div>
+  <div class="topology">
+    PE90KKY03 ◄──── iBGP VPNv4 ────► PE90KKY04
+        │  ╲                        ╱  │
+        │    ╲                    ╱    │
+        │      ╲                ╱      │
+        │        ╲            ╱        │
+        │          ╲        ╱          │
+    PE90ORT03 ◄──── iBGP VPNv4 ────► PE90ORT04
+
+    PEX90KKY01 ◄── iBGP (IPv4+VPNv4) ──► PEX90KKY02
+  </div>
+  <h5>PE90KKY03 &mdash; BGP Config</h5>
+  <div class="code-block">router bgp 62211
+ nsr
+ timers bgp 10 30
+ bgp router-id 10.134.34.1
+ bgp graceful-restart
+ bgp bestpath med missing-as-worst
+ address-family ipv4 unicast
+  nexthop trigger-delay critical 0
+ address-family vpnv4 unicast
+  advertise best-external
+  nexthop trigger-delay critical 0
+ !
+ neighbor-group NG_Vodafone_iBGP
+  remote-as 62211
+  advertisement-interval 0
+  password encrypted 0315082F574407446C5C28514E135A
+  update-source Loopback0
+  address-family ipv4 unicast
+   next-hop-self
+   soft-reconfiguration inbound
+  address-family vpnv4 unicast
+   next-hop-self
+   soft-reconfiguration inbound
+ !
+ !! iBGP peers (AS 62211)
+ neighbor 10.134.34.2                               !! PE90KKY04
+  use neighbor-group NG_Vodafone_iBGP
+  address-family vpnv4 unicast
+ neighbor 10.134.34.128                              !! PE90ORT03
+  use neighbor-group NG_Vodafone_iBGP
+  address-family vpnv4 unicast
+ neighbor 10.134.34.129                              !! PE90ORT04
+  use neighbor-group NG_Vodafone_iBGP
+  address-family vpnv4 unicast
+ !
+ !! eBGP VPNv4 Inter-AS Option B (→ Legacy 7609-S)
+ neighbor-group NG_Vodafone_iBGP_PE90KKY01
+  remote-as 65500
+  ebgp-multihop 5
+  update-source Loopback0
+  address-family vpnv4 unicast
+   next-hop-self
+   soft-reconfiguration inbound
+ neighbor 192.168.1.3                                !! PE90KKY01
+  use neighbor-group NG_Vodafone_iBGP_PE90KKY01
+  ebgp-multihop 255 mpls
+  address-family vpnv4 unicast
+   route-policy PASS-ALL in
+   route-policy PASS-ALL out</div>
+
+  <h5>PEX90KKY01 &mdash; BGP Config (Internet + CORPINT inter-VRF)</h5>
+  <div class="code-block">router bgp 62211
+ bgp router-id 10.135.19.3
+ !
+ neighbor 10.135.19.4                                !! PEX90KKY02
+  use neighbor-group NG_Vodafone_iBGP
+ !
+ vrf INTERNET
+  rd 62211:201300401
+  address-family ipv4 unicast
+   label mode per-vrf
+   maximum-paths ebgp 6
+   network 46.106.204.0/22
+   network 77.92.16.0/22
+   network 149.140.252.0/22
+   network 185.43.228.0/22
+   redistribute connected
+   redistribute static
+  neighbor 172.31.252.14                             !! TTNET (AS 9121)
+   remote-as 9121
+   local-as 43356 no-prepend replace-as
+   address-family ipv4 unicast
+    route-policy TTNET_PRI_IN in
+    route-policy TTNET_PRI_OUT out
+  neighbor 149.140.252.16                            !! Facebook CDN (AS 63293)
+   remote-as 63293
+   ebgp-multihop 255
+   address-family ipv4 unicast
+    route-policy DENY-ALL in
+    route-policy VRF-INTERNET-FACEBOOKCACHING-OUT out
+  neighbor 10.135.18.102                             !! → CORPINT VRF (inter-VRF leak)
+   remote-as 65552
+   local-as 65551 no-prepend replace-as
+   address-family ipv4 unicast
+    route-policy VRF-INTERNET-CORPINT-IN in
+    route-policy DEFAULT_ONLY out
+ !
+ vrf CORPINT
+  rd 62211:201300501
+  neighbor 10.135.18.101                             !! → INTERNET VRF (inter-VRF leak)
+   remote-as 65551
+   local-as 65552 no-prepend replace-as
+   address-family ipv4 unicast
+    route-policy VRF-CORPINT-INTERNET-IN in
+    route-policy VRF-CORPINT-INTERNET-OUT out</div>
+
+  <h3 id="ch8-2">8.2 eBGP VPNv4 Inter-AS Option B</h3>
+  <p>Core ASR9K (AS 62211) exchanges VPNv4 prefixes with legacy 7609-S (AS 65500/64500) using eBGP multihop with MPLS label exchange:</p>
+  <table>
+    <tr><th>Local PE</th><th>Remote PE</th><th>Local AS</th><th>Remote AS</th><th>Session Type</th></tr>
+    <tr><td>PE90KKY03 (10.134.34.1)</td><td>PE90KKY01 (192.168.1.3)</td><td>62211</td><td>65500</td><td>ebgp-multihop 255, MPLS</td></tr>
+    <tr><td>PE90KKY04 (10.134.34.2)</td><td>PE90KKY02 (192.168.1.4)</td><td>62211</td><td>65500</td><td>ebgp-multihop 255, MPLS</td></tr>
+    <tr><td>PE90ORT03 (10.134.34.128)</td><td>PE90ORT01 (192.168.1.1)</td><td>62211</td><td>64500</td><td>ebgp-multihop 255, MPLS</td></tr>
+    <tr><td>PE90ORT04 (10.134.34.129)</td><td>PE90ORT02 (192.168.1.2)</td><td>62211</td><td>64500</td><td>ebgp-multihop 255, MPLS</td></tr>
+  </table>
+  <p>Policy: <strong>PASS-ALL</strong> in/out (all VPNv4 prefixes exchanged).</p>
+
+  <h3 id="ch8-3">8.3 Per-VRF eBGP Peerings</h3>
+
+  <h4>DCGW (AS 65403) via BE16 sub-interfaces &mdash; 22 VRFs</h4>
+  <table class="compact">
+    <tr><th>VRF</th><th>KKY03 Neighbor</th><th>Remote AS</th><th>Policy</th></tr>
+    <tr><td>2G3GUP</td><td>10.160.44.1</td><td>65403</td><td>DCGW-5G-EDGE-CN</td></tr>
+    <tr><td>HSS</td><td>10.160.44.9</td><td>65403</td><td>DCGW-HSS</td></tr>
+    <tr><td>USC</td><td>10.160.44.17</td><td>65403</td><td>DCGW-USC</td></tr>
+    <tr><td>OandM</td><td>10.160.44.25, .65</td><td>65403</td><td>DCGW-OandM</td></tr>
+    <tr><td>3GPS_DATA</td><td>10.160.44.33</td><td>65403</td><td>DCGW-Gb</td></tr>
+    <tr><td>CIMS</td><td>10.160.44.49</td><td>65403</td><td>DCGW-IMS-SGi</td></tr>
+    <tr><td>NAT</td><td>10.160.44.57</td><td>65403</td><td>DCGW-NAT</td></tr>
+    <tr><td>INOX</td><td>10.160.44.81</td><td>65403</td><td>DCGW-INOX</td></tr>
+    <tr><td>4G-S1-UP</td><td>10.160.44.89</td><td>65403</td><td>DCGW-S1-UP</td></tr>
+    <tr><td>4G-S1-CP</td><td>10.160.44.97</td><td>65403</td><td>DCGW-S1-CP</td></tr>
+    <tr><td>SIGTRAN</td><td>10.160.44.105</td><td>65403</td><td>DCGW-S1-SIGNALING</td></tr>
+    <tr><td>PCRF</td><td>10.160.44.117</td><td>65403</td><td>DCGW-PCRF</td></tr>
+    <tr><td>CHU</td><td>10.160.44.73, .125, .133, .189, .197</td><td>65403</td><td>CHU variants</td></tr>
+    <tr><td>USERPLANE</td><td>10.160.44.157</td><td>65403</td><td>DCGW-MEDIA</td></tr>
+    <tr><td>CSDB_ENS / AAA / APBSF</td><td>10.160.44.165-.181</td><td>65403</td><td>DATA-*</td></tr>
+  </table>
+
+  <h4>Juniper SecGW (AS 65100) via BE410</h4>
+  <table class="compact">
+    <tr><th>VRF</th><th>KKY03 Neighbor</th><th>KKY04 Neighbor</th></tr>
+    <tr><td>4G-IPSEC</td><td>10.135.91.34</td><td>10.135.91.38</td></tr>
+    <tr><td>4G-S1-CP</td><td>10.135.91.42</td><td>10.135.91.46</td></tr>
+    <tr><td>4G-S1-UP</td><td>10.135.91.50</td><td>10.135.91.54</td></tr>
+    <tr><td>OandM</td><td>10.135.91.58</td><td>10.135.91.62</td></tr>
+  </table>
+
+  <h4>PTN (AS 65000) via BE411</h4>
+  <table class="compact">
+    <tr><th>VRF</th><th>KKY03 Neighbors</th></tr>
+    <tr><td>4G-IPSEC</td><td>10.135.91.21, .22</td></tr>
+    <tr><td>OandM</td><td>10.135.91.29, .30</td></tr>
+  </table>
+
+  <h3 id="ch8-4">8.4 Internet Upstream (PEX)</h3>
+  <table>
+    <tr><th>PEX</th><th>Upstream</th><th>Neighbor</th><th>Remote AS</th><th>Local-AS</th><th>BW</th></tr>
+    <tr><td>PEX01</td><td>TTNET</td><td>172.31.252.14</td><td>9121</td><td>43356</td><td>29 Gbps</td></tr>
+    <tr><td>PEX02</td><td>VFNET</td><td>46.234.27.77</td><td>15924</td><td>43356</td><td>Backup</td></tr>
+    <tr><td>PEX01</td><td>Facebook CDN</td><td>149.140.252.16</td><td>63293</td><td>&mdash;</td><td>Caching</td></tr>
+    <tr><td>PEX02</td><td>Facebook CDN</td><td>149.140.252.80</td><td>63293</td><td>&mdash;</td><td>Caching</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════ CHAPTER 9: VRF Design ═══════════════ -->
+<div class="section" id="ch9">
+  <h2 class="section-title">9. VRF Design</h2>
+
+  <h3 id="ch9-1">9.1 Core PE VRFs (PE90KKY03/04) &mdash; 24 VRFs</h3>
+
+  <h5>VRF Config Examples (PE90KKY03)</h5>
+  <div class="code-block">vrf VF
+ address-family ipv4 unicast
+  import route-target
+   62211:4001
+   64500:1
+   64500:2
+   65500:1
+   65500:2
+  export route-target
+   62211:4001
+   65500:2
+!
+vrf SIGTRAN
+ address-family ipv4 unicast
+  import route-target
+   62211:1003
+   62211:10003
+   65500:1003
+   65500:10003
+  export route-target
+   62211:1003
+!
+vrf 4G-S1-CP
+ address-family ipv4 unicast
+  import route-target
+   62211:1007
+  export route-target
+   62211:1007</div>
+  <table class="compact vrf-table">
+    <tr><th>#</th><th>VRF</th><th>RD (KKY03)</th><th>Export RT</th><th>Function</th></tr>
+    <tr><td>1</td><td><strong>VF</strong></td><td>62211:13104103</td><td>62211:4001</td><td>Vodafone Internal / Enterprise</td></tr>
+    <tr><td>2</td><td><strong>SIGTRAN</strong></td><td>62211:13100303</td><td>62211:1003</td><td>SS7/SIGTRAN Signaling</td></tr>
+    <tr><td>3</td><td><strong>USERPLANE</strong></td><td>62211:13100203</td><td>62211:1002</td><td>CS/PS User Plane</td></tr>
+    <tr><td>4</td><td><strong>4G-S1-CP</strong></td><td>62211:13100703</td><td>62211:1007</td><td>S1-MME Control Plane</td></tr>
+    <tr><td>5</td><td><strong>4G-S1-UP</strong></td><td>62211:13100603</td><td>62211:1006</td><td>S1 User Plane</td></tr>
+    <tr><td>6</td><td><strong>4G-IPSEC</strong></td><td>62211:13101803</td><td>62211:1018</td><td>LTE IPsec Tunnels</td></tr>
+    <tr><td>7</td><td><strong>OandM</strong></td><td>62211:13200103</td><td>62211:2001</td><td>O&amp;M / NMS</td></tr>
+    <tr><td>8</td><td><strong>3GPS_DATA</strong></td><td>62211:13100503</td><td>62211:1005</td><td>3G PS Data (Gb/IuPS)</td></tr>
+    <tr><td>9</td><td><strong>2G3GUP</strong></td><td>62211:13100803</td><td>62211:1008</td><td>2G/3G User Plane</td></tr>
+    <tr><td>10</td><td><strong>CIMS</strong></td><td>62211:13100903</td><td>62211:1009</td><td>IMS Core (SGi)</td></tr>
+    <tr><td>11</td><td><strong>CHU</strong></td><td>62211:13300103</td><td>62211:3001</td><td>Charging Hub</td></tr>
+    <tr><td>12</td><td><strong>HSS</strong></td><td>62211:13101103</td><td>62211:1011</td><td>Home Subscriber Server</td></tr>
+    <tr><td>13</td><td><strong>NAT</strong></td><td>62211:13253203</td><td>62211:2532</td><td>CGNAT</td></tr>
+    <tr><td>14</td><td><strong>USC</strong></td><td>62211:13101303</td><td>62211:1013</td><td>User Service Control</td></tr>
+    <tr><td>15</td><td><strong>INOX</strong></td><td>62211:13300703</td><td>62211:3007</td><td>IPDR/Syslog/RADIUS</td></tr>
+    <tr><td>16</td><td><strong>PCRF</strong></td><td>62211:13101203</td><td>62211:1012</td><td>Policy Control (Diameter)</td></tr>
+    <tr><td>17</td><td><strong>INTERNET</strong></td><td>62211:13110403</td><td>62211:1104</td><td>Subscriber Internet</td></tr>
+    <tr><td>18</td><td><strong>SYSLOG</strong></td><td>62211:13110103</td><td>62211:1101</td><td>Central Syslog</td></tr>
+    <tr><td>19</td><td><strong>CPNMGMT</strong></td><td>62211:1031</td><td>62211:1031</td><td>CPN Management</td></tr>
+    <tr><td>20</td><td><strong>CSDB_AAA</strong></td><td>62211:13101503</td><td>62211:1015</td><td>UIM AAA</td></tr>
+    <tr><td>21</td><td><strong>CSDB_ENS</strong></td><td>62211:13101403</td><td>62211:1014</td><td>Enterprise Data</td></tr>
+    <tr><td>22</td><td><strong>CSDB_APBSF</strong></td><td>62211:13101603</td><td>62211:1016</td><td>UIM APBSF</td></tr>
+    <tr><td>23</td><td><strong>DISNAT_KKY</strong></td><td>62211:13253303</td><td>&mdash;</td><td>Distributed NAT</td></tr>
+    <tr><td>24</td><td><strong>INTERMEDIA</strong></td><td>62211:13101703</td><td>62211:1017</td><td>Intermedia Service</td></tr>
+  </table>
+
+  <h3 id="ch9-2">9.2 PEX VRFs (PEX90KKY01/02) &mdash; 5 VRFs</h3>
+  <table class="vrf-table">
+    <tr><th>VRF</th><th>RD (PEX01)</th><th>Export RT</th><th>Function</th></tr>
+    <tr><td>INTERNET</td><td>62211:201300401</td><td>62211:3004</td><td>Internet egress</td></tr>
+    <tr><td>CORPINT</td><td>62211:201300501</td><td>62211:3005</td><td>Corporate Internet</td></tr>
+    <tr><td>NAT</td><td>62211:201253201</td><td>62211:2532</td><td>CGNAT pools</td></tr>
+    <tr><td>CPNMGMT</td><td>62211:1031</td><td>62211:1031</td><td>Management</td></tr>
+    <tr><td>BTHK_ED</td><td>62211:3012</td><td>62211:3012</td><td>BTHK Enterprise</td></tr>
+  </table>
+
+  <h3 id="ch9-3">9.3 Inter-VRF Route Leaking (RT Cross-Import)</h3>
+  <table>
+    <tr><th>VRFs</th><th>Shared RT</th><th>Mechanism</th></tr>
+    <tr><td>VF, CHU, INOX</td><td>64500:1-2, 65500:1-2</td><td>Import from Legacy PE domains</td></tr>
+    <tr><td>2G3GUP &harr; 3GPS_DATA</td><td>62211:1005</td><td>Cross-leak via shared RT</td></tr>
+    <tr><td>NAT &harr; DISNAT_KKY</td><td>62211:2533</td><td>Cross-leak via shared RT</td></tr>
+    <tr><td>INTERNET &harr; CORPINT (PEX)</td><td>62211:3004 / 3005</td><td>Cross-leak for corporate internet</td></tr>
+    <tr><td>OandM &harr; Legacy</td><td>65500:2001</td><td>Import from KKY legacy</td></tr>
+    <tr><td>SIGTRAN &harr; Legacy</td><td>65500:1003, 65500:10003</td><td>Import from KKY legacy</td></tr>
+  </table>
+
+  <h3 id="ch9-4">9.4 Key Static Routes (per VRF)</h3>
+  <table>
+    <tr><th>VRF</th><th>Destination</th><th>Next-Hop</th><th>Description</th></tr>
+    <tr><td>VF</td><td>0.0.0.0/0</td><td>192.168.161.254</td><td>Default via SSL VPN GW</td></tr>
+    <tr><td>VF</td><td>~50 /32, /24 routes</td><td>192.168.161.252</td><td>Public IPs (195.232.x, 195.233.x)</td></tr>
+    <tr><td>CIMS</td><td>0.0.0.0/0</td><td>10.135.19.4</td><td>Default via GTP FW</td></tr>
+    <tr><td>SIGTRAN</td><td>0.0.0.0/0</td><td>10.135.19.108</td><td>Default via GTP FW</td></tr>
+    <tr><td>USERPLANE</td><td>0.0.0.0/0</td><td>10.135.19.172</td><td>Default via GTP FW</td></tr>
+    <tr><td>OandM</td><td>0.0.0.0/0</td><td>10.135.31.252</td><td>Default via Fortinet FW</td></tr>
+    <tr><td>2G3GUP</td><td>0.0.0.0/0</td><td>10.135.19.100</td><td>Default</td></tr>
+  </table>
+  <div class="info-box warn">
+    Most VRF default routes point to <strong>firewalls</strong>. The firewalls perform security inspection before forwarding to external destinations.
+  </div>
+</div>
+
+<!-- ═══════════════ CHAPTER 10: QoS ═══════════════ -->
+<div class="section" id="ch10">
+  <h2 class="section-title">10. Quality of Service</h2>
+
+  <div class="info-box">
+    QoS is configured <strong>only on ASR9K (IOS-XR) devices</strong>. The legacy 7609-S (PE90KKY01/02, PE90ORT01/02) have no QoS policy.
+  </div>
+
+  <h3 id="ch10-1">10.1 Traffic Classification</h3>
+  <table class="qos-table">
+    <tr><th>Class</th><th>DSCP Match</th><th>MPLS EXP</th><th>Description</th></tr>
+    <tr><td><strong>NC</strong></td><td>48 (CS6)</td><td>6</td><td>Network Control (IS-IS, LDP, BGP)</td></tr>
+    <tr><td><strong>BFD</strong></td><td>ACL BFD-ACL (UDP/3785)</td><td>&mdash;</td><td>BFD keepalive</td></tr>
+    <tr><td><strong>VOLTE</strong></td><td>18 (AF21)</td><td>&mdash;</td><td>VoLTE</td></tr>
+    <tr><td><strong>SIGTRAN</strong></td><td>46 (EF)</td><td>5</td><td>SS7/SIGTRAN signaling</td></tr>
+    <tr><td><strong>RT-VOICE</strong></td><td>34 (AF41)</td><td>4</td><td>Real-time voice</td></tr>
+    <tr><td><strong>RT-VIDEO</strong></td><td>26 (AF31)</td><td>3</td><td>Real-time video</td></tr>
+    <tr><td><strong>IN_VAS</strong></td><td>16 (CS2), 10 (AF11), 18 (AF21)</td><td>2</td><td>VAS / In-network</td></tr>
+    <tr><td><strong>PRI-DATA</strong></td><td>10 (AF11)</td><td>2</td><td>Priority data</td></tr>
+    <tr><td><strong>ENTERPRISE</strong></td><td>8 (CS1)</td><td>1</td><td>Enterprise traffic</td></tr>
+  </table>
+
+  <h4>PE90KKY03 &mdash; Class-Map Definitions</h4>
+  <div class="code-block"><pre>class-map match-any NC
+ match dscp 48
+ match mpls experimental topmost 6
+ end-class-map
+!
+class-map match-any BFD
+ match access-group ipv4 BFD-ACL
+ end-class-map
+!
+class-map match-any VOLTE
+ match dscp 18
+ end-class-map
+!
+class-map match-any SIGTRAN
+ match dscp 46
+ match mpls experimental topmost 5
+ end-class-map
+!
+class-map match-any RT-VOICE
+ match dscp 34
+ match mpls experimental topmost 4
+ end-class-map
+!
+class-map match-any RT-VIDEO
+ match dscp 26
+ match mpls experimental topmost 3
+ end-class-map
+!
+class-map match-any IN_VAS
+ match dscp 16 10 18
+ match mpls experimental topmost 2
+ end-class-map
+!
+class-map match-any ENTERPRISE
+ match dscp 8
+ match mpls experimental topmost 1
+ end-class-map</pre></div>
+
+  <h3 id="ch10-2">10.2 Core QoS Policies (CPN-QOS-OUT-POLICY)</h3>
+  <p>Applied on core fabric links (BE5043):</p>
+  <table class="qos-table">
+    <tr><th>Queue</th><th>Class</th><th>Scheduling</th><th>Notes</th></tr>
+    <tr><td>Priority L1</td><td>BFD</td><td><span class="tag tag-red">Strict Priority</span></td><td>1% bandwidth</td></tr>
+    <tr><td>Priority L2</td><td>RT-VOICE</td><td><span class="tag tag-red">Strict Priority</span></td><td>70% bandwidth</td></tr>
+    <tr><td>Queue 3</td><td>NC</td><td>BW remaining %</td><td>Network control</td></tr>
+    <tr><td>Queue 4</td><td>SIGTRAN</td><td>BW remaining %</td><td>Signaling</td></tr>
+    <tr><td>Queue 5</td><td>IN_VAS</td><td>BW remaining %</td><td>WRED on MPLS EXP</td></tr>
+    <tr><td>Queue 6</td><td>RT-VIDEO</td><td>BW remaining %</td><td>WRED</td></tr>
+    <tr><td>Queue 7</td><td>ENTERPRISE</td><td>BW remaining %</td><td>&mdash;</td></tr>
+    <tr><td>Default</td><td>class-default</td><td>BW remaining</td><td>Best effort</td></tr>
+  </table>
+
+  <h4>PE90KKY03 &mdash; CPN-QOS-OUT-POLICY Config</h4>
+  <div class="code-block"><pre>policy-map CPN-QOS-OUT-POLICY
+ class BFD
+  priority level 1
+  police rate percent 1
+ !
+ class RT-VOICE
+  priority level 2
+  police rate percent 70
+ !
+ class NC
+  random-detect exp 6 2 ms 66 ms
+  bandwidth percent 1
+ !
+ class SIGTRAN
+  random-detect exp 5 2 ms 66 ms
+  bandwidth percent 5
+ !
+ class IN_VAS
+  random-detect exp 2 17 ms 64 ms
+  bandwidth percent 10
+ !
+ class RT-VIDEO
+  random-detect exp 3 26 ms 66 ms
+  bandwidth percent 5
+ !
+ class ENTERPRISE
+  random-detect exp 1 23 ms 66 ms
+  bandwidth percent 8
+ !
+ class class-default
+  queue-limit 100 ms
+ !
+ end-policy-map
+!
+! Applied: interface Bundle-Ether5043 service-policy output CPN-QOS-OUT-POLICY</pre></div>
+
+  <h4>PE90KKY03 &mdash; SECGW-QOS-OUT-POLICY Config (SecGW Egress, BE410)</h4>
+  <div class="code-block"><pre>policy-map SECGW-QOS-OUT-POLICY
+ class VOLTE
+  priority level 1
+  police rate percent 70
+  set cos 2
+ !
+ class SIGTRAN
+  set dscp 46
+  set cos 2
+  bandwidth percent 5
+ !
+ class ENTERPRISE
+  set cos 5
+  bandwidth percent 8
+ !
+ class class-default
+  queue-limit 100 ms
+  set cos 0
+ !
+ end-policy-map
+!
+! Applied: interface Bundle-Ether410 service-policy output SECGW-QOS-OUT-POLICY</pre></div>
+
+  <h4>Ingress Classification Policies (Examples)</h4>
+  <div class="code-block"><pre>policy-map CLASSIFY-SIGTRAN
+ class class-default
+  set dscp ef                          ! Mark all traffic as EF (DSCP 46)
+ !
+ end-policy-map
+!
+policy-map CLASSIFY-RT-VOICE
+ class class-default
+  set dscp af41                        ! Mark all traffic as AF41 (DSCP 34)
+ !
+ end-policy-map
+!
+! Applied on ingress: interface BE16.xxxx service-policy input CLASSIFY-*
+! Each VRF/service sub-interface uses appropriate CLASSIFY policy</pre></div>
+
+  <h3 id="ch10-3">10.3 Access / Satellite Shaper Policies</h3>
+  <table>
+    <tr><th>Policy</th><th>Rate</th><th>Usage</th></tr>
+    <tr><td>1G shaper</td><td>1 Gbps</td><td>Satellite GigE ports (Gi7001/x, Gi7002/x)</td></tr>
+    <tr><td>100Mb shaper</td><td>100 Mbps</td><td>Low-BW satellite ports</td></tr>
+  </table>
+  <p>Inside shapers: RT-VOICE priority L1 (600M/60M policed), NC (10M), SIGTRAN (50M), IN_VAS (150M), ENTERPRISE (50M), RT-VIDEO (100M WRED).</p>
+
+  <h4>Service-Policy Application Map</h4>
+  <table class="compact">
+    <tr><th>Device</th><th>Interface</th><th>Direction</th><th>Policy</th></tr>
+    <tr><td>PE90KKY03</td><td>BE5043 (&rarr; KKY04)</td><td>input</td><td>CPN-QOS-IN-POLICY</td></tr>
+    <tr><td>PE90KKY03</td><td>BE5043 (&rarr; KKY04)</td><td>output</td><td>CPN-QOS-OUT-POLICY</td></tr>
+    <tr><td>PE90KKY03</td><td>BE410 (&rarr; SecGW)</td><td>output</td><td>SECGW-QOS-OUT-POLICY</td></tr>
+    <tr><td>PE90KKY03</td><td>BE16.xxxx (&rarr; DCGW)</td><td>input</td><td>CLASSIFY-* (per-VRF)</td></tr>
+    <tr><td>PE90KKY03</td><td>Gi7001/x, Gi7002/x</td><td>output</td><td>1G or 100Mb shaper</td></tr>
+    <tr><td>PE90KKY03</td><td>Gi7001/x, Gi7002/x</td><td>input</td><td>NV-CLASSIFY-*</td></tr>
+    <tr><td>PE90KKY04</td><td colspan="3"><em>(Same structure as PE90KKY03)</em></td></tr>
+    <tr><td>PE90ORT03</td><td>BE5043</td><td>in/out</td><td>CPN-QOS-IN/OUT</td></tr>
+    <tr><td>PE90ORT03</td><td>BE410</td><td>output</td><td>SECGW-QOS-OUT</td></tr>
+    <tr><td>PE90ORT04</td><td colspan="3"><em>(Same structure as PE90ORT03)</em></td></tr>
+  </table>
+
+  <h3 id="ch10-4">10.4 Enterprise Internet QoS (PEX)</h3>
+  <table class="compact">
+    <tr><th>Customer</th><th>Rate</th><th>Interface</th></tr>
+    <tr><td>Acapulco Otel</td><td>400 Mbps</td><td>PEX02 BE100 sub-if</td></tr>
+    <tr><td>Concorde De Luxe</td><td>500 Mbps</td><td>PEX02 BE100 sub-if</td></tr>
+    <tr><td>ISTAIR</td><td>500 Mbps</td><td>PEX02 BE100 sub-if</td></tr>
+    <tr><td>KIBTEK</td><td>50 Mbps</td><td>PEX02 BE100 sub-if</td></tr>
+    <tr><td>SALAMIS Otel</td><td>100 Mbps</td><td>PEX02 BE100 sub-if</td></tr>
+    <tr><td>Banks (IKTISAT, TEB)</td><td>50 Mbps</td><td>PEX02 BE100 sub-if</td></tr>
+    <tr><td>VF Shop</td><td>6M BW / 8M shape</td><td>PEX02 BE100 sub-if</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════ CHAPTER 11: Security ═══════════════ -->
+<div class="section" id="ch11">
+  <h2 class="section-title">11. Security &amp; Management</h2>
+
+  <h3 id="ch11-1">11.1 AAA / TACACS+</h3>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>TACACS+ Server 1</td><td>10.150.90.4 (VRF CPNMGMT)</td></tr>
+    <tr><td>TACACS+ Server 2</td><td>10.150.90.20 (VRF CPNMGMT)</td></tr>
+    <tr><td>SSH Access</td><td>ACL_77 (~28 entries, management subnets)</td></tr>
+  </table>
+
+  <h4>PE90KKY03 &mdash; TACACS+ Config</h4>
+  <div class="code-block"><pre>tacacs-server host 10.150.90.4 port 49
+ key 7 121A0919405F5D172E2A
+ timeout 4
+!
+tacacs-server host 10.150.90.20 port 49
+ key 7 121A0919405F5D172E2A
+ timeout 4
+!
+aaa group server tacacs+ ISE
+ server 10.150.90.4
+ server 10.150.90.20
+ vrf CPNMGMT
+!</pre></div>
+
+  <h3 id="ch11-2">11.2 Access Control Lists</h3>
+  <table class="security-table">
+    <tr><th>ACL</th><th>Entries</th><th>Applied To</th><th>Purpose</th></tr>
+    <tr><td>ACL_68</td><td>~20</td><td>SNMP</td><td>NMS host/subnet permit</td></tr>
+    <tr><td>ACL_77</td><td>~28</td><td>VTY (SSH)</td><td>Management subnet permit</td></tr>
+    <tr><td>ACL_NMS</td><td>Minimal</td><td>VTY</td><td>10.135.12.66 only</td></tr>
+    <tr><td>ACL_100 (PEX)</td><td>&mdash;</td><td>Internet-facing</td><td>Bogon/RFC1918 anti-spoofing</td></tr>
+    <tr><td>DNS_PROTECTION</td><td>&mdash;</td><td>PEX</td><td>185.43.228.20/30 DNS protection</td></tr>
+  </table>
+
+  <h4>PE90KKY03 &mdash; ACL_77 (SSH Access, excerpt)</h4>
+  <div class="code-block"><pre>ipv4 access-list ACL_77
+ 10 permit ipv4 host 172.24.58.159 any
+ 20 permit ipv4 host 172.30.34.140 any
+ 30 permit ipv4 host 217.31.240.100 any
+ 40 permit ipv4 host 217.31.240.101 any
+ 50 permit ipv4 host 10.135.12.66 any
+ 60 permit ipv4 host 172.30.34.106 any
+ 70 permit ipv4 172.30.6.0 0.0.0.63 any
+ 80 permit ipv4 172.24.59.0 0.0.0.63 any
+ 90 permit ipv4 192.168.241.224 0.0.0.31 any
+ 100 permit ipv4 192.168.184.0 0.0.3.255 any
+ ... (30 entries total)
+ 190 deny ipv4 any any
+!</pre></div>
+
+  <h3 id="ch11-3">11.3 NTP / Logging / SNMP</h3>
+  <div class="two-col">
+    <div>
+      <h5>NTP</h5>
+      <ul>
+        <li>10.74.1.70 (VRF CPNMGMT)</li>
+        <li>172.24.93.181 (VRF CPNMGMT)</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Syslog</h5>
+      <ul>
+        <li>10.135.5.40 (CPNMGMT)</li>
+        <li>172.30.6.25 (CPNMGMT)</li>
+        <li>10.252.129.162:14001 (CPNMGMT)</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>SNMP:</strong> SNMPv3 (SHA + AES128), communities protected by ACL_68.</p>
+
+  <h4>PE90KKY03 &mdash; NTP / SNMP Config</h4>
+  <div class="code-block"><pre>! NTP
+ntp
+ server vrf CPNMGMT 10.74.1.70
+ server vrf CPNMGMT 172.24.93.181
+ access-group vrf CPNMGMT ipv4 peer acl-ntp-peer
+ update-calendar
+!
+! SNMP (v3 only, SHA auth + AES128 priv, ACL_68 restricted)
+snmp-server ifmib ifalias long
+snmp-server ifindex persist
+snmp-server vrf BUYUK
+snmp-server host 10.135.4.40 traps version 3 auth TelatAbi
+snmp-server host 10.197.151.54 traps version 3 priv buyuk3 udp-port 1062
+snmp-server ipv4 dscp cs1
+snmp-server user buyuk3 snmp-v3-ro v3 auth sha encrypted ... priv aes 128 encrypted ... IPv4 ACL_68
+snmp-server user TelatAbi snmp-v3-ro v3 auth sha encrypted ... IPv4 ACL_68</pre></div>
+
+  <h3 id="ch11-4">11.4 Firewall Architecture</h3>
+  <h4>KKY Site</h4>
+  <table class="security-table">
+    <tr><th>Firewall</th><th>Connection</th><th>Protected Service</th></tr>
+    <tr><td>GTP FW (Master)</td><td>PE90KKY03/04 BE100</td><td>GTP traffic (Gn/Gi/S1-U)</td></tr>
+    <tr><td>GTP FW (Slave)</td><td>PE90KKY03/04 BE101</td><td>GTP traffic (redundant)</td></tr>
+    <tr><td>User FW</td><td>PE90KKY03/04 BE102</td><td>User plane traffic</td></tr>
+    <tr><td>Fortigate GiFW (Master)</td><td>PE90KKY03 <strong>BE155</strong></td><td>Gi interface (GGSN) + BE155.3002 l2transport</td></tr>
+    <tr><td>Fortigate GiFW (Slave)</td><td>PE90KKY04 <strong>BE155</strong></td><td>Gi interface (redundant)</td></tr>
+    <tr><td>DMZ FW (KAYMAKLIDMZFW01)</td><td>PE90KKY03/04 BE223</td><td>DMZ segment</td></tr>
+    <tr><td>Fortinet VDOM DC</td><td>VLANs 100, 430, 1100, 1101, 1305</td><td>DC + mobile core segments</td></tr>
+  </table>
+
+  <h4>ORT Site</h4>
+  <table class="security-table">
+    <tr><th>Firewall</th><th>Connection</th></tr>
+    <tr><td>Forti 3240C</td><td>PE90ORT01/02 Po10 (VLAN 101)</td></tr>
+    <tr><td>Fortinet</td><td>VLAN 800, 801 (Mgmt + External)</td></tr>
+  </table>
+
+  <h4>PEX Firewalls</h4>
+  <table class="security-table compact">
+    <tr><th>Firewall</th><th>BVI</th><th>VRF</th><th>Purpose</th></tr>
+    <tr><td>Fortinet GIFW</td><td>BVI251</td><td>INTERNET</td><td>Internet subscriber FW</td></tr>
+    <tr><td>Kurumsal NAT FW</td><td>BVI300-303</td><td>INTERNET</td><td>Corporate NAT</td></tr>
+    <tr><td>Fortinet Outside</td><td>BVI500</td><td>CORPINT</td><td>Corporate Internet</td></tr>
+    <tr><td>ASA SSL VPN</td><td>BVI501</td><td>CORPINT</td><td>SSL VPN</td></tr>
+    <tr><td>WAF</td><td>BVI511, BVI1200</td><td>CORPINT</td><td>Web Application FW</td></tr>
+  </table>
+
+  <h3 id="ch11-5">11.5 Route Filtering</h3>
+  <p>PE90KKY03/04 have <strong>48 prefix-sets</strong> and <strong>52 route-policies</strong> for granular route control per VRF/service.</p>
+  <ul>
+    <li><code>PFX-DCGW-CORE-*</code> &mdash; DCGW inbound filters</li>
+    <li><code>PFX-JUNSECGW-*</code> &mdash; Juniper SecGW filters</li>
+    <li><code>DENY-ALL</code>, <code>PASS-ALL</code>, <code>DEFAULT-ONLY</code> &mdash; Base policies</li>
+    <li><code>DROP-LONG-AS-PATH</code> &mdash; AS-path length filter</li>
+  </ul>
+</div>
+
+<!-- ═══════════════ CHAPTER 12: Internet Architecture ═══════════════ -->
+<div class="section" id="ch12">
+  <h2 class="section-title">12. Internet Access Architecture</h2>
+
+  <h3 id="ch12-1">12.1 Traffic Flow</h3>
+  <div class="topology">
+   Subscribers &rarr; Mobile Core (GGSN/PGW) &rarr; VRF INTERNET / NAT
+        │
+   PE90KKY03/04 ──[BE10015]──&gt; NAT90KKY01 (CGNAT, AS 65450)
+        │
+        │ [BE8000 sub-ifs, eBGP]
+        ▼
+   PEX90KKY01/02 (VRF INTERNET)
+        │
+        ├──&gt; TTNET   (AS 9121, 29 Gbps) ◄── Primary
+        ├──&gt; VFNET   (AS 15924)          ◄── Backup
+        └──&gt; Facebook CDN (AS 63293)     ◄── Local Caching (BE710)
+
+   Corporate &rarr; VRF CORPINT ──[PEX inter-VRF leak]──&gt; INTERNET &rarr; Upstream
+  </div>
+
+  <h3 id="ch12-2">12.2 Public IP Blocks (AS 43356)</h3>
+  <table>
+    <tr><th>Prefix</th><th>Usage</th></tr>
+    <tr><td>185.43.228.0/22</td><td>Enterprise Internet, DNS, WAF, SSL VPN</td></tr>
+    <tr><td>77.92.16.0/22</td><td>Corporate services</td></tr>
+    <tr><td>149.140.252.0/22</td><td>Speedtest, KIBTEK, enterprise</td></tr>
+    <tr><td>46.106.204.0/22</td><td>General</td></tr>
+    <tr><td>46.155.160.0/28+</td><td>Comfone signalling (roaming)</td></tr>
+  </table>
+
+  <h3 id="ch12-3">12.3 PEX Inter-VRF (INTERNET &harr; CORPINT)</h3>
+  <table>
+    <tr><th>PEX</th><th>VRF INTERNET Neighbor</th><th>VRF CORPINT Neighbor</th><th>AS Chain</th></tr>
+    <tr><td>PEX01</td><td>10.135.18.102 (AS 65552)</td><td>10.135.18.101 (AS 65551)</td><td>65551 &harr; 65552 loopback</td></tr>
+    <tr><td>PEX02</td><td>10.135.18.106 (AS 65552)</td><td>10.135.18.105 (AS 65551)</td><td>65551 &harr; 65552 loopback</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════ CHAPTER 13: 3rd Party ═══════════════ -->
+<div class="section" id="ch13">
+  <h2 class="section-title">13. 3rd Party &amp; Roaming Architecture</h2>
+
+  <h3 id="ch13-1">13.1 3RD90KKY01/02 Role</h3>
+  <div class="info-box">
+    <strong>NOT a PE router.</strong> 3RD90KKY01/02 are independent <strong>service edge routers</strong> / 3rd party gateways:
+    <ul>
+      <li>No VRF, No VPNv4 BGP</li>
+      <li>22 VASI pairs (for FortiGate traffic steering, NOT inter-VRF routing)</li>
+      <li>IS-IS + LDP only between 3RD01 &harr; 3RD02 (isolated from PEs)</li>
+      <li>NAT performed on FortiGate (3RDFW90KKY01), NOT on ASR</li>
+    </ul>
+  </div>
+
+  <h3 id="ch13-2">13.2 Connection Architecture</h3>
+  <div class="topology">
+   DCGW01 ────[BE16]──── PE90KKY03 ────[BE40]──── 3RD90KKY01
+                          (local bridge              │
+                           VLAN 2185/2946)        IS-IS + LDP
+                                                      │
+   DCGW02 ────[BE16]──── PE90KKY04 ────[BE40]──── 3RD90KKY02
+                          (local bridge              │
+                           VLAN 2186/2947)        VASI pairs x22
+                                                      │
+                                                3RDSW90KKY01
+                                                      │
+                                                FortiGate (3RDFW90KKY01)
+  </div>
+
+  <h3 id="ch13-3">13.3 IPsec Tunnels</h3>
+  <table>
+    <tr><th>Tunnel</th><th>Destination</th><th>Profile</th><th>Description</th></tr>
+    <tr><td>Tunnel8003</td><td>212.65.156.210</td><td>VFTR-IPSEC-PROFILE</td><td>Vodafone Turkey</td></tr>
+    <tr><td>Tunnel8014</td><td>213.148.64.22</td><td>AES256-SHA</td><td>TEB Bank</td></tr>
+    <tr><td>Tunnel8047</td><td>&mdash;</td><td>&mdash;</td><td>VFNET Voice</td></tr>
+    <tr><td>Tunnel8424</td><td>&mdash;</td><td>&mdash;</td><td>COMFONE/GRX (Roaming)</td></tr>
+  </table>
+
+  <h3 id="ch13-4">13.4 3rd Party Connections</h3>
+  <table>
+    <tr><th>Connection</th><th>Type</th><th>Interface</th><th>Description</th></tr>
+    <tr><td>Vodafone Turkey (VFTR)</td><td>IPsec + Radio Link</td><td>Te0/0/0.605 (100M RL)</td><td>Primary: RL, Secondary: IPsec tunnel</td></tr>
+    <tr><td>VIPX</td><td>Radio Link</td><td>Te0/0/0.609 (400M)</td><td>&mdash;</td></tr>
+    <tr><td>BTHK</td><td>Fiber + RL Backup</td><td>Te0/0/0.616 (F/O), .614 (100M RL)</td><td>Fiber primary, RL backup</td></tr>
+    <tr><td>TEB Bank</td><td>IPsec</td><td>Tunnel8014</td><td>AES256-SHA</td></tr>
+    <tr><td>COMFONE/GRX</td><td>IPsec</td><td>Tunnel8424</td><td>Roaming hub</td></tr>
+    <tr><td>KIBTEK</td><td>Radio Link</td><td>Te0/0/0.863</td><td>&mdash;</td></tr>
+    <tr><td>TOKENOKC</td><td>Fiber</td><td>Gi0/0/1.242</td><td>TEMOS</td></tr>
+    <tr><td>LTE Roaming</td><td>Radio Link</td><td>Te0/0/0.623 (4M)</td><td>&mdash;</td></tr>
+    <tr><td>BulkSMS</td><td>E1</td><td>Te0/0/0.628</td><td>&mdash;</td></tr>
+    <tr><td>STP/Diameter</td><td>&mdash;</td><td>Te0/0/0.625</td><td>5.44.82.78/30 (TT Ankara)</td></tr>
+  </table>
+
+  <h4>DCGW Option-B (Corporate via 3RD)</h4>
+  <table>
+    <tr><th>3RD Device</th><th>Loopback (KKY)</th><th>Loopback (ORT)</th><th>DCGW Sub-ifs</th></tr>
+    <tr><td>3RD90KKY01</td><td>Lo61: 10.160.45.133</td><td>Lo71: 10.132.13.133</td><td>Po40.2185/.2187</td></tr>
+    <tr><td>3RD90KKY02</td><td>Lo62: 10.160.45.134</td><td>Lo72: 10.132.13.134</td><td>Po40.2186/.2188</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════ CHAPTER 14: Migration Plan ═══════════════ -->
+<div class="section" id="ch14">
+  <h2 class="section-title">14. Juniper Migration Plan</h2>
+
+  <h3 id="ch14-1">14.1 Key Migration Decisions</h3>
+  <table>
+    <tr><th>Topic</th><th>Cisco Current</th><th>Juniper Target</th><th>Notes</th></tr>
+    <tr><td>L2VPN Xconnect</td><td>LDP-based pseudowire</td><td><strong>EVPN-VPWS</strong> (RFC 8214)</td><td>Presented to customer as "MPLS EVPN"</td></tr>
+    <tr><td>Bridge Domains</td><td>bridge-group + BVI</td><td><strong>EVPN + IRB</strong></td><td>&mdash;</td></tr>
+    <tr><td>Local Bridge</td><td>p2p AC-to-AC xconnect</td><td>Two interfaces in same bridge-domain</td><td>No IRB needed (pure L2)</td></tr>
+    <tr><td>VASI pairs (3RD)</td><td>vasileft/vasiright</td><td><strong>lt- interface</strong> (logical tunnel)</td><td>rib-groups rejected (no NAT/service chaining)</td></tr>
+    <tr><td>QoS (MQC)</td><td>class-map + policy-map</td><td>classifiers + schedulers + rewrite-rules</td><td>Complete redesign needed</td></tr>
+    <tr><td>SNMP OIDs</td><td>Cisco-specific</td><td>Juniper OIDs</td><td>NMS update required</td></tr>
+    <tr><td>3RD + FortiGate</td><td>ASR1001-X + FortiGate</td><td>Option: single <strong>vSRX</strong></td><td>Customer may prefer to keep FortiGate</td></tr>
+  </table>
+
+  <h3 id="ch14-2">14.2 CML Lab Status</h3>
+  <h4>Lab 1: Juniper MPLS-EVPN Lab (Vodafone KKTC Migration)</h4>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>CML Server</td><td>192.168.48.156 (Bare Metal)</td></tr>
+    <tr><td>Image</td><td>jnpr-vmx-vcp/vfp 23.2R2.21</td></tr>
+    <tr><td>Status</td><td>DEFINED_ON_CORE (not started)</td></tr>
+    <tr><td>Routers</td><td>8 vMX (P1-P4 core, PE1-PE4 edge)</td></tr>
+    <tr><td>Links</td><td>16 ae bundles (32 data links), full mesh</td></tr>
+    <tr><td>Protocols</td><td>OSPF area 0, LDP, iBGP VPNv4 (AS 65000)</td></tr>
+  </table>
+
+  <h4>Lab 2: Orhan Ergun MPLS VPNs Lab</h4>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>Status</td><td><span class="tag tag-green">All nodes running, configs pushed</span></td></tr>
+    <tr><td>Routers</td><td>P88, P99 (RR), PE11-PE44</td></tr>
+    <tr><td>Services</td><td>6 customers: L3VPN (OSPF/eBGP/static PE-CE) + VPLS</td></tr>
+    <tr><td>Image</td><td>vjunos-router 24.2R1-S2.5</td></tr>
+  </table>
+
+  <h3 id="ch14-3">14.3 Pending Work Items</h3>
+  <h4>Config Completion (Cisco IOS-XR)</h4>
+  <table class="compact">
+    <tr><th>Device</th><th>Status</th></tr>
+    <tr><td>PE90ORT03 v2 config</td><td><span class="tag tag-green">Done</span></td></tr>
+    <tr><td>PE90ORT04 v2 config</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>PE90KKY03 v2 config</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>PE90KKY04 v2 config</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>PE90KKY01/02 (CSR conversion)</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>PE90ORT01/02 (CSR conversion)</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>3RD90KKY01/02 config</td><td><span class="tag tag-orange">Pending</span></td></tr>
+  </table>
+
+  <h4>Juniper Migration Configs</h4>
+  <table class="compact">
+    <tr><th>Device</th><th>Status</th></tr>
+    <tr><td>PE90ORT03 &rarr; Juniper MX</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>PE90KKY03 &rarr; Juniper MX</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>3RD90KKY01 &rarr; vSRX</td><td><span class="tag tag-orange">Pending</span></td></tr>
+    <tr><td>QoS mapping (MQC &rarr; CoS)</td><td><span class="tag tag-orange">Pending</span></td></tr>
+  </table>
+
+  <h4>Lab Tasks</h4>
+  <ul>
+    <li>Start MPLS-EVPN lab and verify OSPF/LDP/BGP</li>
+    <li>Configure VRFs with production RT/RD values</li>
+    <li>Test EVPN-VPWS for xconnect replacement</li>
+    <li>Test lt- interface for VASI replacement</li>
+    <li>vSRX test (bridge-domain, security zones, IPsec)</li>
+  </ul>
+</div>
+
+<!-- ═══════════════ CHAPTER: MTU Summary ═══════════════ -->
+<div class="section" id="mtu">
+  <h2 class="section-title">Appendix A: MTU Reference</h2>
+  <table>
+    <tr><th>Link Type</th><th>MTU</th><th>Interfaces</th></tr>
+    <tr><td>Core fabric (ASR9K &harr; ASR9K)</td><td><strong>9114</strong></td><td>BE5043, BE11013, BE21013</td></tr>
+    <tr><td>Core &harr; Legacy (ASR9K &harr; 7609-S)</td><td><strong>9100</strong></td><td>BE202 / Po202</td></tr>
+    <tr><td>Firewall links</td><td><strong>9216</strong></td><td>BE100, BE101, BE102, BE155</td></tr>
+    <tr><td>DMZ FW</td><td><strong>9000</strong></td><td>BE223</td></tr>
+    <tr><td>PTN (eNodeB backhaul)</td><td><strong>1628</strong></td><td>BE411</td></tr>
+    <tr><td>Bridge-domain L2 trunk</td><td><strong>1600</strong></td><td>BE5042</td></tr>
+    <tr><td>Legacy L2 trunk</td><td><strong>1500-1520</strong></td><td>Po2, Po3</td></tr>
+  </table>
+</div>
+
+</div><!-- /content -->
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <p>Vodafone KKTC CPN Network &mdash; High Level Design Document v1.0</p>
+  <p>Based on production configuration analysis of 12 routers across KKY and ORT sites</p>
+  <p style="margin-top: 8px; font-size: 11px; color: #aaa;">Generated 2026-03-31</p>
+</div>
+
+</div><!-- /protected-content -->
+
+<script>
+const HASH = '83fe45b5563b9be0db93aadef5a4d52846f5233e5b0ca58e2e80c4d3d844614b';
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function checkAuth() {
+  const pwd = document.getElementById('pwd-input').value;
+  const hash = await sha256(pwd);
+  if (hash === HASH) {
+    document.getElementById('login-overlay').style.display = 'none';
+    document.getElementById('protected-content').style.display = 'block';
+    sessionStorage.setItem('vf-hld-auth', '1');
+  } else {
+    const err = document.getElementById('error-msg');
+    err.style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+    setTimeout(() => err.style.display = 'none', 3000);
+  }
+}
+// Auto-unlock if already authenticated in this session
+if (sessionStorage.getItem('vf-hld-auth') === '1') {
+  document.getElementById('login-overlay').style.display = 'none';
+  document.getElementById('protected-content').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
