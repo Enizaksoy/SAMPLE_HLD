@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vodafone KKTC - CPN Network High Level Design</title>
+<title>CPN Network High Level Design</title>
 <style>
   :root {
     --vf-red: #e60000;
@@ -227,8 +227,8 @@
 <div id="login-overlay">
   <div id="login-box">
     <div class="lock-icon">&#128274;</div>
-    <h2><strong>Vodafone</strong> KKTC</h2>
-    <p>CPN Network High Level Design &mdash; Protected Document</p>
+    <h2><strong>CPN</strong> Network</h2>
+    <p>High Level Design &mdash; Protected Document</p>
     <input type="password" id="pwd-input" placeholder="Enter password..." autofocus onkeydown="if(event.key==='Enter')checkAuth()">
     <button onclick="checkAuth()">Unlock Document</button>
     <div class="error" id="error-msg">Incorrect password. Try again.</div>
@@ -239,15 +239,15 @@
 
 <!-- ==================== COVER PAGE ==================== -->
 <div class="cover">
-  <div class="logo">Vodafone KKTC</div>
+  <div class="logo">Sample Operator</div>
   <h1>CPN Network<br><strong>High Level Design</strong></h1>
-  <h2>Core Packet Network - Kuzey Kibris</h2>
+  <h2>Core Packet Network</h2>
   <div class="subtitle">Cisco IOS-XR / IOS-XE / IOS Infrastructure &mdash; Current State Analysis &amp; Juniper Migration Reference</div>
   <div class="badge">Confidential &mdash; Internal Use Only</div>
   <div class="meta-table">
     <table>
-      <tr><td>Document</td><td>VF-KKTC-CPN-HLD v1.0</td></tr>
-      <tr><td>Operator</td><td>Vodafone KKTC (eski Telsim)</td></tr>
+      <tr><td>Document</td><td>CPN-HLD v1.0</td></tr>
+      <tr><td>Operator</td><td>Sample Mobile Operator</td></tr>
       <tr><td>Public AS</td><td>43356</td></tr>
       <tr><td>Core AS</td><td>62211</td></tr>
       <tr><td>Sites</td><td>KKY (Lefkosa/Kaymakli) + ORT (Ortakoy)</td></tr>
@@ -384,14 +384,14 @@
   <h2 class="section-title">1. Introduction &amp; Network Overview</h2>
 
   <h3 id="ch1-1">1.1 Purpose and Scope</h3>
-  <p>This document provides a comprehensive High Level Design (HLD) of the Vodafone KKTC (North Cyprus) Core Packet Network (CPN). It covers the current-state architecture based on analysis of all 12 production router configurations across two sites, and serves as the reference baseline for the planned Cisco &rarr; Juniper MX migration.</p>
-  <p>The network provides mobile core connectivity (2G/3G/4G), enterprise services, internet access, roaming, and signaling transport for the KKTC mobile operator.</p>
+  <p>This document provides a comprehensive High Level Design (HLD) of the Core Packet Network (CPN). It covers the current-state architecture based on analysis of all 12 production router configurations across two sites, and serves as the reference baseline for the planned Cisco &rarr; Juniper MX migration.</p>
+  <p>The network provides mobile core connectivity (2G/3G/4G), enterprise services, internet access, roaming, and signaling transport for the mobile operator.</p>
 
   <h3 id="ch1-2">1.2 AS Number Architecture</h3>
   <table>
     <tr><th>AS Number</th><th>Owner</th><th>Devices</th><th>Type</th></tr>
-    <tr><td><strong>62211</strong></td><td>Vodafone KKTC (Core)</td><td>PE90KKY03/04, PE90ORT03/04, PEX90KKY01/02</td><td>Private</td></tr>
-    <tr><td><strong>43356</strong></td><td>Vodafone KKTC (Public)</td><td>PEX (local-as for upstream)</td><td>Public</td></tr>
+    <tr><td><strong>62211</strong></td><td>Operator (Core)</td><td>PE90KKY03/04, PE90ORT03/04, PEX90KKY01/02</td><td>Private</td></tr>
+    <tr><td><strong>43356</strong></td><td>Operator (Public)</td><td>PEX (local-as for upstream)</td><td>Public</td></tr>
     <tr><td>65500</td><td>KKY Legacy</td><td>PE90KKY01/02</td><td>Private</td></tr>
     <tr><td>64500</td><td>ORT Legacy</td><td>PE90ORT01/02</td><td>Private</td></tr>
     <tr><td>65403</td><td>DCGW KKY</td><td>CORE_AF10_DCGW01/02</td><td>Private</td></tr>
@@ -1208,7 +1208,7 @@ interface BVI500
   advertise best-external
   nexthop trigger-delay critical 0
  !
- neighbor-group NG_Vodafone_iBGP
+ neighbor-group NG_OPERATOR_iBGP
   remote-as 62211
   advertisement-interval 0
   password encrypted 0315082F574407446C5C28514E135A
@@ -1222,17 +1222,17 @@ interface BVI500
  !
  !! iBGP peers (AS 62211)
  neighbor 10.134.34.2                               !! PE90KKY04
-  use neighbor-group NG_Vodafone_iBGP
+  use neighbor-group NG_OPERATOR_iBGP
   address-family vpnv4 unicast
  neighbor 10.134.34.128                              !! PE90ORT03
-  use neighbor-group NG_Vodafone_iBGP
+  use neighbor-group NG_OPERATOR_iBGP
   address-family vpnv4 unicast
  neighbor 10.134.34.129                              !! PE90ORT04
-  use neighbor-group NG_Vodafone_iBGP
+  use neighbor-group NG_OPERATOR_iBGP
   address-family vpnv4 unicast
  !
  !! eBGP VPNv4 Inter-AS Option B (→ Legacy 7609-S)
- neighbor-group NG_Vodafone_iBGP_PE90KKY01
+ neighbor-group NG_OPERATOR_iBGP_PE90KKY01
   remote-as 65500
   ebgp-multihop 5
   update-source Loopback0
@@ -1240,7 +1240,7 @@ interface BVI500
    next-hop-self
    soft-reconfiguration inbound
  neighbor 192.168.1.3                                !! PE90KKY01
-  use neighbor-group NG_Vodafone_iBGP_PE90KKY01
+  use neighbor-group NG_OPERATOR_iBGP_PE90KKY01
   ebgp-multihop 255 mpls
   address-family vpnv4 unicast
    route-policy PASS-ALL in
@@ -1251,7 +1251,7 @@ interface BVI500
  bgp router-id 10.135.19.3
  !
  neighbor 10.135.19.4                                !! PEX90KKY02
-  use neighbor-group NG_Vodafone_iBGP
+  use neighbor-group NG_OPERATOR_iBGP
  !
  vrf INTERNET
   rd 62211:201300401
@@ -1388,7 +1388,7 @@ vrf 4G-S1-CP
    62211:1007</div>
   <table class="compact vrf-table">
     <tr><th>#</th><th>VRF</th><th>RD (KKY03)</th><th>Export RT</th><th>Function</th></tr>
-    <tr><td>1</td><td><strong>VF</strong></td><td>62211:13104103</td><td>62211:4001</td><td>Vodafone Internal / Enterprise</td></tr>
+    <tr><td>1</td><td><strong>VF</strong></td><td>62211:13104103</td><td>62211:4001</td><td>Operator Internal / Enterprise</td></tr>
     <tr><td>2</td><td><strong>SIGTRAN</strong></td><td>62211:13100303</td><td>62211:1003</td><td>SS7/SIGTRAN Signaling</td></tr>
     <tr><td>3</td><td><strong>USERPLANE</strong></td><td>62211:13100203</td><td>62211:1002</td><td>CS/PS User Plane</td></tr>
     <tr><td>4</td><td><strong>4G-S1-CP</strong></td><td>62211:13100703</td><td>62211:1007</td><td>S1-MME Control Plane</td></tr>
@@ -1842,7 +1842,7 @@ snmp-server user TelatAbi snmp-v3-ro v3 auth sha encrypted ... IPv4 ACL_68</pre>
   <h3 id="ch13-3">13.3 IPsec Tunnels</h3>
   <table>
     <tr><th>Tunnel</th><th>Destination</th><th>Profile</th><th>Description</th></tr>
-    <tr><td>Tunnel8003</td><td>212.65.156.210</td><td>VFTR-IPSEC-PROFILE</td><td>Vodafone Turkey</td></tr>
+    <tr><td>Tunnel8003</td><td>212.65.156.210</td><td>VFTR-IPSEC-PROFILE</td><td>Parent Operator</td></tr>
     <tr><td>Tunnel8014</td><td>213.148.64.22</td><td>AES256-SHA</td><td>TEB Bank</td></tr>
     <tr><td>Tunnel8047</td><td>&mdash;</td><td>&mdash;</td><td>VFNET Voice</td></tr>
     <tr><td>Tunnel8424</td><td>&mdash;</td><td>&mdash;</td><td>COMFONE/GRX (Roaming)</td></tr>
@@ -1851,7 +1851,7 @@ snmp-server user TelatAbi snmp-v3-ro v3 auth sha encrypted ... IPv4 ACL_68</pre>
   <h3 id="ch13-4">13.4 3rd Party Connections</h3>
   <table>
     <tr><th>Connection</th><th>Type</th><th>Interface</th><th>Description</th></tr>
-    <tr><td>Vodafone Turkey (VFTR)</td><td>IPsec + Radio Link</td><td>Te0/0/0.605 (100M RL)</td><td>Primary: RL, Secondary: IPsec tunnel</td></tr>
+    <tr><td>Parent Operator (VFTR)</td><td>IPsec + Radio Link</td><td>Te0/0/0.605 (100M RL)</td><td>Primary: RL, Secondary: IPsec tunnel</td></tr>
     <tr><td>VIPX</td><td>Radio Link</td><td>Te0/0/0.609 (400M)</td><td>&mdash;</td></tr>
     <tr><td>BTHK</td><td>Fiber + RL Backup</td><td>Te0/0/0.616 (F/O), .614 (100M RL)</td><td>Fiber primary, RL backup</td></tr>
     <tr><td>TEB Bank</td><td>IPsec</td><td>Tunnel8014</td><td>AES256-SHA</td></tr>
@@ -1888,7 +1888,7 @@ snmp-server user TelatAbi snmp-v3-ro v3 auth sha encrypted ... IPv4 ACL_68</pre>
   </table>
 
   <h3 id="ch14-2">14.2 CML Lab Status</h3>
-  <h4>Lab 1: Juniper MPLS-EVPN Lab (Vodafone KKTC Migration)</h4>
+  <h4>Lab 1: Juniper MPLS-EVPN Lab (Migration)</h4>
   <table>
     <tr><th>Parameter</th><th>Value</th></tr>
     <tr><td>CML Server</td><td>192.168.48.156 (Bare Metal)</td></tr>
@@ -1959,7 +1959,7 @@ snmp-server user TelatAbi snmp-v3-ro v3 auth sha encrypted ... IPv4 ACL_68</pre>
 
 <!-- ==================== FOOTER ==================== -->
 <div class="footer">
-  <p>Vodafone KKTC CPN Network &mdash; High Level Design Document v1.0</p>
+  <p>CPN Network &mdash; High Level Design Document v1.0</p>
   <p>Based on production configuration analysis of 12 routers across KKY and ORT sites</p>
   <p style="margin-top: 8px; font-size: 11px; color: #aaa;">Generated 2026-03-31</p>
 </div>
